@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/sidewindoww.css" />
+</head>
+<body>
+<div class="contentContainer" id="contentsize" >
+    <!--top paging button(report and checking)-->
+    <div class="pagingArea" >
+        <!--(report and checking button)-->
+        <div id="div1">
+        <input type="button" value="Checking" class="active"/>
+        <input type="button" value="Report"/>
+        </div >
+        <!--(three icons on top)-->
+        <div class="functions-top">
+            <!--top icons-->
+            <div class="functions-top-container">
+                <div class="settingicon"><img src="images/seting.png" width="20px" alt=""/></div>
+                <div class="toolbaricon"><img src="images/minimal.png" width="13px"  alt=""/></div>
+                <div class="exiticon"><img src="images/exit.png" width="13px"  alt=""></div>
+            </div>
+        </div>
+    </div>
+    <!--two paging this is checking page-->
+    <div class="checking-page showpage" style="display:  block ;">
+                    <div class="checking-container">
+                        <div class="website-name">
+                        {window.location.host}
+                        </div>
+                        <!--dark pattern menu in the middle (it contain the rest of content of the sidewindow)-->
+                        <div class="darkpattern_list" id="accordionMenu">
+
+                            <div id="accordion">
+                                <!--dark pattern menu -->
+                                <div id="fathermenu">
+                                    <p><img src="images/count.png" alt="?"/></p> <p>Detect List</p>
+                                    <div class="dpMenu" style="display: none" >
+                                    <div class="chklist">
+                                        <label>
+                                            <input type="checkbox" name="checkItem" class="checkboxx"/>
+                                            <span>&nbsp;Fake Activities</span><label for="checkbox"></label>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="checkItem" class="checkboxx" id="checkbox"/>
+
+                                            <span>&nbsp;Fake Activities</span><label for="checkbox"></label>
+
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="checkItem" class="checkboxx"/>
+                                            <span>&nbsp;Fake Activities</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="checkItem" class="checkboxx"/>
+                                            <span>&nbsp;Fake Activities</span>
+                                        </label>
+
+                                    </div>
+                                    </div>
+                                </div>
+                                <!--rest of page--the checking button -->
+                                <div class="detection_button">
+
+                                        <input type="button" value="Detecting" class="detectionbtn"/>
+                                    </div>
+                                <!--rest of page--the result page -->
+
+                                <div class="analysis-result">
+                                    <!--two areas can be switch -->
+                                    <div id="result-area">
+                                        <!--switch button-->
+                                        <div id="result-area-button">
+                                            <input type="button" value="Dark Patterns" class="active_result"/>
+                                            <input type="button" value="Pie Chart"/>
+                                        </div>
+                                        <!--result page(only text)-->
+                                            <div class='resultArea area' style="display: block">
+                                                <div class="textArea_container">
+                                                    <div class="text">
+                                                        <div class="dpcheckbox">
+                                                                <label>
+                                                                    <span class="big_font">Fake Activities</span><br>
+                                                                    <span class="small_font">keywords: some words, XX XXXX,xxxxxx</span>
+                                                                    <input type="checkbox"  />
+                                                                </label>
+                                                        </div>
+                                                        <div class="dpcheckbox">
+                                                        <label>
+                                                            <span class="big_font" >Fake Activities</span><br>
+                                                            <span class="small_font" >keywords: some words, XX XXXX,xxxxxx</span>
+                                                            <input type="checkbox" />
+                                                        </label>
+                                                        </div>
+                                                        <div class="dpcheckbox">
+                                                        <label>
+                                                            <span class="big_font">Fake Activities</span><br>
+                                                            <span class="small_font">keywords: some words, XX XXXX,xxxxxx</span>
+                                                            <input type="checkbox"/>
+                                                        </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        <!--Pie chart page(chart)-->
+                                            <div class='piechartArea area' style="display: none">
+                                                <div class="pieArea_container">
+                                                    <div class="infoWrapper">
+                                                    <div class="scroll">
+                                                        <i class="fa-arrow-left fa-lg"></i>
+                                                    </div>
+                                                </div>
+                                                    <div class="doughnut">
+                                                    <div class="count">
+                                                        19
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <!--two paging this is report page-->
+    <div class="rep-amort-page showpage" style="display: none;">
+
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/sidewindow.js"></script>
+
+
+</body>
+</html>

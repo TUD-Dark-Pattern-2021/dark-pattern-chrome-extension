@@ -1,0 +1,25 @@
+{
+    "name": "DPD",
+    "version": "0.0.1",
+    "description": "Dark Pattern Detector",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [{
+        "js": ["contentScript.js", "js/jquery.min.js", "highlight_DP.js"],
+        "matches": ["<all_urls>", "http://*/*", "https://*/*"],
+        "css": ["css/sidewindoww.css","css/sideWindow.css" ,"css/stylesheetH.css"],
+        "run_at": "document_end"
+    }],
+    "permissions": ["scripting", "activeTab", "tabs", "webNavigation"],
+    "action": {
+        "default_title": "Click to show and alert"
+    },
+    "host_permissions": ["<all_urls>"],
+
+    "web_accessible_resources": [{
+        "resources": ["images/*.png"],
+        "matches": ["<all_urls>", "http://*/*", "https://*/*"]
+    }]
+}
