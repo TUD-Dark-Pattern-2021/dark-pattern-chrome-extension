@@ -8,6 +8,7 @@ chrome.action.onClicked.addListener((tab) => {
         });
 });
 
+//listener to listen for any message sent by scripts 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'Get Data') {
         sendData(request.data);
@@ -15,6 +16,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+
+//fucntion to get the data from the api running on the node server, and then sends the response data to another content script
 async function sendData(raw_html) {
     encoded_html = encodeURIComponent(raw_html);
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/detect", {
@@ -34,5 +37,3 @@ async function sendData(raw_html) {
 
     });
 }
-
-//just testing to see if the push works

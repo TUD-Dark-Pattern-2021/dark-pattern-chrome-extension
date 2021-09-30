@@ -9,17 +9,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 //function to highlight all given DP on a webpage so far. 
 function highlight_DP(data) {
-    // let DP_text = data.details[0].tag;
-    // $(DP_text).html("abc")
     console.log(data)
     for (item = 0; item < data.details.length; item++) {
         DP_text = data.details[item].tag;
-        $(DP_text).css({ border: '5px solid red' });
-        // console.log(DP_text);
-        // $('body :not(script)').contents().filter(function() {
-        //     return this.nodeType === 3;
-        // }).replaceWith(function() {
-        //     return this.nodeValue.replace(DP_text, `<span class = "DP_smallcaps">${DP_text}</span>`);
-        // });
+        if (data.details[item].category_name == 'Misdirection') {
+            $(DP_text).css({ border: '5px solid red' });
+        } else if (data.details[item].category_name == 'Scarcity') {
+            $(DP_text).css({ border: '5px solid blue' });
+        } else if (data.details[item].category_name == 'Urgency') {
+            $(DP_text).css({ border: '5px solid yellow' });
+        } else if (data.details[item].category_name == 'Obstruction') {
+            $(DP_text).css({ border: '5px solid green' });
+        } else if (data.details[item].category_name == 'Social Proof') {
+            $(DP_text).css({ border: '5px solid orange' });
+        }
     }
 }
