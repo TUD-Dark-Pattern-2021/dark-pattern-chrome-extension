@@ -6,137 +6,139 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/sidewindoww.css" />
+    <link rel="stylesheet" type="text/css" href="../css/sidewindoww.css" />
 </head>
 <body>
-<div class="contentContainer" id="contentsize" >
+<div class="DP-contentContainer" id="DB-contentsize" >
     <!--top paging button(report and checking)-->
-    <div class="pagingArea" >
+    <div class="DP-pagingArea" >
         <!--(report and checking button)-->
-        <div id="div1">
-        <input type="button" value="Checking" class="active"/>
-        <input type="button" value="Report"/>
+        <div id="DP-div1">
+            <input type="button" value="Checking" class="active"/>
+            <input type="button" value="Report"/>
         </div >
         <!--(three icons on top)-->
-        <div class="functions-top">
+        <div class="DP-functions-top">
             <!--top icons-->
-            <div class="functions-top-container">
-                <div class="settingicon"><img src="images/seting.png" width="20px" alt=""/></div>
-                <div class="toolbaricon"><img src="images/minimal.png" width="13px"  alt=""/></div>
-                <div class="exiticon"><img src="images/exit.png" width="13px"  alt=""></div>
+            <div class="DP-functions-top-container">
+                <div class="DP-settingicon"><img src="../images/seting.png" width="20px" alt=""/></div>
+                <div class="DP-toolbaricon"><img src="../images/minimal.png" width="13px"  alt=""/></div>
+                <div class="DP-exiticon"><img src="../images/exit.png" width="13px"  alt=""></div>
             </div>
         </div>
     </div>
     <!--two paging this is checking page-->
-    <div class="checking-page showpage" style="display:  block ;">
-                    <div class="checking-container">
-                        <div class="website-name">
-                        {window.location.host}
-                        </div>
-                        <!--dark pattern menu in the middle (it contain the rest of content of the sidewindow)-->
-                        <div class="darkpattern_list" id="accordionMenu">
+    <div class="DP-checking-page DP-showpage" style="display:  block ;">
+        <div class="DP-checking-container">
+            <div class="DP-website-name">
+                {window.location.host}
+            </div>
+            <!--dark pattern menu in the middle (it contain the rest of content of the sidewindow)-->
+            <div class="DP-darkpattern_list" id="DP-accordionMenu">
 
-                            <div id="accordion">
-                                <!--dark pattern menu -->
-                                <div id="fathermenu">
-                                    <p><img src="images/count.png" alt="?"/></p> <p>Detect List</p>
-                                    <div class="dpMenu" style="display: none" >
-                                    <div class="chklist">
-                                        <label>
-                                            <input type="checkbox" name="checkItem" class="checkboxx"/>
-                                            <span>&nbsp;Fake Activities</span><label for="checkbox"></label>
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="checkItem" class="checkboxx" id="checkbox"/>
+                <div id="DP-accordion">
+                    <!--dark pattern menu -->
+                    <div id="DP-fathermenu">
+                        <p class="DPp"><img src="../images/count.png" alt="?"/>Detect List</p>
+                        <div class="DP-dpMenu" style="display: none" >
+                            <div class="DP-chklist">
+                                <label>
+                                    <input type="checkbox" name="checkItem" class="DP-checkboxx"/>
+                                    <span class="DP-checkboxx-span">&nbsp;Fake Activities</span><label for="DP-checkbox"></label>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="checkItem" class="DP-checkboxx" id="DP-checkbox"/>
 
-                                            <span>&nbsp;Fake Activities</span><label for="checkbox"></label>
+                                    <span class="DP-checkboxx-span">&nbsp;Fake Activities</span><label for="DP-checkbox"></label>
 
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="checkItem" class="checkboxx"/>
-                                            <span>&nbsp;Fake Activities</span>
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="checkItem" class="checkboxx"/>
-                                            <span>&nbsp;Fake Activities</span>
-                                        </label>
-
-                                    </div>
-                                    </div>
-                                </div>
-                                <!--rest of page--the checking button -->
-                                <div class="detection_button">
-
-                                        <input type="button" value="Detecting" class="detectionbtn"/>
-                                    </div>
-                                <!--rest of page--the result page -->
-
-                                <div class="analysis-result">
-                                    <!--two areas can be switch -->
-                                    <div id="result-area">
-                                        <!--switch button-->
-                                        <div id="result-area-button">
-                                            <input type="button" value="Dark Patterns" class="active_result"/>
-                                            <input type="button" value="Pie Chart"/>
-                                        </div>
-                                        <!--result page(only text)-->
-                                            <div class='resultArea area' style="display: block">
-                                                <div class="textArea_container">
-                                                    <div class="text">
-                                                        <div class="dpcheckbox">
-                                                                <label>
-                                                                    <span class="big_font">Fake Activities</span><br>
-                                                                    <span class="small_font">keywords: some words, XX XXXX,xxxxxx</span>
-                                                                    <input type="checkbox"  />
-                                                                </label>
-                                                        </div>
-                                                        <div class="dpcheckbox">
-                                                        <label>
-                                                            <span class="big_font" >Fake Activities</span><br>
-                                                            <span class="small_font" >keywords: some words, XX XXXX,xxxxxx</span>
-                                                            <input type="checkbox" />
-                                                        </label>
-                                                        </div>
-                                                        <div class="dpcheckbox">
-                                                        <label>
-                                                            <span class="big_font">Fake Activities</span><br>
-                                                            <span class="small_font">keywords: some words, XX XXXX,xxxxxx</span>
-                                                            <input type="checkbox"/>
-                                                        </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        <!--Pie chart page(chart)-->
-                                            <div class='piechartArea area' style="display: none">
-                                                <div class="pieArea_container">
-                                                    <div class="infoWrapper">
-                                                    <div class="scroll">
-                                                        <i class="fa-arrow-left fa-lg"></i>
-                                                    </div>
-                                                </div>
-                                                    <div class="doughnut">
-                                                    <div class="count">
-                                                        19
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                    </div>
-
-                                </div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="checkItem" class="DP-checkboxx"/>
+                                    <span class="DP-checkboxx-span">&nbsp;Fake Activities</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="checkItem" class="DP-checkboxx"/>
+                                    <span class="DP-checkboxx-span">&nbsp;Fake Activities</span>
+                                </label>
 
                             </div>
                         </div>
                     </div>
+                    <!--rest of page--the checking button -->
+                    <div class="DP-detection_button">
+
+                        <input type="button" value="Detecting" class="DP-detectionbtn"/>
+                    </div>
+                    <!--rest of page--the result page -->
+
+                    <div class="DP-analysis-result">
+                        <!--two areas can be switch -->
+                        <div id="DP-result-area">
+                            <!--switch button-->
+                            <div id="DP-result-area-button">
+                                <input type="button" value="Dark Patterns" class="DPactive_result" id="DPbt1"/>
+                                <input type="button" value="Pie Chart" id="DPbt2"/>
+                            </div>
+                            <!--result page(only text)-->
+                            <div class='DP-resultArea DP-area' style="display: block">
+                                <div class="DP-textArea_container">
+                                    <div class="DP-text">
+                                        <div class="DP-dpcheckbox">
+                                            <label class="DPresulttext">
+                                                <span class="DP-big_font">Fake Activities</span><br>
+                                                <span class="DP-small_font">keywords: some words, XX XXXX,xxxxxx</span>
+                                                <input type="checkbox"  class="DPcheckboxxx" />
+                                            </label>
+                                        </div>
+                                        <div class="DP-dpcheckbox">
+                                            <label class="DPresulttext">
+                                                <span class="DP-big_font" >Fake Activities</span><br>
+                                                <span class="DP-small_font" >keywords: some words, XX XXXX,xxxxxx</span>
+                                                <input type="checkbox" class="DPcheckboxxx"/>
+                                            </label>
+                                        </div>
+                                        <div class="DP-dpcheckbox">
+                                            <label class="DPresulttext">
+                                                <span class="DP-big_font">Fake Activities</span><br>
+                                                <span class="DP-small_font">keywords: some words, XX XXXX,xxxxxx</span>
+                                                <input type="checkbox"  class="DPcheckboxxx"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--Pie chart page(chart)-->
+                            <div class='DP-piechartArea area' style="display: none">
+                                <div class="DP-pieArea_container">
+                                    <div class="DP-infoWrapper">
+                                        <div class="DP-scroll" >
+                                            <i class="DP-fa-arrow-left fa-lg"></i>
+                                        </div>
+                                    </div>
+                                    <div class="DP-doughnut">
+                                        <div class="DP-count">
+                                            19
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+            </div>
+        </div>
+    </div>
     <!--two paging this is report page-->
-    <div class="rep-amort-page showpage" style="display: none;">
+    <div class="DP-report-page showpage" style="display: none;">
 
     </div>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/sidewindow.js"></script>
+
+</div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/sidewindow.js"></script>
 
 
 </body>
