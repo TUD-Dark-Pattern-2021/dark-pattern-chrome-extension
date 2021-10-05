@@ -1,201 +1,3 @@
-@charset "utf-8";
-
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    /*background: transparent;*/
-}
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
-    font-weight: normal;
-}
-
-
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    /*background: transparent;*/
-}
-table {
-    border-collapse:collapse;
-    border-spacing:0;
-}
-fieldset, img {    border:0;}
-address, caption, cite, code, dfn, em, strong, th, var {
-    font-style:normal;
-    font-weight:normal;
-}
-ol, ul { list-style:none; }
-caption, th { text-align:left; }
-h1, h2, h3, h4, h5, h6 {
-    font-size:200%;
-    font-weight:normal;
-}
-:focus { outline: 0;}
-a{ text-decoration:none;}
-a:hover img{ border:none;}
-
-a:active{noOutline:expression(this.onFocus=this.blur());}
-/*清除浮动*/
-.clearfix:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-.clearfix {display: inline-block;}
-/* Hides from IE-mac \*/
-* html .clearfix { height: 1%;}
-.clearfix {display: block;}
-/* End hide from IE-mac */
-
-/*png css hack for ie6*/
-
-
-/* HTML5 display-role reset for older browsers */
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
-
-ol,
-ul {
-    list-style: none;
-}
-
-blockquote,
-q {
-    quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-
-/*css rest up until this line*/
-
-* {
-    margin:20px;
-    padding:20px;
-}
-
 .DP-contentContainer{
 
     padding:5px;
@@ -203,7 +5,6 @@ table {
     background:white;
     color:#666;
     position: fixed;
-
     top: 10px;
     right: 10px;
     width: 360px;
@@ -222,14 +23,18 @@ table {
 .DP-settingicon img{
     margin-top: 0px;
     margin-left: -15px;
+
 }
 .DP-toolbaricon{
     margin-top: -2px;
     margin-left: -5px;
+
 }
+
 .DP-exiticon img{
     margin-top: 3px;
     padding-right: -10px;
+
 }
 
 /* paging buttons */
@@ -240,12 +45,9 @@ table {
 #DP-div1 {
     display: grid;
     width: 180px;
-
-
     grid-template-rows: 30px;
     grid-template-columns:50% 50%;
     box-sizing: border-box;
-
     margin-left: 20px;
 
 }
@@ -258,49 +60,38 @@ table {
     line-height:10px;
     margin-top: -25px;
     border:none;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;!important;
     font-size: 15px;
-
 }
+
 .DP-functions-top-container{
     top:15px;
     right: 40px;
     width: 80px;
     position: absolute;
     display: grid;
-
     grid-template-rows: auto;
     grid-template-columns:33% 33% 33%;
-
-
 }
+
 /*Checking and Report area*/
 .DP-pagingArea{
     position: fixed;
     padding-top: 25px;
     display: grid;
-
-
     grid-template-rows: 50px;
     grid-template-columns: 230px 80px;
     font-size: 15px;
-
     width: 350px;
-
-
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
 }
-.DP-checking-page{
 
+.DP-checking-page{
     position: fixed;
     top:80px;/**13%;*/
     width: 300px;
     right:75px;
-
-
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
-
-
 }
 
 /****************************Checking area**********************************/
@@ -313,6 +104,7 @@ table {
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
 
 }
+
 .DP-website-name {
     position:absolute;
     margin-top: -1px;
@@ -322,91 +114,90 @@ table {
     font-size: 20px ;
     margin-left: 5px;
 
-    /* margin-left: 25px;*/
 }
+    /* margin-left: 25px;*/
+
 /************************Menu************************************/
 .DP-darkpattern_list{
     position:absolute;
     margin-top: 80px;
     padding-bottom: 20px;
     left:6px;
-
     font-size: 14px;
     font-weight:bold;
     z-index: 99999999999;
     width: 100px;
 
 }
+
 #DP-accordion{
     position:absolute;
     z-index: 99999999999;
     width: 260px;
-
-
 }
+
 #DP-fathermenu{
     position:absolute;
-    width: 300px;
+    width: 200px;
     z-index: 99999999999;
     font-weight:bold;
     top:-30px;
-    display: flex;
-    margin-left:30px;
-
-
-
-
-
+    display: inline-block;
+    left:10px;
 }
 
 .DPp{
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
     font-weight: bolder;
-    color: #7C839C;
     font-size: small;
     display: inline-block;
     position: relative;
     text-align: center;
+    margin-left: -20px;
+    margin-top: -10px;
+    top:8px;
+    padding-bottom: 10px;
 }
 
 #DP-fathermenu p img{
     position: absolute;
     vertical-align:top;
-    margin-left: -25px;
-    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: -20px;
     width: 13px;
-    display: inline-block ;
+    display: inline-block;
     z-index: 99999999999;
 
 }
-.DP-checkboxx{
-    margin-right: 10px;
-    margin-top: -2px;
 
-}
+
+
 .DP-checkboxx-span{
-    margin-left: -8px;
+    margin-left: 5px;
+    margin-bottom: -10px;
 }
+
 .DP-dpMenu{
     z-index: 999999999999;
     position: absolute;
-    margin-left: 15px;
+    margin-left: 17px;
     margin-top:20px;
-    width:200px;
+    width:230px;
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
-
 }
+
 .DP-chklist{
     display: grid;
-    height: 138px;
+    height: 158px;
     padding-top: 20px;
-    padding-left: 4px;
-    margin-left: -20px;
-    width: 200px;
+    padding-bottom: 20px;
+    padding-left: -1px;
+
+    margin-top: -30px;
+    width: 300px;
     grid-template-rows: 30px 30px 30px 30px;
     grid-template-columns:200px;
     justify-content: space-around;
-
     grid-gap: 3px;
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
     font-size: small;
@@ -414,10 +205,8 @@ table {
     background-color:  #F4F5F7;
     border-radius: 10px;
     filter:alpha(Opacity=80);-moz-opacity:0.9;opacity: 0.9;
-
-
-
 }
+
 .DP-chklist label{
     margin-left: -30px;
     display: inline-block;
@@ -428,11 +217,12 @@ table {
     display: inline-block;
     vertical-align: text-top;
     line-height: 30px;
+    margin-top: -3px;
     width: 1px;
     position: relative;
-
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
 }
+
 .DP-chklist>label>input[type="checkbox"]::before{
     position: relative;
     background: #fff;
@@ -441,6 +231,7 @@ table {
     height: 100%;
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
 }
+
 .DP-chklist>label>input[type="checkbox"]:checked::before{
     content: "L";
     transform: rotateY(180deg) rotate(-45deg);
@@ -449,12 +240,10 @@ table {
     -webkit-transform:rotateY(180deg) rotate(-45deg);
     -o-transform:rotateY(180deg) rotate(-45deg);
     vertical-align: baseline;
-
     background-color: #fff;
     position: absolute;
     width:100%;
     border:none;
-
     color:#655CFE;
     font-size: 15px;
     font-weight: bolder;
@@ -464,14 +253,13 @@ table {
 /***********************Detect Button*******************************/
 .DP-detection_button{
     position: absolute;
-    margin-top: -10px;
+    margin-top: 15px;
     margin-left: -5px;
-
 }
+
 .DP-detectionbtn{
     position: absolute;
     width:300px;
-    margin-top: 5px;
     background: #D0CDFF;
     color: #655CFE;
     border-radius: 10px;
@@ -481,8 +269,9 @@ table {
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
     font-weight: bolder;
     font-size: 15px;
+    padding:50%;
     margin-left: 3px;
-    padding-top: 17px;
+
 }
 
 
@@ -492,11 +281,11 @@ table {
 /****two buttons****/
 #DP-result-area-button input{
     display:block;
-    padding-left: 10px;
+    padding-left: 2px;
     padding-top: 10px;
     margin-top: 0px;
     margin-left: 1px;
-    inline-size: 200px;
+    inline-size: 150px;
     border-radius: 20px;
     height:35px;
     border: none;
@@ -504,21 +293,24 @@ table {
 
 }
 #DPbt1,#DPbt2{
-    font-family:'Hiragino Sans GB SemiBold', sans-serif;
+    font-family:'Hiragino Sans GB SemiBold', sans-serif;!important
     font-size: small;
+    padding-bottom: 30px;
+
+
     font-weight:normal;
     color:#35363A;
 }
 
 #DP-result-area-button{
-    position: relative;
-    top:0px;
+    position: absolute;
+    top:50px;
     width: 300px;
     background-color: #FFFFFF;
-    display: flex;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 30px;
     left:30px;
-    flex-direction: row;
-    flex-wrap:nowrap;
 
 
 }
@@ -529,34 +321,42 @@ table {
     position: absolute;
     padding-top:40px ;
 }
-.DPactive_result{
+.DPactiveresult{
     background-color: #F4F5F7 !important;
 }
 
 /**Text Page */
 .DP-textArea_container{
     position: absolute;
-    top:80px;
-    left:2px;
-    padding-top:20px;
+    display: grid;
+    grid-template-columns:  300px;
+    padding-left: 25px;
+
+    top:70px;
+
+    margin-top:20px;
+    margin-left: 3px;
     width: 350px;
     background-color: #FFFFFF;
 
 }
-.DPresulttext{
 
-}
 
 /**Text Result */
 .DP-dpcheckbox{
+
+    grid-column-start:1;
     font-size: 15px;
-    padding-top: 20px;
+    padding-top: 40px;
+    padding-left: -20px;
     border: none;
-    height: 60px;
+    height: 80px;
+    border-radius: 20px;
+
 }
+
 .DP-dpcheckbox>label>input[type=checkbox]{
     cursor: pointer;
-    display: inline-block;
     vertical-align: top;
     position: relative;
 
@@ -565,6 +365,7 @@ table {
     position: absolute;
     size: 10px;
     margin-left: -50px;
+    margin-top: 20px;
 }
 .DP-dpcheckbox label input{
     position: absolute;
@@ -584,12 +385,12 @@ table {
 
     background-color:#FFFFFF;
     position: absolute;
-    margin-left: 5px;
-    padding-top: 5px;
+    margin-left: -50px;
+    padding-top: -1px;
     margin-top: -18px;
-    width:30px;
+    width:60px;
     border:none;
-    height:30px;
+    height:60px;
     color:#655CFE;
     font-size: 40px;
     font-weight:bolder;
@@ -598,51 +399,40 @@ table {
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
     color: #7C839C;
     font-size: smaller;
-    padding-left: 33px;
+
     padding-top:-10px;
 }
 .DP-big_font{
     font-family:'Hiragino Sans GB SemiBold', sans-serif;
     font-weight: bolder;
+    margin-left: -30px;
 
 
 }
 
 /**pie chart Page**/
-.DP-piechArea_container{
-    position: relative;
-    top:10px;
-    left:2px;
-    padding-top:20px;
-    width: 350px;
-    background-color: transparent;
-    z-index: 99999999999;
-}
-.DP-infoWrapper {
-    z-index: 99999999999;
-    left: -100px;/*10px;*/
-    width: 360px;
-    top:100px;
 
-    /* height: 356px;*/
-    height:250px;
-    background:transparent; /*#F4F5F7;*/
-
-    display: block;
-
-}
 /*box-shadow: 0px 0px 10px -5px rgba(184, 185, 187, 1)*/
-.DP-doughnut {
 
 
-    /*display: block;
-    width: 200px;*/
+
+.infoWrapper {
+    position: fixed;
+    top: 180px;
+    right: -50px;
+    width: 344px;
+    height: 250px;
+    background: transparent;
+}
+
+
+.doughnut {
+    width: 200px;
     height: 200px;
     position: absolute;
-    top: 230px;/**50%;*/
-    /*left: 50%;*/
-    left:180px;
-    z-index: 99999999999;
+    top: 500px;
+
+    left: 130px;
     transform: translate(-50%, -50%);
     border-radius: 100%;
     border-top: 44px solid #A9DC62;
@@ -651,18 +441,28 @@ table {
     border-bottom: 44px solid red;
     text-align: center;
     box-sizing: border-box;
+
 }
-.DP-scroll {
+
+.count {
     position: absolute;
-    top: 400px;
-    left: 50px;/*20%;*/
+    top: 50%;
+    left: 35%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+
+    color: #545558;
+    font-weight: 400;
+}
+
+.scroll {
+    position: absolute;
+    top: 50%;
+    left: 30%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    cursor: pointer;
-}
-.DP-count{
-    position: absolute;
-    left:40px;
+
 }
 
 
