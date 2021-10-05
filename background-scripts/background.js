@@ -13,6 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'Get Data') {
         sendData(request.data);
         sendResponse("Done");
+        return true;
     }
 });
 
@@ -31,6 +32,7 @@ async function sendData(raw_html) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, (response) => {
                 console.log(response);
+                return true;
             });
 
         })
