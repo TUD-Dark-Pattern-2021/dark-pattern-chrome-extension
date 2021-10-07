@@ -37,3 +37,19 @@ span.DP_pointer_top {
     left: 12px;
     top: -20px;
 }
+
+span.DP_pointer_right {
+    border: solid 10px transparent;
+    border-top-color: aqua;
+    position: absolute;
+    left: 68px;
+    top: 100px
+}
+
+span.DP_pointer_right_top {
+    border: solid 10px transparent;
+    border-bottom-color: aqua;
+    position: absolute;
+    left: 68px;
+    top: -20px
+}
