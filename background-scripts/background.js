@@ -4,7 +4,7 @@ chrome.action.onClicked.addListener((tab) => {
     chrome.tabs.sendMessage(
         tab.id, { callFunction: "ControllerFunction" },
         function(response) {
-            console.log("hasf");
+            console.log(response);
         });
 });
 

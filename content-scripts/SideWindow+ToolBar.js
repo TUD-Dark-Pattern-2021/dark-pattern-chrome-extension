@@ -13,7 +13,7 @@ function MainController() {
     let checkForSideWindow = document.getElementById("SideWindow");
     let checkforToolBar = document.getElementById("ToolBar");
     if (checkforToolBar == null && checkForSideWindow == null) {
-        openToolBar();
+        openSideWindow();
     } else if (checkForSideWindow == null && checkforToolBar) {
         closeToolBar();
     } else if (checkforToolBar == null && checkForSideWindow) {
