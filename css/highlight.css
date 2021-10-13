@@ -14,20 +14,21 @@
 }
 
 .popupContainer {
-    width: 100px;
-    height: 100px;
+    width: 317px;
+    height: 137px;
     border-radius: 10px;
     position: absolute;
-    background-color: aqua;
+    background-color: white;
     z-index: 999999;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 span.DP_pointer {
-    border: solid 10px transparent;
-    border-top-color: aqua;
+    border: solid 15px transparent;
+    border-top-color: white;
     position: absolute;
     left: 12px;
-    top: 100px;
+    top: 137px;
 }
 
 span.DP_pointer_top {
@@ -51,5 +52,57 @@ span.DP_pointer_right_top {
     border-bottom-color: aqua;
     position: absolute;
     left: 68px;
-    top: -20px
+    top: -10px
+}
+
+.DP_PU_Title {
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-size: 22px;
+    font-weight: bolder;
+    margin: 10px 0 15px 14px;
+}
+
+.DP_popuptext {
+    font-size: 13px;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    margin: 0px 12px 17px 14px;
+    font-weight: bold;
+}
+
+.DP_popupMI {
+    float: left;
+    font-size: 11px;
+    color: #0645AD;
+    margin: 0px 0px 3px 12px;
+    cursor: pointer;
+    display: block;
+    /*visibility: visible*/
+    ;
+}
+
+.DP_popupLI {
+    float: left;
+    font-size: 11px;
+    color: #0645AD;
+    margin: 0px 0px 3px 12px;
+    cursor: pointer;
+    display: none;
+    /* visibility: hidden*/
+    ;
+}
+
+.DP_popupReport {
+    float: right;
+    font-size: 11px;
+    color: #0645AD;
+    margin: 0px 12px 3px 0px;
+    cursor: pointer;
+}
+
+.hiddeninfo {
+    display: none;
+}
+
+.showninfo {
+    display: block;
 }

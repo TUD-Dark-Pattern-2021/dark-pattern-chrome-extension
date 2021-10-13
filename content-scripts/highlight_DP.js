@@ -47,14 +47,21 @@ function highlight_DP(data) {
             let popup = document.createElement("div");
             popup.className = "popupContainer";
             popup.id = "DP_popup_active";
-            //popup.innerHTML = "<span id = pointer></span><div>InfoBox</div>";
+            popup.onclick = function(event) {
+                    if (event.target.id === "moreinfo") {
+                        showmoreinfo();
+                    } else if (event.target.id === "lessinfo") {
+                        showlessinfo();
+                    }
+
+                }
+                //popup.innerHTML = "<span id = pointer></span><div>InfoBox</div>";
 
             //when popup is too close to the top and right hand side of the page
             if (pos_top <= 150 && screen.width - pos_right <= 150) {
                 popup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer_right_top'></span><div>${returnHTML(category)}</div>`;
                 popup.style.left = pos_left - 56 + window.scrollX + 'px';
                 popup.style.top = pos_top + 54 + window.scrollY + 'px';
-                console.log("heelo");
                 document.body.appendChild(popup);
 
                 //when popup would be too close to the right hand side of the page
@@ -79,23 +86,27 @@ function highlight_DP(data) {
 
             //when there is a popup already present on the page
         } else {
-            if (pos_top <= 150 && screen.width - pos_right <= 150) {
+            if (pos_top <= 270 && screen.width - pos_right <= 150) {
                 $("#DP_popup_active").animate({ "left": pos_left - 56 + window.scrollX + 'px', "top": pos_top + 54 + window.scrollY + 'px' }, 200);
+                $('#DP_popup_active').css("height", "137px");
                 $("#popuparrow").removeClass().addClass("DP_pointer_top");
-                checkforPopup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer_top'></span><div>${returnHTML(category)}</div>`;
+                checkforPopup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer_top_right'></span><div>${returnHTML(category)}</div>`;
 
-            } else if (pos_top <= 150) {
+            } else if (pos_top <= 270) {
                 $("#DP_popup_active").animate({ "left": pos_left + window.scrollX + 'px', "top": pos_top + 54 + window.scrollY + 'px' }, 200);
+                $('#DP_popup_active').css("height", "137px");
                 $("#popuparrow").removeClass().addClass("DP_pointer_top");
                 checkforPopup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer_top'></span><div>${returnHTML(category)}</div>`;
 
             } else if (screen.width - pos_right <= 150) {
                 $("#DP_popup_active").animate({ "left": pos_left - 56 + window.scrollX + 'px', "top": pos_top + window.scrollY + 'px' }, 200);
+                $('#DP_popup_active').css("height", "137px");
                 $("#popuparrow").removeClass().addClass("DP_pointer_top");
-                checkforPopup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer_top'></span><div>${returnHTML(category)}</div>`;
+                checkforPopup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer_right'></span><div>${returnHTML(category)}</div>`;
 
             } else {
                 $("#DP_popup_active").animate({ "left": pos_left + window.scrollX + 'px', "top": pos_top - 110 + window.scrollY + 'px' }, 200);
+                $('#DP_popup_active').css("height", "137px");
                 $("#popuparrow").removeClass().addClass("DP_pointer");
                 checkforPopup.innerHTML = `<span id = 'popuparrow' class = 'DP_pointer'></span><div>${returnHTML(category)}</div>`;
             }
@@ -105,16 +116,50 @@ function highlight_DP(data) {
         }
 
     }
+}
 
-    function returnHTML(category) {
-        return `<div>${category}</div>`
+function returnHTML(category) {
+    return `<div class = DP_PU_Title>Confirmshaming</div>
+    <div class = "DP_popuptext">This pattern might be using language and/or emotion in order to steer you away from making a particular choice.</div>
+    
+    
+    <div id = "hiddeninfo" class = "hiddeninfo">
+    <div class = "DP_PU_Title">Category - Misdirection</div>
+
+    <div class = "DP_popuptext">Misdirection patterns function by exploiting different affective mechanisms and cognitive biases in users, through language, visuals, and emotion, without actually restricting the set of choices available to the user.</div>
+    </div>
+
+    <div>
+        <span id = "moreinfo" class = "DP_popupMI">More info?</span>
+        <span id = "lessinfo" class = "DP_popupLI">Less info?</span>
+        <span class = "DP_popupReport">Incorrectly Indentified?</span>
+    </div>
+    
+    `
+}
+
+
+$(window).resize(function() {
+    if (document.getElementById("DP_popup_active") == null) {
+        return;
+    } else {
+        document.getElementById("DP_popup_active").remove();
     }
+})
 
+function showmoreinfo() {
+    document.getElementById("hiddeninfo").className = "showninfo";
+    //$("#hiddeninfo").css("display", "block");
+    $("#moreinfo").css("display", "none");
+    $("#lessinfo").css("display", "block");
+    $("#DP_popup_active").animate({ "height": 265 + 'px' }, 200);
+    //$("#hiddeninfo").animate({ "display": "block" }, 200);
+}
 
-    $(window).resize(function() {
-        if (document.getElementById("DP_popup_active") == null) {
-            return;
-        } else {
-            document.getElementById("DP_popup_active").remove();
-        }
-    })
+function showlessinfo() {
+    //document.getElementById("hiddeninfo").className = "hiddeninfo";
+    $("#hiddeninfo").slideUp(200);
+    $("#moreinfo").css("display", "block");
+    $("#lessinfo").css("display", "none");
+    $("#DP_popup_active").animate({ "height": 137 + 'px' }, 200);
+}
