@@ -6,6 +6,7 @@
     "background": {
         "service_worker": "background-scripts/background.js"
     },
+
     "content_scripts": [{
         "js": ["content-scripts/sideWindow+ToolBar.js", "js/jquery.min.js", "content-scripts/highlight_DP.js"],
         "matches": ["<all_urls>", "http://*/*", "https://*/*"],
