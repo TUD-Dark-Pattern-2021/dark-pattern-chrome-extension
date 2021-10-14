@@ -127,6 +127,7 @@ function showmoreinfo() {
     //$("#hiddeninfo").css("display", "block");
     $("#moreinfo").css("display", "none");
     $("#lessinfo").css("display", "block");
+
     $("#DP_popup_active").animate({ "height": 265 + 'px' }, 200);
     //$("#hiddeninfo").animate({ "display": "block" }, 200);
 }
