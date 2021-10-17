@@ -15,6 +15,7 @@
     }],
     "permissions": ["scripting", "activeTab", "tabs", "webNavigation"],
     "action": {
+        "default_popup": "popup-scripts/MainWindow.html",
         "default_title": "Click to show and alert"
     },
     "host_permissions": ["<all_urls>"],

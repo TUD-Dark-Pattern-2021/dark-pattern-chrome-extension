@@ -1,12 +1,12 @@
 //sets a listener onto the extension icon and listens till the icon is clicked. Once clicked the 'tab' object gives the current tab that is open and the id fo the current tab can be gotten.
 //sends a message to the content script once the icon is clicked. Content scripts answers with a reply, which gets console logged.
-chrome.action.onClicked.addListener((tab) => {
-    chrome.tabs.sendMessage(
-        tab.id, { callFunction: "ControllerFunction" },
-        function(response) {
-            console.log(response);
-        });
-});
+// chrome.action.onClicked.addListener((tab) => {
+//     chrome.tabs.sendMessage(
+//         tab.id, { callFunction: "ControllerFunction" },
+//         function(response) {
+//             console.log(response);
+//         });
+// });
 
 //listener to listen for any message sent by scripts 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
