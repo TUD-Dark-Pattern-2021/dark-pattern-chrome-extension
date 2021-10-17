@@ -77,6 +77,18 @@ body {
     border-radius: 2.88px;
 }
 
+.results_container {
+    display: block;
+}
+
+.reports_container {
+    display: none;
+}
+
+.settings_container {
+    display: none;
+}
+
 .bottom_link {
     float: right;
     margin: 10px 10px 0px 0px;
