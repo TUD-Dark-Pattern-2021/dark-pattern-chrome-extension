@@ -36,6 +36,7 @@ function getdata() {
     chrome.runtime.sendMessage({ message: "GetData" },
         function(response) {
             console.log(response);
+            document.getElementById("detection_button").innerHTML = "Detecting...please wait";
         });
 }
 
@@ -43,5 +44,41 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'Data Retrieved') {
         console.log(request.data);
         sendResponse("Data arrived at Popup.js")
+        document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+        document.getElementById("no_detection").style.display = 'none';
+
+        buildchart(request.data);
+
+
     }
 });
+
+function buildchart(data) {
+    console.log(data.data.items_counts);
+    let categories = data.data.items_counts
+    var cat_names = Object.keys(categories);
+    var cat_num = Object.values(categories);
+    console.log(cat_names);
+    console.log(cat_num);
+
+    const chart = document.getElementById("doughnut_chart");
+    let doughnut_chart = new Chart(chart, {
+        type: 'doughnut',
+        data: {
+            labels: cat_names,
+            datasets: [{
+                backgroundColor: ['red', 'blue', 'yellow', 'green', 'black', 'orange'],
+                data: cat_num
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    align: 'start'
+                }
+            }
+        }
+    });
+}

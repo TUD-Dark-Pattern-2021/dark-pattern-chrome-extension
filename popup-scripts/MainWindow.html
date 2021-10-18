@@ -24,7 +24,12 @@
     <div class="content_wrapper">
         <div class="border_div">
 
-            <div id="results_page" class="results_container">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage. </div>
+            <div id="results_page" class="results_container">
+                <div id="no_detection">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
+                <div>
+                    <canvas id="doughnut_chart" height="200" width="200"></canvas>
+                </div>
+            </div>
             <div id="reports_page" class="reports_container">Report page</div>
             <div id="settings_page" class="settings_container">Settings page</div>
         </div>
@@ -40,8 +45,9 @@
 
 
 
-
+    <script src="../js/chart.min.js"></script>
     <script src="MainWindow.js" type="text/javascript"></script>
+
 </body>
 
 </html>
