@@ -26,8 +26,12 @@
 
             <div id="results_page" class="results_container">
                 <div id="no_detection">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
-                <div>
-                    <canvas id="doughnut_chart" height="200" width="200"></canvas>
+                <div id="infoContainer" class="info_container">
+                    <div class="doughnut_wrapper">
+                        <canvas id="doughnut_chart" height="130" width="130"></canvas>
+                    </div>
+
+                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>
                 </div>
             </div>
             <div id="reports_page" class="reports_container">Report page</div>

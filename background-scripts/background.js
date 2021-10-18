@@ -12,6 +12,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'GetData') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
+                console.log(response.data);
                 sendData(response.data);
                 sendResponse("data gotten");
             });
@@ -33,9 +34,11 @@ async function sendData(raw_html) {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
                     console.log(response);
+                    console.log("sdfasdfasd");
                 });
                 chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function(response) {
                     console.log(response);
+                    console.log("sdfasdfasd");
                 });
             });
 

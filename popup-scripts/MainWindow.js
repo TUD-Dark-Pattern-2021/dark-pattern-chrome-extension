@@ -46,7 +46,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse("Data arrived at Popup.js")
         document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
         document.getElementById("no_detection").style.display = 'none';
-
+        document.getElementById("infoContainer").style.display = 'block';
+        document.getElementById("number_detected").innerHTML = request.data.data.total_counts
         buildchart(request.data);
 
 
@@ -60,7 +61,9 @@ function buildchart(data) {
     var cat_num = Object.values(categories);
     console.log(cat_names);
     console.log(cat_num);
-
+    Chart.helpers.each(Chart.instances, function(instance) {
+        instance.destroy();
+    });
     const chart = document.getElementById("doughnut_chart");
     let doughnut_chart = new Chart(chart, {
         type: 'doughnut',
@@ -69,16 +72,16 @@ function buildchart(data) {
             datasets: [{
                 backgroundColor: ['red', 'blue', 'yellow', 'green', 'black', 'orange'],
                 data: cat_num
-            }]
+            }],
+            hoverOffset: 4
         },
         options: {
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'bottom',
-                    align: 'start'
+                    display: false
                 }
-            }
+            },
+            responsive: false
         }
     });
 }
