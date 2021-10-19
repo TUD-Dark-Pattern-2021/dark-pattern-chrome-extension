@@ -68,6 +68,7 @@ function buildchart(data) {
     let doughnut_chart = new Chart(chart, {
         type: 'doughnut',
         data: {
+
             labels: cat_names,
             datasets: [{
                 backgroundColor: ['red', 'blue', 'yellow', 'green', 'black', 'orange'],
@@ -79,9 +80,34 @@ function buildchart(data) {
             plugins: {
                 legend: {
                     display: false
-                }
+                },
             },
             responsive: false
         }
     });
+    renderlist(cat_names)
+}
+
+function renderlist(category_names) {
+    for (let i = 0; i < category_names.length; i++) {
+
+        if (category_names[i] == 'Misdirection') {
+            img = chrome.runtime.getURL("../images/Misdirection.png");
+        } else if (category_names[i] == 'Social Proof') {
+            img = chrome.runtime.getURL("../images/SocialProof.png");
+        } else if (category_names[i] == 'Scarcity') {
+            img = chrome.runtime.getURL("../images/Scarcity.png");
+        } else if (category_names[i] == 'Obstruction') {
+            img = chrome.runtime.getURL("../images/Obstruction.png");
+        } else if (category_names[i] == 'Urgency') {
+            img = chrome.runtime.getURL("../images/Urgency.png");
+        }
+        let cont = document.createElement('div')
+        cont.innerHTML = `  
+        <img src = "${img}" class = "img_sizing"><span class = "category_list">${category_names[i]} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked><span class="slider"></label></span>
+        `
+        document.getElementById('render_list').appendChild(cont);
+
+
+    }
 }
