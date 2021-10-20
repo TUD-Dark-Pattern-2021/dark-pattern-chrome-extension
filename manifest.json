@@ -8,13 +8,14 @@
     },
 
     "content_scripts": [{
-        "js": ["content-scripts/sideWindow+ToolBar.js", "js/jquery.min.js", "content-scripts/highlight_DP.js"],
+        "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js"],
         "matches": ["<all_urls>", "http://*/*", "https://*/*"],
         "css": ["css/highlight.css", "css/stylesheetH.css", "css/sideWindow.css"],
         "run_at": "document_end"
     }],
-    "permissions": ["scripting", "activeTab", "tabs", "webNavigation"],
+    "permissions": ["scripting", "activeTab", "tabs", "webNavigation", "storage"],
     "action": {
+        "default_popup": "popup-scripts/MainWindow.html",
         "default_title": "Click to show and alert"
     },
     "host_permissions": ["<all_urls>"],
