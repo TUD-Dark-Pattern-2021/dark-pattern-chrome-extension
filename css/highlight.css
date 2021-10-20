@@ -8,14 +8,364 @@
     color: red;
 }
 
+
 .DP_misdirection_icon {
-    position: relative;
-    width: 44px;
-    height: 44px;
+    position: relative;!important;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     border: none;
-    vertical-align: middle
+    vertical-align: middle;
+    border-radius:5px;
 }
+.DP_misdirection_icon_show {
+    position: absolute;!important;
+    top:0px;
+    left:0px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    margin-top:0px; !important;
+    padding-top: 0px; !important;
+    border-radius:9px;
+}
+.DP_misdirection_div{
+    position: relative;
+    display:inline-block;
+    width: 35px;
+    height: 35px;
+    margin-top:0px;
+    margin-right: 3px;
+    padding-top: 0px;
+
+}
+.DP_misdirection_div img:last-child{
+    position: relative;!important;
+    top: 0px;
+    margin:0px;!important;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    vertical-align: middle;
+    transition: all 0.15s ease-in;
+    padding-top: 0px; !important;
+    border-radius:5px;
+}
+.DP_misdirection_div:hover img:last-child{
+    opacity: 1;
+
+}
+.DP_text_border_misdirection{
+    border:none;
+
+    display: inline-block;
+}
+.DP_text_border_misdirection:hover{
+
+    border-color:  #FF8200;
+    border-width:5px;
+    border-style: dotted;
+    border-radius: 10px;
+    transition: all 0.15s ease-in;
+}
+
+.DP_misdirection_div:hover +.DP_text_border_misdirection{
+    border-color:  #FF8200;
+    border-width:5px;
+    border-style: dotted;
+    border-radius: 10px;
+    transition: all 0.15s ease-in;
+
+}
+
+.DP_misdirection_div:hover ~.DP_text_border>.DP_text_border_misdirection{
+    border-color:  #FF8200;
+    border-width:5px;
+    border-style: dotted;
+    border-radius: 10px;
+    transition: all 0.15s ease-in;
+}
+
+
+
+
+.DP_scarcity_icon {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:5px;
+}
+.DP_scarcity_icon_show {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:9px;
+}
+.DP_scarcity_div{
+    position: relative;
+    display:inline-block;!important;
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+}
+.DP_scarcity_div img:last-child{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    vertical-align: middle;
+    transition: all 0.15s ease-in;
+    border-radius:5px;
+}
+.DP_scarcity_div:hover img:last-child{
+    opacity: 1;
+}
+.DP_text_border{
+    border: 3px;
+    display: inline-block;
+}
+.DP_text_border_scarcity:hover{
+    border:3px solid #FF5869;
+    transition: all 0.15s ease-in;
+}
+.DP_scarcity_div:hover +.DP_text_border_scarcity{
+    border:3px solid #FF5869;
+    transition: all 0.15s ease-in;
+
+}
+.DP_scarcity_div:hover ~.DP_text_border>.DP_text_border_scarcity{
+    border:3px solid #FF5869;
+    transition: all 0.15s ease-in;
+}
+
+
+
+.DP_urgency_icon {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:5px;
+}
+.DP_urgency_icon_show {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:9px;
+}
+.DP_urgency_div{
+    position: relative;
+    display:inline-block;!important;
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+}
+.DP_urgency_div img:last-child{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    vertical-align: middle;
+    transition: all 0.15s ease-in;
+    border-radius:10px;
+}
+.DP_urgency_div:hover img:last-child{
+    opacity: 1;
+}
+.DP_text_border_urgency{
+    border:none;
+    display: inline-block;
+}
+.DP_text_border_urgency:hover{
+    border:3px solid #FEDB00;
+    border-radius: 10px;
+    transition: all 0.15s ease-in;
+
+}
+.DP_urgency_div:hover +.DP_text_border_urgency{
+    border:3px solid #FEDB00;
+    border-radius: 10px;
+    transition: all 0.15s ease-in;
+
+}
+
+.DP_urgency_div:hover ~.DP_text_border>.DP_text_border_urgency{
+    border:3px solid #FEDB00;
+    border-radius: 10px;
+    transition: all 0.15s ease-in;
+
+}
+
+
+
+.DP_socialProof_icon {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:10px;
+}
+.DP_socialProof_icon_show {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:10px;
+}
+.DP_socialProof_div{
+    position: relative;
+    display:inline-block;!important;
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+}
+.DP_socialProof_div img:last-child{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    vertical-align: middle;
+    transition: all 0.15s ease-in;
+    border-radius:10px;
+}
+.DP_socialProof_div:hover img:last-child{
+    opacity: 1;
+}
+.DP_text_border_socialProof{
+    border:none;
+    display: inline-block;
+}
+
+
+.DP_text_border_socialProof:hover{
+
+    border-color:  #69B3E7;
+    border-width:3px;
+    border-style: dotted;
+    transition: all 0.15s ease-in;
+    background-color: #BAE0FB;
+
+}
+.DP_socialProof_div:hover +.DP_text_border_socialProof{
+    border-color:  #69B3E7;
+    border-width:3px;
+    border-style: dotted;
+    transition: all 0.15s ease-in;
+    background-color: #BAE0FB;
+
+}
+.DP_socialProof_div:hover .DP_text_border{
+    border:none;
+
+}
+.DP_socialProof_div:hover ~.DP_text_border>.DP_text_border_socialProof{
+    border-color:  #69B3E7;
+    border-width:3px ;
+    border-style: dotted;
+    transition: all 0.15s ease-in;
+    background-color: #BAE0FB;
+
+}
+
+
+.DP_forcedActivity_icon {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:10px;
+}
+.DP_forcedActivity_icon_show {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    vertical-align: middle;
+    border-radius:10px;
+}
+.DP_forcedActivity_div{
+    display:inline-block;!important;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+}
+.DP_forcedActivity_div img:last-child{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    vertical-align: middle;
+    transition: all 0.15s ease-in;
+    border-radius:5px;
+}
+.DP_forcedActivity_div:hover img:last-child{
+    opacity: 1;
+}
+.DP_text_border_forcedActivity{
+    border:none;
+    display: inline-block;
+}
+.DP_text_border_forcedActivity:hover{
+    border-color:  #FC9BB3;
+    border-width:0 0 5px 0;
+    border-style: solid;
+    transition: all 0.15s ease-in;
+    background-color: #FFD5DF;
+
+}
+.DP_forcedActivity_div:hover +.DP_text_border_forcedActivity{
+
+    border-color:  #FC9BB3;
+    border-width:0 0 5px 0;
+    border-style: solid;
+    transition: all 0.15s ease-in;
+    background-color: #FFD5DF;
+
+}
+.DP_forcedActivity_div:hover ~.DP_text_border>.DP_text_border_forcedActivity{
+    border-color:  #FC9BB3;
+    border-width:0 0 5px 0;
+    border-style: solid;
+    transition: all 0.15s ease-in;
+    background-color: #FFD5DF;
+
+
+}
+
+
+
+
 
 .popupContainer {
     color: red;
