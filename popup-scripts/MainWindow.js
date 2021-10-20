@@ -1,3 +1,5 @@
+//when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
+//opens as normal
 window.onload = function() {
     chrome.runtime.sendMessage({ message: "check session storage" }, function(response) {
         if (response == null) {
@@ -35,7 +37,7 @@ document.getElementById("results").addEventListener("click", switchtab);
 document.getElementById("reports").addEventListener("click", switchtab);
 document.getElementById("settings").addEventListener("click", switchtab);
 document.getElementById("detection_button").addEventListener("click", getdata);
-
+//controlls the 3 different tabs on the extension UI
 function switchtab(e) {
     let active = document.getElementsByClassName("nav_list_active");
     active[0].classList.remove("nav_list_active");
@@ -56,7 +58,7 @@ function switchtab(e) {
     }
 
 }
-
+//sends a message to background to detect patterns on page.
 function getdata() {
     chrome.runtime.sendMessage({ message: "GetData" },
         function(response) {
@@ -65,6 +67,7 @@ function getdata() {
         });
 }
 
+//fires once data is gotten back from the node server, if no patterns are found it does something and if patterns are found, it uses the data to build the results UI
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'Data Retrieved') {
         //console.log(request.data);
@@ -89,6 +92,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+//builds the doughnut chart using chartjs
 function buildchart(data) {
     cat_colours = [];
     //console.log(data.data.items_counts);
@@ -133,7 +137,7 @@ function buildchart(data) {
 }
 
 
-
+//creates the list of categories on the restuls page, with a toggle switch for each one as well
 function renderlist(category_names) {
     document.getElementById('render_list').innerHTML = '';
     for (let i = 0; i < category_names.length; i++) {
@@ -158,22 +162,22 @@ function renderlist(category_names) {
             if (event.target.id == "Misdirection") {
                 removeMisdirectionIcons();
             } else if (event.target.id == "Obstruction") {
-                removeMisdirectionIcons();
+                removeObstructionIcons();
             } else if (event.target.id == "Urgency") {
-                removeMisdirectionIcons();
-            } else if (event.target.id == "Social Proof") {
-                removeMisdirectionIcons();
+                removeUrgencyIcons();
+            } else if (event.target.id == "Social") {
+                removeSocialIcons();
             } else if (event.target.id == "Scarcity") {
-                removeMisdirectionIcons();
+                removeScarcityIcons();
             }
         })
         document.getElementById('render_list').appendChild(cont);
     }
 }
 
-
+//to remove the misdirection icon once switch is toggled.
 function removeMisdirectionIcons() {
-    let checkbox = document.getElementById('Urgency');
+    let checkbox = document.getElementById('Miderection');
     if (checkbox.checked == true) {
         alert("hello");
         chrome.runtime.sendMessage({ message: "MisdirectionToogleOn" }, function(response) {
@@ -182,6 +186,66 @@ function removeMisdirectionIcons() {
     } else {
         alert("goodbye");
         chrome.runtime.sendMessage({ message: "MisdirectionToogleOff" }, function(response) {
+            console.log(response);
+        })
+    }
+}
+
+function removeObstructionIcons() {
+    let checkbox = document.getElementById('Obstruction');
+    if (checkbox.checked == true) {
+        alert("hello");
+        chrome.runtime.sendMessage({ message: "ObstructionToogleOn" }, function(response) {
+            console.log(response);
+        })
+    } else {
+        alert("goodbye");
+        chrome.runtime.sendMessage({ message: "ObstructionToogleOff" }, function(response) {
+            console.log(response);
+        })
+    }
+}
+
+function removeUrgencyIcons() {
+    let checkbox = document.getElementById('Urgency');
+    if (checkbox.checked == true) {
+        alert("hello");
+        chrome.runtime.sendMessage({ message: "UrgencyToogleOn" }, function(response) {
+            console.log(response);
+        })
+    } else {
+        alert("goodbye");
+        chrome.runtime.sendMessage({ message: "UrgencyToogleOff" }, function(response) {
+            console.log(response);
+        })
+    }
+}
+
+function removeSocialIcons() {
+    let checkbox = document.getElementById('Social');
+    if (checkbox.checked == true) {
+        alert("hello");
+        chrome.runtime.sendMessage({ message: "SocialToogleOn" }, function(response) {
+            console.log(response);
+        })
+    } else {
+        alert("goodbye");
+        chrome.runtime.sendMessage({ message: "SocialToogleOff" }, function(response) {
+            console.log(response);
+        })
+    }
+}
+
+function removeScarcityIcons() {
+    let checkbox = document.getElementById('Scarcity');
+    if (checkbox.checked == true) {
+        alert("hello");
+        chrome.runtime.sendMessage({ message: "ScarcityoogleOn" }, function(response) {
+            console.log(response);
+        })
+    } else {
+        alert("goodbye");
+        chrome.runtime.sendMessage({ message: "ScarcityToogleOff" }, function(response) {
             console.log(response);
         })
     }

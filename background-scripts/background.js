@@ -65,6 +65,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 });
 
+//listener for setting and getting data from session storage.
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'check session storage') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
@@ -82,6 +83,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+//listens for when the active webpage is re load and removes the data from session storage if there is any.
 chrome.webNavigation.onCommitted.addListener((details) => {
     if (["reload"].includes(details.transitionType)) {
         chrome.webNavigation.onCompleted.addListener(function onComplete() {
