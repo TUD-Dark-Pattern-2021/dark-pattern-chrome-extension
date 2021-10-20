@@ -70,6 +70,11 @@ body {
     justify-content: center;
 }
 
+.none_detected {
+    display: none;
+    font-size: x-large;
+}
+
 .border_div {
     width: 218px;
     height: 318px;

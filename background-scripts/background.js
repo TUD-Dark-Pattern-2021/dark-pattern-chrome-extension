@@ -33,10 +33,10 @@ async function sendData(raw_html) {
         .then(data => {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
-                    console.log(response);
+                    //console.log(response);
                 });
                 chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function(response) {
-                    console.log(response);
+                    //console.log(response);
                 });
             });
 
@@ -63,4 +63,35 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
 
+});
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'check session storage') {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { message: "CheckSessionStorage" }, function(response) {
+                sendResponse(response);
+            });
+        });
+
+    } else if (request.message = "Put Data in Storage") {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { message: "PutDataInStorage", data: request.data }, function(response) {
+                sendResponse(response);
+            });
+        });
+    }
+});
+
+chrome.webNavigation.onCommitted.addListener((details) => {
+    if (["reload"].includes(details.transitionType)) {
+        chrome.webNavigation.onCompleted.addListener(function onComplete() {
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, { message: "RemoveDataFromStorage" }, function(response) {
+                    console.log(response);
+                });
+            });
+
+            //chrome.webNavigation.onCompleted.removeListener(onComplete);
+        });
+    }
 });

@@ -1,9 +1,34 @@
 window.onload = function() {
+    chrome.runtime.sendMessage({ message: "check session storage" }, function(response) {
+        if (response == null) {
+
+        } else {
+            let storage_data = JSON.parse(response);
+            if ((storage_data.details).length == 0) {
+                document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+                document.getElementById("no_detection").style.display = 'none';
+                document.getElementById("noDetection").style.display = 'block';
+
+            } else {
+
+                document.getElementById("no_detection").style.display = 'none';
+                document.getElementById("infoContainer").style.display = 'block';
+                document.getElementById("noDetection").style.display = 'none';
+                document.getElementById("number_detected").innerHTML = storage_data.total_counts
+                buildchart(storage_data);
+            }
+        }
+
+    });
+
+
     chrome.tabs.query({ active: true, currentWindow: true },
         function(tabs) {
-            let domain = new URL(tabs[0].url).hostname
+            let domain = new URL(tabs[0].url).hostname;
             document.getElementById("domain_name").innerHTML = domain;
         });
+
+
 }
 
 document.getElementById("results").addEventListener("click", switchtab);
@@ -43,33 +68,43 @@ function getdata() {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'Data Retrieved') {
         //console.log(request.data);
-        sendResponse("Data arrived at Popup.js")
-        document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-        document.getElementById("no_detection").style.display = 'none';
-        document.getElementById("infoContainer").style.display = 'block';
-        document.getElementById("number_detected").innerHTML = request.data.data.total_counts
-        buildchart(request.data);
+        sendResponse("Data arrived at Popup.js");
+        if ((request.data.data.details).length == 0) {
+            document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+            document.getElementById("no_detection").style.display = 'none';
+            document.getElementById("noDetection").style.display = 'block';
 
+        } else {
 
+            document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+            document.getElementById("no_detection").style.display = 'none';
+            document.getElementById("infoContainer").style.display = 'block';
+            document.getElementById("noDetection").style.display = 'none';
+            document.getElementById("number_detected").innerHTML = request.data.data.total_counts
+            buildchart(request.data.data);
+        }
+        chrome.runtime.sendMessage({ message: "Put Data in Storage", data: JSON.stringify(request.data.data) }, function(response) {
+            console.log(response);
+        });
     }
 });
 
 function buildchart(data) {
     cat_colours = [];
-    console.log(data.data.items_counts);
+    //console.log(data.data.items_counts);
 
     const colours = { 'Scarcity': "#FF5869", 'Misdirection': "#FF8200", 'Urgency': "#FEDB00", 'Social Proof': "#69B3E7", 'Obstruction': "#FC9BB3" };
-    let categories = data.data.items_counts
+    let categories = data.items_counts
 
     var cat_names = Object.keys(categories);
     var cat_num = Object.values(categories);
-    console.log(cat_names);
+    //console.log(cat_names);
 
     for (x = 0; x < cat_names.length; x++) {
         cat_colours.push(colours[cat_names[x]]);
     }
 
-    console.log(cat_colours);
+    //console.log(cat_colours);
     Chart.helpers.each(Chart.instances, function(instance) {
         instance.destroy();
     });

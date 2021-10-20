@@ -13,7 +13,7 @@
         "css": ["css/highlight.css", "css/stylesheetH.css", "css/sideWindow.css"],
         "run_at": "document_end"
     }],
-    "permissions": ["scripting", "activeTab", "tabs", "webNavigation"],
+    "permissions": ["scripting", "activeTab", "tabs", "webNavigation", "storage"],
     "action": {
         "default_popup": "popup-scripts/MainWindow.html",
         "default_title": "Click to show and alert"
