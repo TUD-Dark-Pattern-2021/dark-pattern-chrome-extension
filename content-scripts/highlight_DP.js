@@ -26,234 +26,151 @@ function highlight_DP(data) {
     // $(DP_text).css({ border: '5px solid red' });
 
     for (item = 0; item < data.total_counts; item++) {
-        console.log(item)
         let category = data.details[item].category_name;
         DP_text = data.details[item].tag;
-        // $(DP_text).css({ border: '5px solid red' });
+        let icon = document.createElement("img");
+        let icon_div = document.createElement("div");
+        let icon_show = document.createElement("img");
+        let DP_text_border = document.createElement('div');
+        icon.id = `DP_id_${item}`;
         //Misdirection
-        if (category === "Misdirection") {
-            let icon = document.createElement("img");
+        if (category === "FakeActivity") {
             icon.setAttribute("src", misdirection_img);
             icon.className = "DP_misdirection_icon";
-            icon.id = `DP_id_${item}`;
             icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon.setAttribute("href", "#");
-            icon.onclick = function() {
-                showpopup(this);
-            };
-            //$(DP_text).css({ border: '5px solid red' });
-           // $(DP_text).prepend(icon);
-            let icon_div=document.createElement("div");
+            // icon.onclick = function() {
+            //     showpopup(this);
+            // };
             icon_div.className = "DP_misdirection_div";
-            let icon_show=document.createElement("img");
             icon_show.className = "DP_misdirection_icon_show";
             icon_show.setAttribute("src", misdirection_img_green);
             icon_div.append(icon_show);
             icon_div.append(icon);
-            //$(DP_text).prepend(icon_div)
             //create border
-            let DP_text_border = document.createElement('div');
-
-            DP_text_border.classList.add('DP_text_border_misdirection',"DP_text_border") ;
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')){
-                if($(DP_text).parents('.DP_text_border_div').children(".DP_misdirection_div").is(".DP_misdirection_div")){
-
-                }else{
+            DP_text_border.classList.add('DP_text_border_misdirection', "DP_text_border");
+            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
+                if ($(DP_text).parents('.DP_text_border_div').children(".DP_misdirection_div").is(".DP_misdirection_div")) {} else {
                     $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                     $(DP_text).wrap(DP_text_border);
                 }
-
-
-            }else{
-                let DP_text_div=document.createElement('div');
-                DP_text_div.className="DP_text_border_div"
+            } else {
+                let DP_text_div = document.createElement('div');
+                DP_text_div.className = "DP_text_border_div"
                 $(DP_text).wrap(DP_text_div);
                 $(DP_text).parent().prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
-
             }
-
-
-
-
             //Scarcity
-        } else if (category === "Scarcity") {
-            let icon = document.createElement("img");
+        } else if (category === "FakeCountdown") {
+
             icon.setAttribute("src", scarcity_img);
             icon.className = "DP_scarcity_icon";
-            icon.id = `DP_id_${item}`;
             icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon.setAttribute("href", "#");
-            icon.onclick = function() {
-                showpopup(this);
-            };
-            //$(DP_text).prepend(icon);
-            let icon_div=document.createElement("div");
+            // icon.onclick = function() {
+            //     showpopup(this);
+            // };
             icon_div.className = "DP_scarcity_div";
-            let icon_show=document.createElement("img");
             icon_show.className = "DP_scarcity_icon_show";
             icon_show.setAttribute("src", scarcity_img_green);
             icon_div.append(icon_show);
             icon_div.append(icon);
-            //$(DP_text).prepend(icon_div)
             //create border
-            let DP_text_border = document.createElement('div');
-            //DP_text_border.className='DP_text_border_scarcity';
-            //DP_text_border.className = "DP_text_border";
-            DP_text_border.id="DP_broder_scarcity"
-            DP_text_border.classList.add('DP_text_border_scarcity',"DP_text_border");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')){
-                if($(DP_text).parents('.DP_text_border_div').children(".DP_scarcity_div").is(".DP_scarcity_div")){
-
-                }else{
+            DP_text_border.id = "DP_broder_scarcity"
+            DP_text_border.classList.add('DP_text_border_scarcity', "DP_text_border_fakecountdown");
+            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
+                if ($(DP_text).parents('.DP_text_border_div').children(".DP_scarcity_div").is(".DP_scarcity_div")) {} else {
                     $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                     $(DP_text).wrap(DP_text_border);
                 }
-
-
-            }else{
-                let DP_text_div=document.createElement('div');
-                DP_text_div.className="DP_text_border_div"
+            } else {
+                let DP_text_div = document.createElement('div');
+                DP_text_div.className = "DP_text_border_div"
                 $(DP_text).wrap(DP_text_div);
                 $(DP_text).parent().prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
-
             }
 
-
-        }else if(category === "Urgency"){
-            console.log(data.details[item].category_name)
-            let icon = document.createElement("img");
+        } else if (category === "FakeHighDemand") {
             icon.setAttribute("src", urgency_img);
             icon.className = "DP_urgency_icon";
-            icon.id = `DP_id_${item}`;
             icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon.setAttribute("href", "#");
-            icon.onclick = function() {
-                showpopup(this);
-            };
-            //$(DP_text).prepend(icon);
-            let icon_div=document.createElement("div");
+            // icon.onclick = function() {
+            //     showpopup(this);
+            // };
             icon_div.className = "DP_urgency_div";
-            let icon_show=document.createElement("img");
             icon_show.className = "DP_urgency_icon_show";
             icon_show.setAttribute("src", urgency_img_green);
             icon_div.append(icon_show)
             icon_div.append(icon)
-            //$(DP_text).prepend(icon_div)
-            //create border
-            let DP_text_border = document.createElement('div');
-            //DP_text_border.className='DP_text_border_urgency';
-            //DP_text_border.className = "DP_text_border";
-            DP_text_border.classList.add("DP_text_border_urgency","DP_text_border");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')){
-                if($(DP_text).parents('.DP_text_border_div').children(".DP_urgency_div").is(".DP_urgency_div")){
-
-                }else{
+                //create border
+            DP_text_border.classList.add("DP_text_border_urgency", "DP_text_border_highdemand");
+            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
+                if ($(DP_text).parents('.DP_text_border_div').children(".DP_urgency_div").is(".DP_urgency_div")) {} else {
                     $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                     $(DP_text).wrap(DP_text_border);
                 }
-
-
-            }else{
-                let DP_text_div=document.createElement('div');
-                DP_text_div.className="DP_text_border_div"
+            } else {
+                let DP_text_div = document.createElement('div');
+                DP_text_div.className = "DP_text_border_div"
                 $(DP_text).wrap(DP_text_div);
                 $(DP_text).parent().prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
-
             }
 
-        }else if(category === "Social Proof"){
-            console.log(data.details[item].category_name)
-            let icon = document.createElement("img");
+        } else if (category === "FakeLimitedTime") {
             icon.setAttribute("src", socialProof_img);
             icon.className = "DP_socialProof_icon";
-            icon.id = `DP_id_${item}`;
             icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon.setAttribute("href", "#");
-            icon.onclick = function() {
-                showpopup(this);
-            };
-            //$(DP_text).prepend(icon);
-            let icon_div=document.createElement("div");
+            // icon.onclick = function() {
+            //     showpopup(this);
+            // };
             icon_div.className = "DP_socialProof_div";
-            let icon_show=document.createElement("img");
             icon_show.className = "DP_socialProof_icon_show";
             icon_show.setAttribute("src", socialProof_img_green);
             icon_div.append(icon_show)
             icon_div.append(icon)
-            //$(DP_text).prepend(icon_div)
-            //create border
-            let DP_text_border = document.createElement('div');
-            //DP_text_border.className='DP_text_border_socialProof';
-            //DP_text_border.className = "DP_text_border";
-            DP_text_border.classList.add('DP_text_border_socialProof', "DP_text_border");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')){
-                if($(DP_text).parents('.DP_text_border_div').children(".DP_socialProof_div").is(".DP_socialProof_div")){
-
-                }else{
+                //create border
+            DP_text_border.classList.add('DP_text_border_socialProof', "DP_text_border_limitedtime");
+            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
+                if ($(DP_text).parents('.DP_text_border_div').children(".DP_socialProof_div").is(".DP_socialProof_div")) {} else {
                     $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                     $(DP_text).wrap(DP_text_border);
                 }
-
-
-            }else{
-                let DP_text_div=document.createElement('div');
-                DP_text_div.className="DP_text_border_div"
+            } else {
+                let DP_text_div = document.createElement('div');
+                DP_text_div.className = "DP_text_border_div"
                 $(DP_text).wrap(DP_text_div);
                 $(DP_text).parent().prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
-
             }
 
-        }else if(category === "Obstruction"){
-            console.log(data.details[item].category_name)
-            let icon = document.createElement("img");
+        } else if (category === "FakeLowStock") {
             icon.setAttribute("src", forcedActivity_img);
             icon.className = "DP_forcedActivity_icon";
-            icon.id = `DP_id_${item}`;
             icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon.setAttribute("href", "#");
-            icon.onclick = function() {
-                showpopup(this);
-            };
-            //$(DP_text).prepend(icon);
-            let icon_div=document.createElement("div");
+            // icon.onclick = function() {
+            //     showpopup(this);
+            // };
             icon_div.className = "DP_forcedActivity_div";
-            let icon_show=document.createElement("img");
             icon_show.className = "DP_forcedActivity_icon_show";
             icon_show.setAttribute("src", forcedActivity_img_green);
             icon_div.append(icon_show)
             icon_div.append(icon)
-            //$(DP_text).prepend(icon_div)
-            //create border
-            let DP_text_border = document.createElement('div');
-            //DP_text_border.className='DP_text_border_forcedActivity';
-            //DP_text_border.className = "DP_text_border";
-            DP_text_border.classList.add('DP_text_border_forcedActivity',"DP_text_border");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')){
-                if($(DP_text).parents('.DP_text_border_div').children(".DP_forcedActivity_div").is(".DP_forcedActivity_div")){
-
-                }else{
+                //create border
+            DP_text_border.classList.add('DP_text_border_forcedActivity', "DP_text_border_lowstock");
+            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
+                if ($(DP_text).parents('.DP_text_border_div').children(".DP_forcedActivity_div").is(".DP_forcedActivity_div")) {} else {
                     $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                     $(DP_text).wrap(DP_text_border);
                 }
-
-
-            }else{
-                let DP_text_div=document.createElement('div');
-                DP_text_div.className="DP_text_border_div"
+            } else {
+                let DP_text_div = document.createElement('div');
+                DP_text_div.className = "DP_text_border_div"
                 $(DP_text).wrap(DP_text_div);
                 $(DP_text).parent().prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
-
             }
-
         }
-
-
-
     }
 
     //function to create the little popup coming out of each highlighted dark pattern
