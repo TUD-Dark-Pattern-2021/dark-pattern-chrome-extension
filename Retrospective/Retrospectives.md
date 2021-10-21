@@ -1,3 +1,38 @@
+21/20/2021 - Retrospective
+
+Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- Lan broke the elasticbeanstalk  ( Jordan Donnelly, 3 Up Votes  )
+--- well done  ( Quanwei Sun )
+- Yunpeng casue errors for the chrome Extension  ( Jordan Donnelly, 1 Up Vote  )
+--- good job  ( Quanwei Sun )
+- Changing the returned data to the front end  at the last minute  ( Alan Dowley, 1 Up Vote  )
+- Lan's code got a bug  but we thought it's node's bug. it took me and jordan one whole afternoon to debug it   ( yunpeng liu, 1 Up Vote  )
+- Everyone needs to turn up on time for the stand up  ( Alan Dowley, 4 Up Votes  )
+
+
+ Sad
+- Optimizing the model  modifying the data and waiting for results are torture  ( Quanwei Sun )
+- Everyone is mad at me for bugs this week    ( Lan Zeng, 1 Up Vote  )
+--- I didn't  ( Quanwei Sun )
+- It's exhausting to debug the API together  we didn't make a clear requirement about what we need to do   ( yunpeng liu, 1 Up Vote  )
+- Time is limited  we got more and more work than expected to do    ( yunpeng liu, 2 Up Votes  )
+- Front end internal APIs are getting messy  ( Alan Dowley )
+
+
+ Glad
+- The model trained on noise removed data is better than the previous ones     ( Lan Zeng, 3 Up Votes  )
+- We have a nice working prototype  ( Jordan Donnelly, 1 Up Vote  )
+- Data and front end are linked up  ( Alan Dowley, 3 Up Votes  )
+- Daily stand up is great  ( Yufei Su, 2 Up Votes  )
+- Lan worked really hard on optimizing the model and fixing her bugs.  ( Quanwei Sun, 4 Up Votes  )
+![Screenshot](Retrospective-Week5.PNG)
+
+
+
+
+
 14/10/2021 - Retrospective
 
 Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun

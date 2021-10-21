@@ -8,7 +8,7 @@
     },
 
     "content_scripts": [{
-        "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js"],
+        "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js", "content-scripts/iconRemover.js"],
         "matches": ["<all_urls>", "http://*/*", "https://*/*"],
         "css": ["css/highlight.css", "css/stylesheetH.css", "css/sideWindow.css"],
         "run_at": "document_end"

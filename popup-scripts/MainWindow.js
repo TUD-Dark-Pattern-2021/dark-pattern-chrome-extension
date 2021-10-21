@@ -3,9 +3,10 @@
 window.onload = function() {
     chrome.runtime.sendMessage({ message: "check session storage" }, function(response) {
         if (response == null) {
-
+            console.log("session storage is empty");
         } else {
             let storage_data = JSON.parse(response);
+            console.log(storage_data);
             if ((storage_data.details).length == 0) {
                 document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
                 document.getElementById("no_detection").style.display = 'none';
@@ -29,8 +30,6 @@ window.onload = function() {
             let domain = new URL(tabs[0].url).hostname;
             document.getElementById("domain_name").innerHTML = domain;
         });
-
-
 }
 
 document.getElementById("results").addEventListener("click", switchtab);
@@ -97,7 +96,7 @@ function buildchart(data) {
     cat_colours = [];
     //console.log(data.data.items_counts);
 
-    const colours = { 'Scarcity': "#FF5869", 'Misdirection': "#FF8200", 'Urgency': "#FEDB00", 'Social Proof': "#69B3E7", 'Obstruction': "#FC9BB3" };
+    const colours = { 'FakeActivity': "#FF5869", 'FakeCountdown': "#FF8200", 'FakeHighDemand': "#FEDB00", 'FakeLimitedTime': "#69B3E7", 'FakeLowStock': "#FC9BB3" };
     let categories = data.items_counts
 
     var cat_names = Object.keys(categories);
@@ -142,33 +141,33 @@ function renderlist(category_names) {
     document.getElementById('render_list').innerHTML = '';
     for (let i = 0; i < category_names.length; i++) {
 
-        if (category_names[i] == 'Misdirection') {
+        if (category_names[i] == 'FakeActivity') {
             img = chrome.runtime.getURL("../images/Misdirection.png");
-        } else if (category_names[i] == 'Social Proof') {
+        } else if (category_names[i] == 'FakeHighDemand') {
             img = chrome.runtime.getURL("../images/SocialProof.png");
-        } else if (category_names[i] == 'Scarcity') {
+        } else if (category_names[i] == 'FakeCountdown') {
             img = chrome.runtime.getURL("../images/Scarcity.png");
-        } else if (category_names[i] == 'Obstruction') {
+        } else if (category_names[i] == 'FakeLowStock') {
             img = chrome.runtime.getURL("../images/Obstruction.png");
-        } else if (category_names[i] == 'Urgency') {
+        } else if (category_names[i] == 'FakeLimitedTime') {
             img = chrome.runtime.getURL("../images/Urgency.png");
         }
         let cont = document.createElement('div')
         cont.innerHTML = `  
-        <img src = "${img}" class = "img_sizing"><span class = "category_list">${category_names[i]} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = ${category_names[i]}><span class="slider"></label></span>
+        <img src = "${img}" class = "img_sizing"><span class = "category_list">${category_names[i]} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = id_switch_${category_names[i]}><span class="slider"></label></span>
         `
 
         cont.addEventListener('click', function(event) {
-            if (event.target.id == "Misdirection") {
-                removeMisdirectionIcons();
-            } else if (event.target.id == "Obstruction") {
-                removeObstructionIcons();
-            } else if (event.target.id == "Urgency") {
-                removeUrgencyIcons();
-            } else if (event.target.id == "Social") {
-                removeSocialIcons();
-            } else if (event.target.id == "Scarcity") {
-                removeScarcityIcons();
+            if (event.target.id == "id_switch_FakeActivity") {
+                removeFakeActivityIcons();
+            } else if (event.target.id == "id_switch_FakeCountdown") {
+                removeFakeCountdownIcons();
+            } else if (event.target.id == "id_switch_FakeHighDemand") {
+                removeFakeHighDemandIcons();
+            } else if (event.target.id == "id_switch_FakeLimitedTime") {
+                removeFakeLimitedTimeIcons();
+            } else if (event.target.id == "id_switch_FakeLowStock") {
+                removeFakeLowStockIcons();
             }
         })
         document.getElementById('render_list').appendChild(cont);
@@ -176,77 +175,62 @@ function renderlist(category_names) {
 }
 
 //to remove the misdirection icon once switch is toggled.
-function removeMisdirectionIcons() {
-    let checkbox = document.getElementById('Miderection');
+function removeFakeActivityIcons() {
+    let checkbox = document.getElementById('id_switch_FakeActivity');
     if (checkbox.checked == true) {
-        alert("hello");
-        chrome.runtime.sendMessage({ message: "MisdirectionToogleOn" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'off';
     } else {
-        alert("goodbye");
-        chrome.runtime.sendMessage({ message: "MisdirectionToogleOff" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'on';
     }
+    chrome.runtime.sendMessage({ message: "FakeActivityToggle", data: toggle_icon }, function(response) {
+        console.log(response);
+    });
 }
 
-function removeObstructionIcons() {
-    let checkbox = document.getElementById('Obstruction');
+function removeFakeCountdownIcons() {
+    let checkbox = document.getElementById('id_switch_FakeCountdown');
     if (checkbox.checked == true) {
-        alert("hello");
-        chrome.runtime.sendMessage({ message: "ObstructionToogleOn" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'off';
     } else {
-        alert("goodbye");
-        chrome.runtime.sendMessage({ message: "ObstructionToogleOff" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'on';
     }
+    chrome.runtime.sendMessage({ message: "FakeCountdownToggle", data: toggle_icon }, function(response) {
+        console.log(response);
+    });
 }
 
-function removeUrgencyIcons() {
-    let checkbox = document.getElementById('Urgency');
+function removeFakeHighDemandIcons() {
+    let checkbox = document.getElementById('id_switch_FakeHighDemand');
     if (checkbox.checked == true) {
-        alert("hello");
-        chrome.runtime.sendMessage({ message: "UrgencyToogleOn" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'off';
     } else {
-        alert("goodbye");
-        chrome.runtime.sendMessage({ message: "UrgencyToogleOff" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'on';
     }
+    chrome.runtime.sendMessage({ message: "FakeHighDemandToggle", data: toggle_icon }, function(response) {
+        console.log(response);
+    });
 }
 
-function removeSocialIcons() {
-    let checkbox = document.getElementById('Social');
+function removeFakeLimitedTimeIcons() {
+    let checkbox = document.getElementById('id_switch_FakeLimitedTime');
     if (checkbox.checked == true) {
-        alert("hello");
-        chrome.runtime.sendMessage({ message: "SocialToogleOn" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'off';
     } else {
-        alert("goodbye");
-        chrome.runtime.sendMessage({ message: "SocialToogleOff" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'on';
     }
+    chrome.runtime.sendMessage({ message: "FakeLimitedTimeDemandToggle", data: toggle_icon }, function(response) {
+        console.log(response);
+    });
 }
 
-function removeScarcityIcons() {
-    let checkbox = document.getElementById('Scarcity');
+function removeFakeLowStockIcons() {
+    let checkbox = document.getElementById('id_switch_FakeLowStock');
     if (checkbox.checked == true) {
-        alert("hello");
-        chrome.runtime.sendMessage({ message: "ScarcityoogleOn" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'off';
     } else {
-        alert("goodbye");
-        chrome.runtime.sendMessage({ message: "ScarcityToogleOff" }, function(response) {
-            console.log(response);
-        })
+        var toggle_icon = 'on';
     }
+    chrome.runtime.sendMessage({ message: "FakeLowStockDemandToggle", data: toggle_icon }, function(response) {
+        console.log(response);
+    });
 }
