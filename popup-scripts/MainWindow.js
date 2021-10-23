@@ -1,13 +1,14 @@
 //when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
 //opens as normal
 window.onload = function() {
-    chrome.runtime.sendMessage({ message: "check session storage" }, function(response) {
-        if (response == null) {
-            console.log("session storage is empty");
+
+    chrome.storage.sync.get(['DP_data'], function(results) {
+        if (results.DP_data == null) {
+            console.log("chrome storage is empty");
         } else {
-            let storage_data = JSON.parse(response);
-            console.log(storage_data);
-            if ((storage_data.details).length == 0) {
+            let storage_data = results.DP_data;
+            console.log(storage_data.data.details);
+            if ((storage_data.data.details).length == 0) {
                 document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
                 document.getElementById("no_detection").style.display = 'none';
                 document.getElementById("noDetection").style.display = 'block';
@@ -17,20 +18,27 @@ window.onload = function() {
                 document.getElementById("no_detection").style.display = 'none';
                 document.getElementById("infoContainer").style.display = 'block';
                 document.getElementById("noDetection").style.display = 'none';
-                document.getElementById("number_detected").innerHTML = storage_data.total_counts
-                buildchart(storage_data);
+                document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
+                buildchart(storage_data.data);
             }
         }
-
     });
-
-
     chrome.tabs.query({ active: true, currentWindow: true },
         function(tabs) {
             let domain = new URL(tabs[0].url).hostname;
             document.getElementById("domain_name").innerHTML = domain;
         });
+
+    chrome.storage.sync.get(['autoscan'], function(results) {
+        if (results.autoscan == true) {
+            document.getElementById("autoscan").checked = true;
+        }
+    });
 }
+
+
+
+
 
 document.getElementById("results").addEventListener("click", switchtab);
 document.getElementById("reports").addEventListener("click", switchtab);
@@ -68,8 +76,7 @@ function getdata() {
 
 //fires once data is gotten back from the node server, if no patterns are found it does something and if patterns are found, it uses the data to build the results UI
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'Data Retrieved') {
-        //console.log(request.data);
+    if (request.message == 'Data Retrieved') {
         sendResponse("Data arrived at Popup.js");
         if ((request.data.data.details).length == 0) {
             document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
@@ -85,9 +92,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
         }
-        chrome.runtime.sendMessage({ message: "Put Data in Storage", data: JSON.stringify(request.data.data) }, function(response) {
-            console.log(response);
-        });
+
     }
 });
 

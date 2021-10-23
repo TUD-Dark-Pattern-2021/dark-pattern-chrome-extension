@@ -7,12 +7,29 @@
 // });
 
 
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status == 'complete' && tab.active) {
+        chrome.storage.sync.get(['autoscan'], function(result) {
+            //console.log('The value of autoscan is currently ' + result.autoscan);
+            if (result.autoscan === true) {
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
+                        sendData(response.data);
+                    });
+                });
+            } else if (result.autoscan === false) {
+                console.log("Auto scan is off");
+            }
+        });
+    }
+    return true;
+});
+
 
 //listener to listen for any message sent by scripts 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'GetData') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            console.log(tabs);
             chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
                 //console.log(response.data);
                 sendData(response.data);
@@ -34,13 +51,14 @@ async function sendData(raw_html) {
             body: JSON.stringify({ "html": encoded_html }),
         }).then(response => response.json())
         .then(data => {
+            chrome.storage.sync.set({ DP_data: data });
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
-                    //console.log(response);
+                chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data });
+                chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
+                    console.log(data);
                 });
-                chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function(response) {
-                    //console.log(response);
-                });
+                chrome.runtime.sendMessage({ message: "checkautoscan", data: data });
+
             });
 
 
@@ -85,34 +103,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
-//listens for when the page gets loaded or reloaded
+//listens for when the page gets loaded or reloaded, to remove the dark pattern data from chrome storage
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status == 'complete' && tab.active) {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "RemoveDataFromStorage" }, function(response) {
-                console.log(response);
-            });
-        });
-    }
-})
-
-
-
-//listener for setting and getting data from session storage.
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'check session storage') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "CheckSessionStorage" }, function(response) {
-                sendResponse(response);
-            });
-        });
-
-    } else if (request.message == "Put Data in Storage") {
-        console.log(request.data);
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "PutDataInStorage", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        });
+    if (changeInfo.status == 'loading' && tab.active) {
+        chrome.storage.sync.remove('DP_data');
     }
 });
