@@ -6,11 +6,10 @@
 //     });
 // });
 
-
+//function to check whether autoscan is turned on or off in the extension
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && tab.active) {
         chrome.storage.sync.get(['autoscan'], function(result) {
-            //console.log('The value of autoscan is currently ' + result.autoscan);
             if (result.autoscan === true) {
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
@@ -53,11 +52,17 @@ async function sendData(raw_html) {
         .then(data => {
             chrome.storage.sync.set({ DP_data: data });
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data });
+                chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
+                    console.log(response);
+                });
                 chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
                     console.log(data);
                 });
-                chrome.runtime.sendMessage({ message: "checkautoscan", data: data });
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { message: "DarkPatternsWereFoundByAutoDetect", data: data }, function(response) {
+                        console.log(response);
+                    })
+                });
 
             });
 

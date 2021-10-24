@@ -10,18 +10,3 @@ document.getElementById("autoscan").addEventListener('click', function() {
         });
     }
 });
-
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'checkautoscan') {
-        chrome.storage.sync.get(['autoscan'], function(result) {
-            if (result.autoscan === true) {
-                if (request.data.data.details.length == 0) {
-                    alert("no patterns found on page");
-                } else {
-                    alert("patterns found on page");
-                }
-            }
-        });
-    }
-});
