@@ -1,33 +1,38 @@
 //when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
 //opens as normal
 window.onload = function() {
-
-    chrome.storage.sync.get(['DP_data'], function(results) {
-        if (results.DP_data == null) {
-            console.log("chrome storage is empty");
-        } else {
-            let storage_data = results.DP_data;
-            console.log(storage_data.data.details);
-            if ((storage_data.data.details).length == 0) {
-                document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-                document.getElementById("no_detection").style.display = 'none';
-                document.getElementById("noDetection").style.display = 'block';
-
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let key = (tabs[0].id).toString();
+        console.log(key);
+        chrome.storage.sync.get([key], function(results) {
+            console.log(results[key]);
+            if (results[key] == null) {
+                console.log("chrome storage is empty");
             } else {
+                let storage_data = results[key];
 
-                document.getElementById("no_detection").style.display = 'none';
-                document.getElementById("infoContainer").style.display = 'block';
-                document.getElementById("noDetection").style.display = 'none';
-                document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
-                buildchart(storage_data.data);
+                console.log(storage_data.data.details);
+                if ((storage_data.data.details).length == 0) {
+                    document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+                    document.getElementById("no_detection").style.display = 'none';
+                    document.getElementById("noDetection").style.display = 'block';
+
+                } else {
+
+                    document.getElementById("no_detection").style.display = 'none';
+                    document.getElementById("infoContainer").style.display = 'block';
+                    document.getElementById("noDetection").style.display = 'none';
+                    document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
+                    buildchart(storage_data.data);
+                }
             }
-        }
-    });
-    chrome.tabs.query({ active: true, currentWindow: true },
-        function(tabs) {
-            let domain = new URL(tabs[0].url).hostname;
-            document.getElementById("domain_name").innerHTML = domain;
         });
+    });
+
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let domain = new URL(tabs[0].url).hostname;
+        document.getElementById("domain_name").innerHTML = domain;
+    });
 
     chrome.storage.sync.get(['autoscan'], function(results) {
         if (results.autoscan == true) {

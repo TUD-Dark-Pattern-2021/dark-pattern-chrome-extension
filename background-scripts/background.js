@@ -50,7 +50,13 @@ async function sendData(raw_html) {
             body: JSON.stringify({ "html": encoded_html }),
         }).then(response => response.json())
         .then(data => {
-            chrome.storage.sync.set({ DP_data: data });
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                //let tab = tabs[0].id;
+                chrome.storage.sync.set({
+                    [tabs[0].id]: data
+                });
+                console.log(tabs[0].id);
+            });
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
                     console.log(response);
@@ -110,7 +116,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 //listens for when the page gets loaded or reloaded, to remove the dark pattern data from chrome storage
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    console.log(tabId);
     if (changeInfo.status == 'loading' && tab.active) {
-        chrome.storage.sync.remove('DP_data');
+        chrome.storage.sync.remove([tabId.toString()]);
     }
 });
