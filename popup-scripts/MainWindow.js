@@ -149,8 +149,9 @@ function buildchart(data) {
 //creates the list of categories on the restuls page, with a toggle switch for each one as well
 function renderlist(category_names) {
     document.getElementById('render_list').innerHTML = '';
+    let cat_id_array = [];
     for (let i = 0; i < category_names.length; i++) {
-
+        cat_id_array.push("id_switch" + category_names[i]);
         if (category_names[i] == 'FakeActivity') {
             img = chrome.runtime.getURL("../images/Misdirection.png");
         } else if (category_names[i] == 'FakeHighDemand') {
@@ -163,13 +164,15 @@ function renderlist(category_names) {
             img = chrome.runtime.getURL("../images/Urgency.png");
         }
         let cont = document.createElement('div')
+        let cat_name_split = category_names[i].match(/[A-Z][a-z]+/g).join(" ");
         cont.innerHTML = `  
-        <img src = "${img}" class = "img_sizing"><span class = "category_list">${category_names[i]} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = id_switch_${category_names[i]}><span class="slider"></label></span>
-        `
+        <img src = "${img}" class = "img_sizing"><span class = "category_list">${cat_name_split} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = id_switch_${category_names[i]}><span class="slider"></label></span>
+        `;
 
         cont.addEventListener('click', function(event) {
             if (event.target.id == "id_switch_FakeActivity") {
                 removeFakeActivityIcons();
+                //savecheckboxstate(event.target.id, cat_id_array);
             } else if (event.target.id == "id_switch_FakeCountdown") {
                 removeFakeCountdownIcons();
             } else if (event.target.id == "id_switch_FakeHighDemand") {
@@ -182,7 +185,16 @@ function renderlist(category_names) {
         })
         document.getElementById('render_list').appendChild(cont);
     }
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        var checkboxes = document.querySelectorAll('')
+    });
 }
+
+// function savecheckboxstate() {
+
+
+// }
+
 
 //to remove the misdirection icon once switch is toggled.
 function removeFakeActivityIcons() {
