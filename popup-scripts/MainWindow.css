@@ -60,6 +60,14 @@ body {
     font-weight: 600;
 }
 
+.landingpage {
+    font-family: 'HiraginoSans-W5', sans-serif;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
 .content_wrapper {
     width: auto;
     height: 330px;
@@ -73,6 +81,7 @@ body {
 .none_detected {
     display: none;
     font-size: x-large;
+    text-align: center;
 }
 
 .border_div {
@@ -107,10 +116,19 @@ body {
     display: none;
 }
 
+.doughnuttitle {
+    text-align: center;
+    font-family: 'HiraginoSans-W5', sans-serif;
+    color: #211D2E;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 .doughnut_wrapper {
     display: flex;
     justify-content: center;
-    margin: 20px 0px 20px 0px;
+    margin: 5px 0px 20px 0px;
 }
 
 .totaltext {

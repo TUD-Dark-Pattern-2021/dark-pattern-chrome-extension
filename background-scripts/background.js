@@ -6,13 +6,29 @@
 //     });
 // });
 
+//function to check whether autoscan is turned on or off in the extension
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status == 'complete' && tab.active) {
+        chrome.storage.sync.get(['autoscan'], function(result) {
+            if (result.autoscan === true) {
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
+                        sendData(response.data);
+                    });
+                });
+            } else if (result.autoscan === false) {
+                console.log("Auto scan is off");
+            }
+        });
+    }
+    return true;
+});
 
 
 //listener to listen for any message sent by scripts 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'GetData') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            console.log(tabs);
             chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
                 //console.log(response.data);
                 sendData(response.data);
@@ -35,12 +51,25 @@ async function sendData(raw_html) {
         }).then(response => response.json())
         .then(data => {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                //let tab = tabs[0].id;
+                chrome.storage.sync.set({
+                    [tabs[0].id]: data
+                });
+                console.log(tabs[0].id);
+            });
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
-                    //console.log(response);
+                    console.log(response);
                 });
-                chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function(response) {
-                    //console.log(response);
+                chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
+                    console.log(data);
                 });
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { message: "DarkPatternsWereFoundByAutoDetect", data: data }, function(response) {
+                        console.log(response);
+                    })
+                });
+
             });
 
 
@@ -85,34 +114,28 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
-//listens for when the page gets loaded or reloaded
+//listens for when the page gets loaded or reloaded, to remove the dark pattern data from chrome storage
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status == 'complete' && tab.active) {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "RemoveDataFromStorage" }, function(response) {
-                console.log(response);
-            });
-        });
-    }
-})
-
-
-
-//listener for setting and getting data from session storage.
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'check session storage') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "CheckSessionStorage" }, function(response) {
-                sendResponse(response);
-            });
-        });
-
-    } else if (request.message == "Put Data in Storage") {
-        console.log(request.data);
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "PutDataInStorage", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        });
+    console.log(tabId);
+    if (changeInfo.status == 'loading' && tab.active) {
+        chrome.storage.sync.remove([tabId.toString()]);
     }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message == 'SendReport') {
+        sendReport(request.data);
+    }
+});
+
+async function sendReport(data) {
+    await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/detect", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            timeout: 0,
+            body: ,
+        }).then(response => response.json())
+        .then(data => {
+
+        })
+}

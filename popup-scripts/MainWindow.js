@@ -1,36 +1,49 @@
 //when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
 //opens as normal
 window.onload = function() {
-    chrome.runtime.sendMessage({ message: "check session storage" }, function(response) {
-        if (response == null) {
-            console.log("session storage is empty");
-        } else {
-            let storage_data = JSON.parse(response);
-            console.log(storage_data);
-            if ((storage_data.details).length == 0) {
-                document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-                document.getElementById("no_detection").style.display = 'none';
-                document.getElementById("noDetection").style.display = 'block';
-
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let key = (tabs[0].id).toString();
+        console.log(key);
+        chrome.storage.sync.get([key], function(results) {
+            console.log(results[key]);
+            if (results[key] == null) {
+                console.log("chrome storage is empty");
             } else {
+                let storage_data = results[key];
 
-                document.getElementById("no_detection").style.display = 'none';
-                document.getElementById("infoContainer").style.display = 'block';
-                document.getElementById("noDetection").style.display = 'none';
-                document.getElementById("number_detected").innerHTML = storage_data.total_counts
-                buildchart(storage_data);
+                console.log(storage_data.data.details);
+                if ((storage_data.data.details).length == 0) {
+                    document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+                    document.getElementById("no_detection").style.display = 'none';
+                    document.getElementById("noDetection").style.display = 'block';
+
+                } else {
+
+                    document.getElementById("no_detection").style.display = 'none';
+                    document.getElementById("infoContainer").style.display = 'block';
+                    document.getElementById("noDetection").style.display = 'none';
+                    document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
+                    buildchart(storage_data.data);
+                }
             }
-        }
-
+        });
     });
 
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let domain = new URL(tabs[0].url).hostname;
+        document.getElementById("domain_name").innerHTML = domain;
+    });
 
-    chrome.tabs.query({ active: true, currentWindow: true },
-        function(tabs) {
-            let domain = new URL(tabs[0].url).hostname;
-            document.getElementById("domain_name").innerHTML = domain;
-        });
+    chrome.storage.sync.get(['autoscan'], function(results) {
+        if (results.autoscan == true) {
+            document.getElementById("autoscan").checked = true;
+        }
+    });
 }
+
+
+
+
 
 document.getElementById("results").addEventListener("click", switchtab);
 document.getElementById("reports").addEventListener("click", switchtab);
@@ -68,8 +81,7 @@ function getdata() {
 
 //fires once data is gotten back from the node server, if no patterns are found it does something and if patterns are found, it uses the data to build the results UI
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'Data Retrieved') {
-        //console.log(request.data);
+    if (request.message == 'Data Retrieved') {
         sendResponse("Data arrived at Popup.js");
         if ((request.data.data.details).length == 0) {
             document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
@@ -85,9 +97,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
         }
-        chrome.runtime.sendMessage({ message: "Put Data in Storage", data: JSON.stringify(request.data.data) }, function(response) {
-            console.log(response);
-        });
+
     }
 });
 
@@ -139,8 +149,9 @@ function buildchart(data) {
 //creates the list of categories on the restuls page, with a toggle switch for each one as well
 function renderlist(category_names) {
     document.getElementById('render_list').innerHTML = '';
+    let cat_id_array = [];
     for (let i = 0; i < category_names.length; i++) {
-
+        cat_id_array.push("id_switch" + category_names[i]);
         if (category_names[i] == 'FakeActivity') {
             img = chrome.runtime.getURL("../images/Misdirection.png");
         } else if (category_names[i] == 'FakeHighDemand') {
@@ -153,13 +164,15 @@ function renderlist(category_names) {
             img = chrome.runtime.getURL("../images/Urgency.png");
         }
         let cont = document.createElement('div')
+        let cat_name_split = category_names[i].match(/[A-Z][a-z]+/g).join(" ");
         cont.innerHTML = `  
-        <img src = "${img}" class = "img_sizing"><span class = "category_list">${category_names[i]} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = id_switch_${category_names[i]}><span class="slider"></label></span>
-        `
+        <img src = "${img}" class = "img_sizing"><span class = "category_list">${cat_name_split} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = id_switch_${category_names[i]}><span class="slider"></label></span>
+        `;
 
         cont.addEventListener('click', function(event) {
             if (event.target.id == "id_switch_FakeActivity") {
                 removeFakeActivityIcons();
+                //savecheckboxstate(event.target.id, cat_id_array);
             } else if (event.target.id == "id_switch_FakeCountdown") {
                 removeFakeCountdownIcons();
             } else if (event.target.id == "id_switch_FakeHighDemand") {
@@ -172,7 +185,16 @@ function renderlist(category_names) {
         })
         document.getElementById('render_list').appendChild(cont);
     }
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        var checkboxes = document.querySelectorAll('')
+    });
 }
+
+// function savecheckboxstate() {
+
+
+// }
+
 
 //to remove the misdirection icon once switch is toggled.
 function removeFakeActivityIcons() {

@@ -1,22 +1,46 @@
 //this listner function does a few things:
 // 1. grabs the HTML of the current webpage to send to node server
-// 2. gets the data from the session storage
-// 3. sets the returned data from the node server into the session storage of the webpage
-// 4. removes the data from the session storage
+// 2. check whether autoscan is turned on or off and creates a toast popup based on the patterns found on the page.
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
         sendResponse({ data: document.body.innerHTML });
-
-    } else if (request.message == 'CheckSessionStorage') {
-        let item = sessionStorage.getItem("DarkPatternData_534724");
-        console.log(item);
-        sendResponse(item);
-    } else if (request.message == "PutDataInStorage") {
-        sessionStorage.setItem("DarkPatternData_534724", request.data);
-        sendResponse("Data is now in session storage");
-    } else if (request.message == "RemoveDataFromStorage") {
-        sessionStorage.removeItem("DarkPatternData_534724");
-        sendResponse("Data is removed from local storage");
+    } else if (request.message == 'DarkPatternsWereFoundByAutoDetect') {
+        checkautoscan(request.data);
+        sendResponse("user has been alerted");
     }
 });
+
+
+function checkautoscan(data) {
+    chrome.storage.sync.get(['autoscan'], function(result) {
+        if (result.autoscan === true) {
+            createToastPopup(data);
+            showandhidetoast();
+        }
+    });
+}
+
+function createToastPopup(data) {
+    let toastpopup = document.createElement('div');
+    toastpopup.id = "toastpopup";
+    toastpopup.className = "toast_popup";
+    if (data.data.details == 0) {
+        toastpopup.innerText = "There were no Dark Patterns found on this page";
+        toastpopup.className += " patterns_not_found";
+
+    } else {
+        toastpopup.innerText = "Careful! Dark Patterns were found on this page";
+        toastpopup.className += " patterns_found";
+    }
+    document.body.appendChild(toastpopup);
+}
+
+function showandhidetoast() {
+    let toast = document.getElementById("toastpopup")
+    toast.classList.add("toast--visible");
+
+    setTimeout(function() {
+        toast.classList.remove("toast--visible");
+    }, 4000);
+}

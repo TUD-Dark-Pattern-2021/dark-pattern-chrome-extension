@@ -1,0 +1,86 @@
+.reportform {
+    margin: 10px 10px 0 10px;
+}
+
+.websiteurl {
+    width: 45px;
+    height: 7px;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-size: 11px;
+    color: #211D2E;
+    font-weight: 600;
+}
+
+.urlinput {
+    border: 1px solid black;
+    width: 191px;
+    border-radius: 3px;
+    margin: 0 0 5px 0;
+}
+
+.screenshot_text {
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-size: 11px;
+    color: #211D2E;
+    font-weight: 600;
+}
+
+.screenshotinput {
+    margin: 0 0 5px 0;
+}
+
+.Category_heading {
+    width: auto;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-size: 11px;
+    color: #211D2E;
+    font-weight: 600;
+    margin: 10px 0 0 10px;
+}
+
+.cat_button_wrapper {
+    margin: 5px 0 0 10px;
+}
+
+.typewrapper {
+    display: none;
+}
+
+.mis_button {
+    width: 62px;
+    height: 20px;
+    font-size: 8.5px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.mis_button_selected {
+    border: 1px solid red
+}
+
+.typeButton {
+    width: 70px;
+    height: 20px;
+}
+
+.all_types_button {
+    font-size: 8.5px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.type_button_selected {
+    border: 1px solid blue;
+}
+
+.longertypebutton {
+    width: 80;
+    height: 20px;
+}
+
+.hidden_type {
+    display: none;
+    margin: 5px 0 0 10px;
+}
