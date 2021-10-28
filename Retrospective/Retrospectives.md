@@ -1,3 +1,34 @@
+28/10/2021 - Retrospective
+Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- This week became exetremly busy which may have had an affect on the amount of work I got done  ( Jordan Donnelly )
+- I couldn't get the Report function working for the chrome extension    ( Jordan Donnelly )
+- People didn't show up in daily stand-up     ( Lan Zeng, 2 Up Votes  )
+--- agree  ( Quanwei Sun )
+- Did not get some UI bugs fixed in time for demo  ( Alan Dowley )
+- Too late to run the user testing    ( Yufei Su )
+
+
+ Sad
+- UI hasn't worked fully yet    ( Lan Zeng )
+- feel a little confused about our next few weeks' planning  ( yunpeng liu )
+- Too many problems founded in Usability Testing   ( Yufei Su )
+- Result brings more work to Alan  and me.  ( Yufei Su )
+
+
+ Glad
+- Finished the interim report to a good standard  ( Jordan Donnelly )
+- Thanks Alan for doing so much stuff about the report！  ( yunpeng liu, 3 Up Votes  )
+- Opitmistic that the presesntation and Demo will go well tomorrow  unlike last weeks  ( Jordan Donnelly )
+- The enriched dataset worked better than the original dataset  regarding model training results.   Means it's a correct direction to go.  ( Lan Zeng )
+- I can put the the ocr in our extension now  ( Quanwei Sun )
+- Good user testing done and now we know what we need to change in the front end  ( Alan Dowley )
+- Lan Teach me how to write a good report   ( Yufei Su )
+- Lan Jordan and Quanwei helps to do the User Testing  very efficient  ( Yufei Su )
+- Alan and Lan changed many problems in the report  ( Yufei Su )
+![Screenshot](Retrospective-Week6.PNG)
+
 21/20/2021 - Retrospective
 
 Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
