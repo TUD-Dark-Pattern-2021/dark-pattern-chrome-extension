@@ -4,16 +4,18 @@ document.getElementById("SubmitButton").addEventListener('click', function() {
 
 function submitform() {
     let websiteurl = document.getElementById("WebsiteURL").value
-    let websitetype = document.getElementById("WebsiteURL").value
-    let patterncategory = document.getElementById("WebsiteURL").value
-    let patterntype = document.getElementById("WebsiteURL").value
+    let keyword = document.getElementById("keyword").value
+    let patterncategory = document.getElementById("PatternCategory").value
+    let description = document.getElementById("PatternDescription").value
 
+    let data_object = { "url": websiteurl, "keyword": keyword, "category": patterncategory, "description": description };
+    console.log(data_object);
 
-
-    chrome.runtime.sendMessage({ message: "SendReport", data: formdata },
+    chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
         function(response) {
             console.log(response);
             document.getElementById("reportform").reset();
+
         }
     );
 
