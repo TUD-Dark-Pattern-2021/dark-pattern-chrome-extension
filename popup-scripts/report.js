@@ -1,3 +1,29 @@
+document.getElementById("SubmitButton").addEventListener('click', function() {
+    submitform();
+});
+
+function submitform() {
+    let websiteurl = document.getElementById("WebsiteURL").value
+    let websitetype = document.getElementById("WebsiteURL").value
+    let patterncategory = document.getElementById("WebsiteURL").value
+    let patterntype = document.getElementById("WebsiteURL").value
+
+
+
+    chrome.runtime.sendMessage({ message: "SendReport", data: formdata },
+        function(response) {
+            console.log(response);
+            document.getElementById("reportform").reset();
+        }
+    );
+
+
+}
+
+
+
+
+
 // document.getElementById("urgency_button").addEventListener('click', displayTypes);
 // document.getElementById("social_button").addEventListener('click', displayTypes);
 // document.getElementById("scarcity_button").addEventListener('click', displayTypes);
@@ -43,8 +69,9 @@
 //     this.classList.add('type_button_selected');
 // }
 
-chrome.runtime.sendMessage({ message: "SendReport", data: object_ofafasd },
-    function(response) {
-        console.log(response);
-    }
-)
+
+// chrome.runtime.sendMessage({ message: "SendReport", data: object_ofafasd },
+//     function(response) {
+//         console.log(response);
+//     }
+// )
