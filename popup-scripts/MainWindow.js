@@ -185,9 +185,9 @@ function renderlist(category_names) {
         })
         document.getElementById('render_list').appendChild(cont);
     }
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        var checkboxes = document.querySelectorAll('')
-    });
+    // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    //     var checkboxes = document.querySelectorAll('')
+    // });
 }
 
 // function savecheckboxstate() {
