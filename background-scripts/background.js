@@ -125,19 +125,18 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message == 'SendReport') {
         console.log(JSON.stringify(request.data));
-        //sendReport(request.data);
+        sendReport(request.data);
         sendResponse("cleared form");
     }
 });
 
-// async function sendReport(data) {
-//     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/detect", {
-//             method: "POST",
-//             headers: { "Content-Type": "application/json" },
-//             timeout: 0,
-//             body: ,
-//         }).then(response => response.json())
-//         .then(data => {
+async function sendReport(data) {
+    await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/newReport", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            timeout: 0,
+            body: JSON.stringify(data),
+        }).then(response => response.json())
 
-//         })
-// }
+        
+}

@@ -1,5 +1,10 @@
 document.getElementById("SubmitButton").addEventListener('click', function() {
+    if(document.getElementById("WebsiteURL").value=="" || document.getElementById("keyword").value=="" || document.getElementById("PatternCategory").value=="" || document.getElementById("PatternDescription").value=="" ){
+        //Put in pop up message here to fill in fields
+    }
+    else{
     submitform();
+    }
 });
 
 function submitform() {
@@ -9,13 +14,12 @@ function submitform() {
     let description = document.getElementById("PatternDescription").value
 
     let data_object = { "url": websiteurl, "keyword": keyword, "category": patterncategory, "description": description };
-    console.log(data_object);
+// console.log(data_object);
 
     chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
         function(response) {
-            console.log(response);
+            // console.log(response);
             document.getElementById("reportform").reset();
-
         }
     );
 
