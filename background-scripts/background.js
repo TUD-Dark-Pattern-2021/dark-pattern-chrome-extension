@@ -136,7 +136,13 @@ async function sendReport(data) {
             headers: { "Content-Type": "application/json" },
             timeout: 0,
             body: JSON.stringify(data),
-        }).then(response => response.json())
+        }).then(response => response.text())
+        .then(result => {
+            console.log(result);
+            chrome.runtime.sendMessage({ message: "formWasAdded" }, function(response) {
+                console.log(response);
+            });
+        })
+        .catch(error => console.log('error', error));
 
-        
 }

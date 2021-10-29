@@ -1,9 +1,8 @@
 document.getElementById("SubmitButton").addEventListener('click', function() {
-    if(document.getElementById("WebsiteURL").value=="" || document.getElementById("keyword").value=="" || document.getElementById("PatternCategory").value=="" || document.getElementById("PatternDescription").value=="" ){
-        //Put in pop up message here to fill in fields
-    }
-    else{
-    submitform();
+    if (document.getElementById("WebsiteURL").value == "" || document.getElementById("keyword").value == "" || document.getElementById("PatternCategory").value == "" || document.getElementById("PatternDescription").value == "") {
+        document.getElementById("warning").style.display = "block";
+    } else {
+        submitform();
     }
 });
 
@@ -13,20 +12,38 @@ function submitform() {
     let patterncategory = document.getElementById("PatternCategory").value
     let description = document.getElementById("PatternDescription").value
 
-    let data_object = { "url": websiteurl, "keyword": keyword, "category": patterncategory, "description": description };
-// console.log(data_object);
+    if (patterncategory == "Urgency") {
+        var patterncategory_num = "1";
+    } else {
+        var patterncategory_num = "2";
+    }
+
+    let data_object = { "url": websiteurl, "keyword": keyword, "category": patterncategory_num, "description": description };
+    // console.log(data_object);
 
     chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
         function(response) {
             // console.log(response);
-            document.getElementById("reportform").reset();
+            document.getElementById("warning").style.display = "none";
         }
     );
 
 
 }
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("hello");
+    if (request.message == "formWasAdded") {
+        document.getElementById("reportform").reset();
+        document.getElementById("success").style.display = "block";
+        setInterval(timer, 3000);
 
+    }
+});
+
+function timer() {
+    document.getElementById("success").style.display = "none";
+}
 
 
 
