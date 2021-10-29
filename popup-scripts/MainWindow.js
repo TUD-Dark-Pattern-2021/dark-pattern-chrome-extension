@@ -63,6 +63,10 @@ function switchtab(e) {
         document.getElementById("results_page").style.display = "none";
         document.getElementById("reports_page").style.display = "block";
         document.getElementById("settings_page").style.display = "none";
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            let domain = new URL(tabs[0].url);
+            document.getElementById("WebsiteURL").value = domain;
+        });
     } else if (this.id == "settings") {
         document.getElementById("results_page").style.display = "none";
         document.getElementById("reports_page").style.display = "none";
