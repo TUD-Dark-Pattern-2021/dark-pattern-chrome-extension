@@ -1,11 +1,3 @@
-// // sets a listener onto the extension icon and listens till the icon is clicked. Once clicked the 'tab' object gives the current tab that is open and the id fo the current tab can be gotten.
-// // sends a message to the content script once the icon is clicked. Content scripts answers with a reply, which gets console logged.
-// chrome.action.onClicked.addListener((tab) => {
-//     chrome.tabs.sendMessage({ message: "getURL" }, function(response) {
-//         console.log(response);
-//     });
-// });
-
 //function to check whether autoscan is turned on or off in the extension
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && tab.active) {
@@ -73,7 +65,8 @@ async function sendData(raw_html) {
             });
 
 
-        });
+        })
+        .catch(error => console.log('error', error));
     console.log("retrieved!")
 
 }
@@ -122,6 +115,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     }
 });
 
+//listener for when the user submits a report from the UI.
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message == 'SendReport') {
         console.log(JSON.stringify(request.data));
@@ -130,6 +124,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+//sending the submitted report the the node and handlign the repsonse accordingly
 async function sendReport(data) {
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/newReport", {
             method: "POST",

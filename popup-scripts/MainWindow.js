@@ -189,18 +189,9 @@ function renderlist(category_names) {
         })
         document.getElementById('render_list').appendChild(cont);
     }
-    // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    //     var checkboxes = document.querySelectorAll('')
-    // });
 }
 
-// function savecheckboxstate() {
-
-
-// }
-
-
-//to remove the misdirection icon once switch is toggled.
+//to remove the fake activity icon once switch is toggled.
 function removeFakeActivityIcons() {
     let checkbox = document.getElementById('id_switch_FakeActivity');
     if (checkbox.checked == true) {
@@ -213,6 +204,7 @@ function removeFakeActivityIcons() {
     });
 }
 
+//to remove the fake countdown icon once switch is toggled.
 function removeFakeCountdownIcons() {
     let checkbox = document.getElementById('id_switch_FakeCountdown');
     if (checkbox.checked == true) {
@@ -225,6 +217,7 @@ function removeFakeCountdownIcons() {
     });
 }
 
+//to remove the fake high demand icon once switch is toggled.
 function removeFakeHighDemandIcons() {
     let checkbox = document.getElementById('id_switch_FakeHighDemand');
     if (checkbox.checked == true) {
@@ -237,6 +230,7 @@ function removeFakeHighDemandIcons() {
     });
 }
 
+//to remove the fake limited time icon once switch is toggled.
 function removeFakeLimitedTimeIcons() {
     let checkbox = document.getElementById('id_switch_FakeLimitedTime');
     if (checkbox.checked == true) {
@@ -249,6 +243,7 @@ function removeFakeLimitedTimeIcons() {
     });
 }
 
+//to remove the fake low stock icon once switch is toggled.
 function removeFakeLowStockIcons() {
     let checkbox = document.getElementById('id_switch_FakeLowStock');
     if (checkbox.checked == true) {
