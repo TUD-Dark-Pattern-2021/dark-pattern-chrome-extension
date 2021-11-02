@@ -12,12 +12,25 @@
 </head>
 
 <body>
-    <div id="domain_name" class="website_name"></div>
-    <div class="button_wrapper"><button id="detection_button" class="detect_button">Detect Dark Patterns</button></div>
+    <div class="grid-container">
+        <div class="grid-item item1"><img src="../images/logo.png" class="logo"></div>
+        <div class="grid-item item2">
+            <div id="domain_name" class="website_name"></div>
+        </div>
+        <div class="grid-item item3">
+            <div class="button_wrapper"><button id="detection_button" class="detect_button">Detect Dark Patterns</button></div>
+        </div>
+    </div>
+
+
+
+
+
 
     <nav>
         <ul class="nav_ul">
-            <li class="nav_list nav_list_active" id="results">Result</li>
+            <li class="nav_list nav_list_active" id="about">About</li>
+            <li class="nav_list " id="results">Results</li>
             <li class="nav_list" id="reports">Report</li>
             <li class="nav_list" id="settings">Setings</li>
         </ul>
@@ -25,6 +38,37 @@
 
     <div class="content_wrapper">
         <div class="border_div">
+
+            <div id="about_page" class="about_container">
+                <div class="about_text">
+                    <div class="about_questions">What are Dark Patterns?</div>
+                    <div class="question_text">
+                        Dark Patterns are tricks or design elements, used by webpages, that deliberately obscure, mislead, coerce and/or deceive you into making unintended choices and decisions.
+                    </div>
+                    <br>
+                    <div class="about_questions">What does this Extension do?</div>
+                    <div class="question_text">The Dark Pattern Detector aims to detect and highlight these patterns on webpages. Click on the "Detect Dark Pattern" button to get started. </div> <br>
+                    <div>
+                        <div class="about_questions">What Patterns can be detected?</div>
+                        <ul class="about_list">
+                            <li><img src="../images/misdirection.png" class="imgliststyle">Fake Activity</li>
+                            <li><img src="../images/scarcity.png" class="imgliststyle">Fake Countdown Timers</li>
+                            <li><img src="../images/Obstruction.png" class="imgliststyle">Fake Low Stock Messages</li>
+                            <li><img src="../images/social_proof.png" class="imgliststyle">Fake High Demand Messages</li>
+                            <li><img src="../images/urgency.png" class="imgliststyle">Fake Limited Time Messages</li>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a>
+                </div>
+            </div>
+
+
+
+
+
+
 
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
