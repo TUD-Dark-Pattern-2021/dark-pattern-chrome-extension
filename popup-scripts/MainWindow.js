@@ -4,6 +4,11 @@ window.onload = function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         var key = (tabs[0].id).toString();
         console.log(key);
+        chrome.tabs.sendMessage(tabs[0].id, { message: "getpercentagescreenvisible" }, function(response) {
+            sendResponse(response);
+        });
+
+
         chrome.storage.local.get([key], function(results) {
             //console.log(results[key]);
             if (results[key] == null) {
@@ -57,6 +62,7 @@ window.onload = function() {
             document.getElementById("autoscan").checked = true;
         }
     });
+
 }
 
 document.getElementById("results").addEventListener("click", switchtab);
@@ -301,6 +307,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === "checkboxes") {
         checkboxDataDisplay(request.data);
         sendResponse("checkbox data recieved!");
+    } else if (request.message === "screenvisiblity") {
+        displayPagePercentageVisible(request.data);
     }
 })
 
@@ -313,4 +321,8 @@ function checkboxDataDisplay(data) {
             [tabs[0].id + "_checkboxes"]: data
         });
     });
+}
+
+function displayPagePercentageVisible(percentage) {
+    document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style">${percentage}%</div>`
 }

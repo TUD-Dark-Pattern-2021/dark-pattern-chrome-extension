@@ -10,6 +10,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     } else if (request.message == 'DarkPatternsWereFoundByAutoDetect') {
         checkautoscan(request.data);
         sendResponse("user has been alerted");
+    } else if (request.message === "getpercentagescreenvisible") {
+        calculatePercentageScreenVisible();
+        sendResponse("calculated!");
     }
 });
 
@@ -57,4 +60,18 @@ function scanforCheckboxes() {
     chrome.runtime.sendMessage({ message: "checkboxes", data: all_checkboxes }, function(response) {
         console.log(response);
     });
+    calculatePercentageScreenVisible();
+
+}
+
+function calculatePercentageScreenVisible() {
+    var browser_viewport_h = $(window).height();
+    var HTML_doc_height = $(document).height();
+    console.log(browser_viewport_h, HTML_doc_height);
+    let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
+    console.log(percentage + "% of the webpage is visible on screen")
+
+    chrome.runtime.sendMessage({ message: "screenvisiblity", data: percentage }, function(response) {
+        console.log(response);
+    })
 }
