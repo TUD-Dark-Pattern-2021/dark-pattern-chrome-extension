@@ -2,30 +2,38 @@
 //opens as normal
 window.onload = function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        let key = (tabs[0].id).toString();
+        var key = (tabs[0].id).toString();
         console.log(key);
-        chrome.storage.sync.get([key], function(results) {
-            console.log(results[key]);
+        chrome.storage.local.get([key], function(results) {
+            //console.log(results[key]);
             if (results[key] == null) {
                 console.log("chrome storage is empty");
                 // document.getElementById("results_page").style.display = "none";
                 // document.getElementById("about_page").style.display = "block";
             } else {
+                chrome.storage.local.get([key + "_checkboxes"], function(results) {
+                    checkboxDataDisplay(results[key + "_checkboxes"]);
+                });
                 let storage_data = results[key];
 
                 console.log(storage_data.data.details);
                 if ((storage_data.data.details).length == 0) {
                     document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
                     document.getElementById("no_detection").style.display = 'none';
+                    document.getElementById("infoContainer").style.display = 'block';
                     document.getElementById("noDetection").style.display = 'block';
+                    document.getElementById("full_results").style.display = 'none';
+
 
                 } else {
 
                     document.getElementById("no_detection").style.display = 'none';
                     document.getElementById("infoContainer").style.display = 'block';
                     document.getElementById("noDetection").style.display = 'none';
+                    document.getElementById("full_results").style.display = 'block';
                     document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
                     buildchart(storage_data.data);
+
                 }
 
                 document.getElementById("results_page").style.display = "block";
@@ -33,24 +41,23 @@ window.onload = function() {
                 document.getElementById("about").classList.remove("nav_list_active");
                 document.getElementById("results").classList.add("nav_list_active");
             }
+
         });
+
     });
+
 
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         let domain = new URL(tabs[0].url).hostname;
         document.getElementById("domain_name").innerHTML = domain;
     });
 
-    chrome.storage.sync.get(['autoscan'], function(results) {
+    chrome.storage.local.get(['autoscan'], function(results) {
         if (results.autoscan == true) {
             document.getElementById("autoscan").checked = true;
         }
     });
 }
-
-
-
-
 
 document.getElementById("results").addEventListener("click", switchtab);
 document.getElementById("reports").addEventListener("click", switchtab);
@@ -89,7 +96,6 @@ function switchtab() {
         document.getElementById("about_page").style.display = "block";
     }
 
-
     var current_selected = document.querySelectorAll('.nav_list.nav_list_active');
     if (current_selected.length == 1) {
         current_selected[0].classList.remove('nav_list_active');
@@ -97,9 +103,7 @@ function switchtab() {
     this.classList.add('nav_list_active');
 }
 
-
 document.getElementById("detection_button").addEventListener("click", getdata);
-
 //sends a message to background to detect patterns on page.
 function getdata() {
     chrome.runtime.sendMessage({ message: "GetData" },
@@ -123,16 +127,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         sendResponse("Data arrived at Popup.js");
         if ((request.data.data.details).length == 0) {
-            document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-            document.getElementById("no_detection").style.display = 'none';
-            document.getElementById("noDetection").style.display = 'block';
-
-        } else {
 
             document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
             document.getElementById("no_detection").style.display = 'none';
             document.getElementById("infoContainer").style.display = 'block';
+            document.getElementById("noDetection").style.display = 'block';
+            document.getElementById("full_results").style.display = 'none';
+        } else {
+            document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
+            document.getElementById("no_detection").style.display = 'none';
+            document.getElementById("infoContainer").style.display = 'block';
             document.getElementById("noDetection").style.display = 'none';
+            document.getElementById("full_results").style.display = 'block';
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
         }
@@ -288,5 +294,23 @@ function removeFakeLowStockIcons() {
     }
     chrome.runtime.sendMessage({ message: "FakeLowStockDemandToggle", data: toggle_icon }, function(response) {
         console.log(response);
+    });
+}
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === "checkboxes") {
+        checkboxDataDisplay(request.data);
+        sendResponse("checkbox data recieved!");
+    }
+})
+
+function checkboxDataDisplay(data) {
+    console.log(data);
+    console.log(data[0]);
+    document.getElementById("checked_checkboxes2").innerHTML = "There are a total of " + data[0] + " checkboxes on this page, and " + data[1] + " are already checked!"
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        chrome.storage.local.set({
+            [tabs[0].id + "_checkboxes"]: data
+        });
     });
 }

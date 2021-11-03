@@ -4,7 +4,9 @@
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
+        scanforCheckboxes();
         sendResponse({ data: document.body.innerHTML });
+
     } else if (request.message == 'DarkPatternsWereFoundByAutoDetect') {
         checkautoscan(request.data);
         sendResponse("user has been alerted");
@@ -13,7 +15,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 
 function checkautoscan(data) {
-    chrome.storage.sync.get(['autoscan'], function(result) {
+    chrome.storage.local.get(['autoscan'], function(result) {
         if (result.autoscan === true) {
             createToastPopup(data);
             showandhidetoast();
@@ -43,4 +45,16 @@ function showandhidetoast() {
     setTimeout(function() {
         toast.classList.remove("toast--visible");
     }, 4000);
+}
+
+function scanforCheckboxes() {
+    var all_checkboxes = [];
+    var checkboxes = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+    var checked_checkboxes = document.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]:checked');
+    all_checkboxes.push(checkboxes.length, checked_checkboxes.length);
+    console.log("total number of checkboxes: " + checkboxes.length);
+    console.log("total number of checked checkboxes: " + checked_checkboxes.length);
+    chrome.runtime.sendMessage({ message: "checkboxes", data: all_checkboxes }, function(response) {
+        console.log(response);
+    });
 }

@@ -35,7 +35,7 @@ function submitform() {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("hello");
+    //console.log("hello");
     if (request.message == "formWasAdded") {
         document.getElementById("reportform").reset();
         document.getElementById("success").style.display = "block";

@@ -13,7 +13,7 @@
         "css": ["css/highlight.css", "css/toast.css"],
         "run_at": "document_end"
     }],
-    "permissions": ["scripting", "activeTab", "tabs", "webNavigation", "storage"],
+    "permissions": ["scripting", "activeTab", "tabs", "webNavigation", "storage", "unlimitedStorage"],
     "action": {
         "default_popup": "popup-scripts/MainWindow.html",
         "default_title": "Click to show and alert"

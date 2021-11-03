@@ -72,19 +72,33 @@
 
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
-                <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div>
+
+                <!-- <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div> -->
                 <div id="infoContainer" class="info_container">
-                    <div class="doughnuttitle">Breakdown of detected patterns</div>
-                    <div class="doughnut_wrapper">
-                        <canvas id="doughnut_chart" height="120" width="120"></canvas>
+                    <div class="results_grid_container">
+
+                        <div class="item1_results">
+                            <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div>
+                            <div id="full_results">
+                                <div class="doughnuttitle">Breakdown of detected patterns</div>
+                                <div class="doughnut_wrapper">
+                                    <canvas id="doughnut_chart" height="120" width="160"></canvas>
+                                </div>
+
+                                <div class="totaltext">Total Patterns: <span id="number_detected" class="numdetected"></span></div>
+                                <div class="small_title">Pattern Type<span class="hide_show">Hide&sol;Show</span></div>
+                                <div id="render_list" class="renderlist"></div>
+                            </div>
+                        </div>
+                        <div class="item2_results">
+                            <div class="checkbox_text" id="total_checkboxes"></div>
+                            <div class="checkbox_text" id="checked_checkboxes"></div>
+                            <div class="checkbox_text" id="checked_checkboxes2"></div>
+
+                        </div>
+                        <div class="item3_results">3</div>
+
                     </div>
-
-                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>
-                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide&sol;Show</span></div>
-                    <div id="render_list" class="renderlist">
-
-                    </div>
-
                 </div>
             </div>
 

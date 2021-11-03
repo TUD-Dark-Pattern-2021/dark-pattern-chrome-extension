@@ -1,7 +1,7 @@
 //function to check whether autoscan is turned on or off in the extension
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && tab.active) {
-        chrome.storage.sync.get(['autoscan'], function(result) {
+        chrome.storage.local.get(['autoscan'], function(result) {
             if (result.autoscan === true) {
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
@@ -9,7 +9,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                     });
                 });
             } else if (result.autoscan === false) {
-                console.log("Auto scan is off");
+                // console.log("Auto scan is off");
             }
         });
     }
@@ -44,10 +44,10 @@ async function sendData(raw_html) {
         .then(data => {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 //let tab = tabs[0].id;
-                chrome.storage.sync.set({
+                chrome.storage.local.set({
                     [tabs[0].id]: data
                 });
-                console.log(tabs[0].id);
+                console.log("data is set in storage " + tabs[0].id);
             });
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
@@ -58,7 +58,7 @@ async function sendData(raw_html) {
                 });
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { message: "DarkPatternsWereFoundByAutoDetect", data: data }, function(response) {
-                        console.log(response);
+                        // console.log(response);
                     })
                 });
 
@@ -109,9 +109,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 //listens for when the page gets loaded or reloaded, to remove the dark pattern data from chrome storage
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    console.log(tabId);
+    //console.log(tabId);
     if (changeInfo.status == 'loading' && tab.active) {
-        chrome.storage.sync.remove([tabId.toString()]);
+        chrome.storage.local.remove([tabId.toString()]);
     }
 });
 
