@@ -19,10 +19,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 //listener to listen for any message sent by scripts 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request.message)
     if (request.message === 'GetData') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
-                //console.log(response.data);
                 sendData(response.data);
                 sendResponse("data gotten");
             });
@@ -42,66 +42,50 @@ async function sendData(raw_html) {
             body: JSON.stringify({ "html": encoded_html }),
         }).then(response => response.json())
         .then(data => {
-            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                //let tab = tabs[0].id;
-                chrome.storage.local.set({
-                    [tabs[0].id]: data
-                });
-                console.log("data is set in storage " + tabs[0].id);
-            });
-            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
-                    console.log(response);
-                });
-                chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
-                    console.log(data);
-                });
-                chrome.tabs.sendMessage(tabs[0].id, { message: "createtoastpopup", data: data }, function(response) {
-                    // console.log(response);
-                });
-            });
+
+            console.log('data==============', data)
+            chrome.storage.local.get({filters: {}}, function(response) {
+                console.log('filters:', response)
+                let result = data.data
+                for (let i in response.filters) {
+                    console.log(i)
+                    if (response.filters[i] === false && result.items_counts[i]) {
+                        result.details = result.details.filter((v) => v.category_name !== i)
+                        result.total_counts -= result.items_counts[i]
+                        delete result.items_counts[i]
+                    }
+
+                }
+                console.log('result=========', result)
 
 
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    //let tab = tabs[0].id;
+                    chrome.storage.local.set({
+                        [tabs[0].id]: data
+                    });
+                    console.log("data is set in storage " + tabs[0].id);
+                });
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
+                        console.log(response);
+                    });
+                    chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
+                        console.log(data);
+                    });
+                    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                        chrome.tabs.sendMessage(tabs[0].id, { message: "DarkPatternsWereFoundByAutoDetect", data: data }, function(response) {
+                            // console.log(response);
+                        })
+                    });
+
+                });
+
+            });
         })
         .catch(error => console.log('error', error));
     console.log("retrieved!")
-
 }
-
-//listener for toggling on and off the patterns highlighted on the page
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message == 'FakeActivityToggle') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "FakeActivityToggle_highlight", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        })
-    } else if (request.message == 'FakeCountdownToggle') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "FakeCountdownToggle_highlight", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        })
-    } else if (request.message == 'FakeHighDemandToggle') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "FakeHighDemandToggle_highlight", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        })
-    } else if (request.message == 'FakeLimitedTimeDemandToggle') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "FakeLimitedTimeDemandToggle_highlight", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        })
-    } else if (request.message == 'FakeLowStockDemandToggle') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "FakeLowStockDemandToggle_highlight", data: request.data }, function(response) {
-                sendResponse(response);
-            });
-        })
-    }
-});
 
 
 //listens for when the page gets loaded or reloaded, to remove the dark pattern data from chrome storage

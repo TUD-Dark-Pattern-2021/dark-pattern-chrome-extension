@@ -8,5 +8,8 @@ Ashe.addModifiers({
     },
     encode: function(str) {
         return encodeURIComponent(str)
+    },
+    firstSlug: function (str) {
+        return str[0].category_name_slug
     }
 });
