@@ -56,12 +56,9 @@ async function sendData(raw_html) {
                 chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
                     console.log(data);
                 });
-                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, { message: "DarkPatternsWereFoundByAutoDetect", data: data }, function(response) {
-                        // console.log(response);
-                    })
+                chrome.tabs.sendMessage(tabs[0].id, { message: "createtoastpopup", data: data }, function(response) {
+                    // console.log(response);
                 });
-
             });
 
 
@@ -141,3 +138,12 @@ async function sendReport(data) {
         .catch(error => console.log('error', error));
 
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'navigateToClickedElement') {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { message: "navigateToClickedElement", data: request.data });
+        });
+    }
+    return true;
+});

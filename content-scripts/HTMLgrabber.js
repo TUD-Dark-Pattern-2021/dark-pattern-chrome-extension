@@ -7,24 +7,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         scanforCheckboxes();
         sendResponse({ data: document.body.innerHTML });
 
-    } else if (request.message == 'DarkPatternsWereFoundByAutoDetect') {
-        checkautoscan(request.data);
+    } else if (request.message == 'createtoastpopup') {
+        createToastPopup(request.data);
         sendResponse("user has been alerted");
     } else if (request.message === "getpercentagescreenvisible") {
         calculatePercentageScreenVisible();
         sendResponse("calculated!");
     }
 });
-
-
-function checkautoscan(data) {
-    chrome.storage.local.get(['autoscan'], function(result) {
-        if (result.autoscan === true) {
-            createToastPopup(data);
-            showandhidetoast();
-        }
-    });
-}
 
 function createToastPopup(data) {
     let toastpopup = document.createElement('div');
@@ -36,10 +26,14 @@ function createToastPopup(data) {
 
     } else {
         toastpopup.innerText = "Careful! Dark Patterns were found on this page";
+        console.log(data.data.items_counts);
         toastpopup.className += " patterns_found";
     }
     document.body.appendChild(toastpopup);
+    showandhidetoast()
 }
+
+
 
 function showandhidetoast() {
     let toast = document.getElementById("toastpopup")
