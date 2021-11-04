@@ -76,12 +76,6 @@ li {
     grid-row: 2;
 }
 
-.logo {
-    width: 65px;
-    height: 60px;
-    margin: 3px 0px 10px 5px;
-}
-
 .grid-container {
     display: grid;
     grid-template-columns: 27.3% 72.7%;
