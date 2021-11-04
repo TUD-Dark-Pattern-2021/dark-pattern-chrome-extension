@@ -10,10 +10,10 @@
     "content_scripts": [{
         "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js", "content-scripts/iconRemover.js"],
         "matches": ["<all_urls>", "http://*/*", "https://*/*"],
-        "css": ["css/highlight.css", "css/stylesheetH.css", "css/sideWindow.css", "css/toast.css"],
+        "css": ["css/highlight.css", "css/toast.css"],
         "run_at": "document_end"
     }],
-    "permissions": ["scripting", "activeTab", "tabs", "webNavigation", "storage"],
+    "permissions": ["scripting", "activeTab", "tabs", "webNavigation", "storage", "unlimitedStorage"],
     "action": {
         "default_popup": "popup-scripts/MainWindow.html",
         "default_title": "Click to show and alert"

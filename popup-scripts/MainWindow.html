@@ -12,12 +12,25 @@
 </head>
 
 <body>
-    <div id="domain_name" class="website_name"></div>
-    <div class="button_wrapper"><button id="detection_button" class="detect_button">Detect Dark Patterns</button></div>
+    <div class="grid-container">
+        <div class="grid-item item1"><img src="../images/logo.png" class="logo"></div>
+        <div class="grid-item item2">
+            <div id="domain_name" class="website_name"></div>
+        </div>
+        <div class="grid-item item3">
+            <div class="button_wrapper"><button id="detection_button" class="detect_button">Detect Dark Patterns</button></div>
+        </div>
+    </div>
+
+
+
+
+
 
     <nav>
         <ul class="nav_ul">
-            <li class="nav_list nav_list_active" id="results">Result</li>
+            <li class="nav_list nav_list_active" id="about">About</li>
+            <li class="nav_list " id="results">Results</li>
             <li class="nav_list" id="reports">Report</li>
             <li class="nav_list" id="settings">Setings</li>
         </ul>
@@ -26,21 +39,69 @@
     <div class="content_wrapper">
         <div class="border_div">
 
+            <div id="about_page" class="about_container">
+                <div class="about_text">
+                    <div class="about_questions">What are Dark Patterns?</div>
+                    <div class="question_text">
+                        Dark Patterns are tricks or design elements, used by webpages, that deliberately obscure, mislead, coerce and/or deceive you into making unintended choices and decisions.
+                    </div>
+                    <br>
+                    <div class="about_questions">What does this Extension do?</div>
+                    <div class="question_text">The Dark Pattern Detector aims to detect and highlight these patterns on webpages. Click on the "Detect Dark Pattern" button to get started. </div> <br>
+                    <div>
+                        <div class="about_questions">What Patterns can be detected?</div>
+                        <ul class="about_list">
+                            <li><img src="../images/misdirection.png" class="imgliststyle">Fake Activity</li>
+                            <li><img src="../images/scarcity.png" class="imgliststyle">Fake Countdown Timers</li>
+                            <li><img src="../images/Obstruction.png" class="imgliststyle">Fake Low Stock Messages</li>
+                            <li><img src="../images/social_proof.png" class="imgliststyle">Fake High Demand Messages</li>
+                            <li><img src="../images/urgency.png" class="imgliststyle">Fake Limited Time Messages</li>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a>
+                </div>
+            </div>
+
+
+
+
+
+
+
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
-                <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div>
+
+                <!-- <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div> -->
                 <div id="infoContainer" class="info_container">
-                    <div class="doughnuttitle">Breakdown of detected patterns</div>
-                    <div class="doughnut_wrapper">
-                        <canvas id="doughnut_chart" height="120" width="120"></canvas>
+                    <div class="results_grid_container">
+
+                        <div class="item1_results">
+                            <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div>
+                            <div id="full_results">
+                                <div class="doughnuttitle">Breakdown of detected patterns</div>
+                                <div class="doughnut_wrapper">
+                                    <canvas id="doughnut_chart" height="120" width="160"></canvas>
+                                </div>
+
+                                <div class="totaltext">Total Patterns: <span id="number_detected" class="numdetected"></span></div>
+                                <div class="small_title">Pattern Type<span class="hide_show">Hide&sol;Show</span></div>
+                                <div id="render_list" class="renderlist"></div>
+                            </div>
+                        </div>
+                        <div class="item2_results">
+                            <div class="checkbox_text" id="total_checkboxes"></div>
+                            <div class="checkbox_text" id="checked_checkboxes"></div>
+                            <div class="checkbox_text" id="checked_checkboxes2"></div>
+
+                        </div>
+                        <div class="item3_results">
+                            <div class="doughnuttitle">Percentage of the webpage visible on screen:</div>
+                            <div id="screenpercentage"></div>
+                        </div>
+
                     </div>
-
-                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>
-                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide&sol;Show</span></div>
-                    <div id="render_list" class="renderlist">
-
-                    </div>
-
                 </div>
             </div>
 
