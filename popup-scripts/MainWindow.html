@@ -73,7 +73,9 @@
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
 
-                <!-- <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div> -->
+<!--                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>-->
+<!--                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide/Show</span></div>-->
+<!--                    <div id="render_list" class="renderlist">-->
                 <div id="infoContainer" class="info_container">
                     <div class="results_grid_container">
 
@@ -100,11 +102,10 @@
                             <div class="doughnuttitle">Percentage of the webpage visible on screen:</div>
                             <div id="screenpercentage"></div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
+            
 
             <div id="reports_page" class="reports_container">
                 <div class="success" id="success">Thank's for submitting a report</div>
@@ -179,11 +180,40 @@
     <div class="bottom_link">What is a Dark Pattern?</div>
 
 
-
-
+    <script id="render_list_template" type="text/html">
+        <ul class="">
+            {% for key, detail in grouped_details %}
+            <li class="dp-list">
+                <div class="dp-list-title">
+                    <div class="dp-list-left">
+                        <img src="../images/right-arrow.png" class="right-arrow"/>
+                        <img src = "../images/misdirection_green.png" class = "img_sizing" />
+                        <span class = "category_list">{{key}} </span>
+                    </div>
+                    <span class = "switch_wrapper">
+                        <label class="switch">
+                            <input type="checkbox" checked id = id_switch_${category_names[i]} />
+                            <span class="slider"></span>
+                        </label>
+                    </span>
+                </div>
+                {% for key, detailContent in detail %}
+                    <ul class="dp-list-detail-wrapper">
+                       <li class="dp-list-detail" data-dp-key="{{detailContent.key}}">
+                           {{key|addOne}}:{{detailContent.content}}
+                       </li>
+                    </ul>
+                {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+    </script>
 
     <script src="../js/jquery.js"></script>
     <script src="../js/chart.min.js"></script>
+    <script src="../js/ash.js"></script>
+    <script src="../js/ash.modifier.js"></script>
+    <script src="../js/lodash.js"></script>
     <script src="report.js" type="text/javascript"></script>
     <script src="settings.js" type="text/javascript"></script>
     <script src="MainWindow.js" type="text/javascript"></script>

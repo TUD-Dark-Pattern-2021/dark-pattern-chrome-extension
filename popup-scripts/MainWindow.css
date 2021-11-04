@@ -1,7 +1,16 @@
 body {
-    width: 350px;
+    width: 550px;
     height: 450px;
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    margin: 0;
+    padding: 0;
 }
 
 .logo {
@@ -136,6 +145,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 5px;
 }
 
 .about_text {
@@ -150,7 +160,7 @@ body {
 }
 
 .border_div {
-    width: 318px;
+    width: 100%;
     height: 318px;
     border: 0.72px solid #656565;
     border-radius: 2.88px;
@@ -259,12 +269,12 @@ body {
 }
 
 .renderlist {
-    height: 116px;
+    height: 100px;
     overflow: auto;
 }
 
 .category_list {
-    margin: 8px 10px 0px 5px;
+    /*margin: 8px 10px 0px 5px;*/
     font-family: 'HiraginoSans-W5', sans-serif;
     color: #211D2E;
     font-weight: 600;
@@ -274,7 +284,6 @@ body {
 .img_sizing {
     width: 11px;
     height: 11px;
-    margin: 8px 5px 0px 15px;
 }
 
 .switch_wrapper {
@@ -344,8 +353,65 @@ input:checked+.slider:before {
     margin: 3px 0 10px 5px;
 }
 
+.dp-list {
+
+
+}
+.dp-list-title {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.right-arrow {
+    width: 10px;
+    height: 10px;
+    transition: all .2s;
+}
+.right-arrow.active {
+    transform: rotate(90deg);
+}
+.dp-list-detail-wrapper {
+    display: none;
+}
+.dp-list-detail {
+    cursor: pointer;
+    padding: 3px 10px 3px 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow: hidden;
+}
+.dp-list-detail:hover {
+    background-color: #ccc;
+}
+
 .percentage_style {
     font-size: 20px;
     color: red;
     text-align: center;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0)
+    }
+    40% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
 }

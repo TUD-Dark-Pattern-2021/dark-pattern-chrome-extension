@@ -1,11 +1,12 @@
 //when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
 //opens as normal
 window.onload = function() {
+
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         var key = (tabs[0].id).toString();
         console.log(key);
         chrome.tabs.sendMessage(tabs[0].id, { message: "getpercentagescreenvisible" }, function(response) {
-            sendResponse(response);
+            // sendResponse(response);
         });
 
 
@@ -65,10 +66,34 @@ window.onload = function() {
 
 }
 
-document.getElementById("results").addEventListener("click", switchtab);
-document.getElementById("reports").addEventListener("click", switchtab);
-document.getElementById("settings").addEventListener("click", switchtab);
-document.getElementById("about").addEventListener("click", switchtab);
+
+bindEvents()
+function bindEvents() {
+    document.getElementById("results").addEventListener("click", switchtab);
+    document.getElementById("reports").addEventListener("click", switchtab);
+    document.getElementById("settings").addEventListener("click", switchtab);
+    document.getElementById("detection_button").addEventListener("click", getdata);
+    document.getElementById("about").addEventListener("click", switchtab);
+    $('#render_list').on('click', '#id_switch_FakeActivity', function (e) {
+        removeFakeActivityIcons();
+    })
+    $('#render_list').on('click', '#id_switch_FakeCountdown', function (e) {
+        removeFakeCountdownIcons();
+    })
+    $('#render_list').on('click', '#id_switch_FakeHighDemand', function (e) {
+        removeFakeHighDemandIcons();
+    })
+    $('#render_list').on('click', '#id_switch_FakeLimitedTime', function (e) {
+        removeFakeLimitedTimeIcons();
+    })
+    $('#render_list').on('click', '#id_switch_FakeLowStock', function (e) {
+        removeFakeLowStockIcons();
+    })
+    $('#render_list').on('click', '.dp-list-left', function () {
+        $(this).find('.right-arrow').toggleClass('active')
+        $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
+    })
+}
 
 //controlls the 3 different tabs on the extension UI
 function switchtab() {
@@ -193,49 +218,37 @@ function buildchart(data) {
             responsive: false
         }
     });
-    renderlist(cat_names)
+
+    renderlist(data)
 }
 
 
 //creates the list of categories on the restuls page, with a toggle switch for each one as well
-function renderlist(category_names) {
+function renderlist(data) {
     document.getElementById('render_list').innerHTML = '';
-    let cat_id_array = [];
-    for (let i = 0; i < category_names.length; i++) {
-        cat_id_array.push("id_switch" + category_names[i]);
-        if (category_names[i] == 'FakeActivity') {
-            img = chrome.runtime.getURL("../images/misdirection.png");
-        } else if (category_names[i] == 'FakeHighDemand') {
-            img = chrome.runtime.getURL("../images/SocialProof.png");
-        } else if (category_names[i] == 'FakeCountdown') {
-            img = chrome.runtime.getURL("../images/scarcity.png");
-        } else if (category_names[i] == 'FakeLowStock') {
-            img = chrome.runtime.getURL("../images/Obstruction.png");
-        } else if (category_names[i] == 'FakeLimitedTime') {
-            img = chrome.runtime.getURL("../images/urgency.png");
-        }
-        let cont = document.createElement('div')
-        let cat_name_split = category_names[i].match(/[A-Z][a-z]+/g).join(" ");
-        cont.innerHTML = `  
-        <img src = "${img}" class = "img_sizing"><span class = "category_list">${cat_name_split} </span><span class = "switch_wrapper"><label class="switch"><input type="checkbox" checked id = id_switch_${category_names[i]}><span class="slider"></label></span>
-        `;
 
-        cont.addEventListener('click', function(event) {
-            if (event.target.id == "id_switch_FakeActivity") {
-                removeFakeActivityIcons();
-                //savecheckboxstate(event.target.id, cat_id_array);
-            } else if (event.target.id == "id_switch_FakeCountdown") {
-                removeFakeCountdownIcons();
-            } else if (event.target.id == "id_switch_FakeHighDemand") {
-                removeFakeHighDemandIcons();
-            } else if (event.target.id == "id_switch_FakeLimitedTime") {
-                removeFakeLimitedTimeIcons();
-            } else if (event.target.id == "id_switch_FakeLowStock") {
-                removeFakeLowStockIcons();
-            }
-        })
-        document.getElementById('render_list').appendChild(cont);
-    }
+    data.grouped_details = _.groupBy(data.details, (item) => {
+        return item.category_name
+    })
+    console.log(data)
+    var parsedHtml = Ashe.parse($('#render_list_template').html(), data);
+    console.log(parsedHtml)
+    $('#render_list').off('.mark')
+    $('#render_list').on('click.mark', '.dp-list-detail', function (){
+        console.log(123)
+        let key = $(this).attr('data-dp-key')
+        let target = _.find(data.details, {key})
+        console.log(key)
+        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
+            console.log(response);
+        });
+
+    })
+    $('#render_list').append(parsedHtml)
+    // }
+    // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    //     var checkboxes = document.querySelectorAll('')
+    // });
 }
 
 //to remove the fake activity icon once switch is toggled.
