@@ -91,6 +91,7 @@ function bindEvents() {
         removeFakeLowStockIcons();
     })
     $('#render_list').on('click', '.dp-list-left', function() {
+
         $(this).find('.right-arrow').toggleClass('active')
         $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
     })
@@ -235,10 +236,12 @@ function renderlist(data) {
     var parsedHtml = Ashe.parse($('#render_list_template').html(), data);
     console.log(parsedHtml)
     $('#render_list').off('.mark')
+
     $('#render_list').on('click.mark', '.dp-list-detail', function() {
         console.log(123)
         let key = $(this).attr('data-dp-key')
         let target = _.find(data.details, { key })
+
         console.log(key)
         chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
             console.log(response);
@@ -246,10 +249,12 @@ function renderlist(data) {
 
     })
     $('#render_list').append(parsedHtml)
+
         // }
         // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         //     var checkboxes = document.querySelectorAll('')
         // });
+
 }
 
 //to remove the fake activity icon once switch is toggled.

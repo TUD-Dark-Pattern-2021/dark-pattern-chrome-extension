@@ -75,6 +75,15 @@ li {
     grid-column: 2;
     grid-row: 2;
 }
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    margin: 0;
+    padding: 0;
+}
 
 .logo {
     width: 65px;
@@ -211,9 +220,6 @@ li {
     padding: 10px 10px;
 }
 
-.about_text {
-    text-align: left;
-    margin: 10px 10px 10px 10px;
 }
 
 .about_text {
@@ -421,6 +427,7 @@ input:checked+.slider:before {
     margin: 3px 0 10px 5px;
 }
 
+
 .dp-list {}
 
 .dp-list-title {
@@ -428,6 +435,7 @@ input:checked+.slider:before {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     margin: 2px 0 0 15px;
 }
 
@@ -436,6 +444,7 @@ input:checked+.slider:before {
     height: 10px;
     transition: all .2s;
 }
+
 
 .right-arrow.active {
     transform: rotate(90deg);
@@ -486,4 +495,4 @@ input:checked+.slider:before {
         -webkit-transform: scale(1.0);
         transform: scale(1.0);
     }
-}
+

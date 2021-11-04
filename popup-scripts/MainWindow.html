@@ -73,9 +73,11 @@
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
 
+
                 <!--                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>-->
                 <!--                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide/Show</span></div>-->
                 <!--                    <div id="render_list" class="renderlist">-->
+
                 <div id="infoContainer" class="info_container">
                     <div class="results_grid_container">
 
@@ -105,7 +107,7 @@
                     </div>
                 </div>
             </div>
-
+            
 
             <div id="reports_page" class="reports_container">
                 <div class="success" id="success">Thank's for submitting a report</div>
@@ -146,12 +148,15 @@
 
     </div>
 
+
+
     <script id="render_list_template" type="text/html">
         <ul class="">
             {% for key, detail in grouped_details %}
             <li class="dp-list">
                 <div class="dp-list-title">
                     <div class="dp-list-left">
+
                         <img src="../images/right-arrow.png" class="right-arrow" />
                         <img src="../images/misdirection_green.png" class="img_sizing" />
                         <span class="category_list">{{key}} </span>
@@ -169,6 +174,7 @@
                         {{key|addOne}}:{{detailContent.content}}
                     </li>
                 </ul>
+
                 {% endfor %}
             </li>
             {% endfor %}
