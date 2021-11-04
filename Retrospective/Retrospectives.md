@@ -1,3 +1,22 @@
+04/11/2021 - Retrospective
+
+Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- Our OCR has not been connected yet  ( Jordan Donnelly )
+--- Have to finish the ML part first  ( Quanwei Sun )
+- Our classes is back to being online  ( Jordan Donnelly, 2 Down Votes  )
+--- should be happy  ( Quanwei Sun )
+--- TRUE!  ( yunpeng liu )
+- Class is back online again  not good for communication   ( Lan Zeng )
+
+
+ Sad
+- code quality is not very good  ( yunpeng liu )
+- Motivation at start of week was low  ( Alan Dowley )
+
+![Screenshot](Retrospective-Week7.PNG)
+
 28/10/2021 - Retrospective
 Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
 

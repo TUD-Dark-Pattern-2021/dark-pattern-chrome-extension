@@ -42,6 +42,7 @@ async function sendData(raw_html) {
             body: JSON.stringify({ "html": encoded_html }),
         }).then(response => response.json())
         .then(data => {
+
             console.log('data==============', data)
             chrome.storage.local.get({filters: {}}, function(response) {
                 console.log('filters:', response)
@@ -79,6 +80,7 @@ async function sendData(raw_html) {
                     });
 
                 });
+
             });
         })
         .catch(error => console.log('error', error));
@@ -124,7 +126,7 @@ async function sendReport(data) {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'navigateToClickedElement') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "navigateToClickedElement", data:request.data });
+            chrome.tabs.sendMessage(tabs[0].id, { message: "navigateToClickedElement", data: request.data });
         });
     }
     return true;

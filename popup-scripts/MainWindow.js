@@ -74,6 +74,7 @@ window.onload = function() {
 
 
 bindEvents()
+
 function bindEvents() {
     document.getElementById("results").addEventListener("click", switchtab);
     document.getElementById("reports").addEventListener("click", switchtab);
@@ -81,7 +82,9 @@ function bindEvents() {
     document.getElementById("detection_button").addEventListener("click", getdata);
     document.getElementById("about").addEventListener("click", switchtab);
 
+
     $('#render_list').on('click', '.dp-list-left', function () {
+
         $(this).find('.right-arrow').toggleClass('active')
         $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
     })
@@ -240,9 +243,11 @@ function renderlist(data) {
     })
     var parsedHtml = Ashe.parse($('#render_list_template').html(), data);
     $('#render_list').off('.mark')
-    $('#render_list').on('click.mark', '.dp-list-detail', function (){
+
+    $('#render_list').on('click.mark', '.dp-list-detail', function() {
         console.log(123)
         let key = $(this).attr('data-dp-key')
+
         let target = _.find(data.details, {key})
         chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
             console.log(response);
@@ -250,6 +255,7 @@ function renderlist(data) {
 
     })
     $('#render_list').append(parsedHtml)
+
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

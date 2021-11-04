@@ -73,9 +73,11 @@
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
 
-<!--                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>-->
-<!--                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide/Show</span></div>-->
-<!--                    <div id="render_list" class="renderlist">-->
+
+                <!--                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>-->
+                <!--                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide/Show</span></div>-->
+                <!--                    <div id="render_list" class="renderlist">-->
+
                 <div id="infoContainer" class="info_container">
                     <div class="results_grid_container">
 
@@ -129,41 +131,12 @@
 
                     <input type="button" id="SubmitButton" name="SubmitButton" class="submitbutton" value="Submit"><br>
                 </form>
-
-
-
-
-
-                <!-- <div class="Category_heading">Dark Pattern Cateogory</div>
-                <div class="cat_button_wrapper" id="cat_wrapper">
-
-                    <button class="mis_button" id="urgency_button">Urgency</button>
-                    <button class="mis_button" id="social_button">Social Proof</button>
-                    <button class="mis_button" id="scarcity_button">Scarcity</button>
-
-                </div>
-
-                <div class="typewrapper " id="type_wrapper">
-                    <div class="Category_heading">Dark Pattern Type</div>
-                    <div class="hidden_type" id="Socailprooftype">
-                        <button class="typeButton all_types_button" id="Fake_activity">Fake Acitivty</button>
-                    </div>
-                    <div class="hidden_type" id="urgencytype">
-                        <button class="longertypebutton all_types_button" id="fake_countdown">Fake Countdown</button>
-                        <button class="typeButton all_types_button" id="limited_time">Limited Time</button>
-                    </div>
-                    <div class="hidden_type" id="Scarcitytype">
-                        <button class="longertypebutton all_types_button" id="high_demand">High Demand</button>
-                        <button class="typeButton all_types_button" id="low_stock">Low Stock</button>
-                    </div>
-
-                </div> -->
-
             </div>
 
 
 
             <div id="settings_page" class="settings_container">
+
 <!--                <h2>-->
 <!--                    Settings page-->
 <!--                </h2>-->
@@ -222,7 +195,6 @@
 
     </div>
 
-    <div class="bottom_link">What is a Dark Pattern?</div>
 
 
     <script id="render_list_template" type="text/html">
@@ -231,17 +203,19 @@
             <li class="dp-list">
                 <div class="dp-list-title">
                     <div class="dp-list-left">
+
                         <img src="../images/right-arrow.png" class="right-arrow"/>
                         <img src = "../images/misdirection_green.png" class = "img_sizing" />
                         <span class = "category_list">{{detail|firstSlug}} </span>
                     </div>
                 </div>
                 {% for key, detailContent in detail %}
-                    <ul class="dp-list-detail-wrapper">
-                       <li class="dp-list-detail" data-dp-key="{{detailContent.key}}">
-                           {{key|addOne}}:{{detailContent.content}}
-                       </li>
-                    </ul>
+                <ul class="dp-list-detail-wrapper">
+                    <li class="dp-list-detail" data-dp-key="{{detailContent.key}}">
+                        {{key|addOne}}:{{detailContent.content}}
+                    </li>
+                </ul>
+
                 {% endfor %}
             </li>
             {% endfor %}
