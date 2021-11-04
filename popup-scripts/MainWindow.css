@@ -214,7 +214,29 @@ li {
 .settings_container {
     display: none;
 }
+.settings-auto-scan {
+    display: flex;
+    align-items: center;
+}
+.settings-auto-scan h3 {
+    font-size: 16px;
+    width: 180px;
+}
+.settings-detect-filters h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
 
+.settings-detect-filters ul li{
+    display: flex;
+    align-items: center;
+}
+.settings-detect-filters ul li label {
+    font-size: 16px;
+    line-height: 20px;
+    width: 180px;
+}
 .bottom_link {
     float: right;
     margin: 10px 10px 0px 0px;
@@ -286,12 +308,6 @@ li {
     height: 11px;
 }
 
-.switch_wrapper {
-    float: right;
-    margin-right: 25.6125px;
-    margin-top: 6px;
-}
-
 .switch {
     position: relative;
     display: inline-block;
@@ -301,8 +317,11 @@ li {
 
 .switch input {
     opacity: 0;
-    width: 0;
-    height: 0;
+    width: 30px;
+    height: 14px;
+    z-index: 100;
+    position: relative;
+    cursor: pointer;
 }
 
 .slider {

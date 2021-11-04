@@ -63,6 +63,12 @@ window.onload = function() {
             document.getElementById("autoscan").checked = true;
         }
     });
+    chrome.storage.local.get({filters: {}}, function(result) {
+        console.log('filters:', result)
+        for (let k in result.filters) {
+            $(`#id_switch_${k}`).attr("checked",result.filters[k])
+        }
+    });
 
 }
 
@@ -74,24 +80,27 @@ function bindEvents() {
     document.getElementById("settings").addEventListener("click", switchtab);
     document.getElementById("detection_button").addEventListener("click", getdata);
     document.getElementById("about").addEventListener("click", switchtab);
-    $('#render_list').on('click', '#id_switch_FakeActivity', function (e) {
-        removeFakeActivityIcons();
-    })
-    $('#render_list').on('click', '#id_switch_FakeCountdown', function (e) {
-        removeFakeCountdownIcons();
-    })
-    $('#render_list').on('click', '#id_switch_FakeHighDemand', function (e) {
-        removeFakeHighDemandIcons();
-    })
-    $('#render_list').on('click', '#id_switch_FakeLimitedTime', function (e) {
-        removeFakeLimitedTimeIcons();
-    })
-    $('#render_list').on('click', '#id_switch_FakeLowStock', function (e) {
-        removeFakeLowStockIcons();
-    })
+
     $('#render_list').on('click', '.dp-list-left', function () {
         $(this).find('.right-arrow').toggleClass('active')
         $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
+    })
+
+    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand', function (e) {
+        let category = $(this).attr('data-type')
+        let status = $(this).is(':checked')
+        console.log(status)
+        chrome.storage.local.get({filters: {}}, function (result) {
+            let filters = result.filters;
+            filters[category] = status
+            chrome.storage.local.set({filters}, function () {
+                // you can use strings instead of objects
+                // if you don't  want to define default values
+                chrome.storage.local.get('filters', function (result) {
+                    console.log(result.filters)
+                });
+            });
+        });
     })
 }
 
@@ -133,8 +142,7 @@ function switchtab() {
     }
     this.classList.add('nav_list_active');
 }
-
-document.getElementById("detection_button").addEventListener("click", getdata);
+// document.getElementById("detection_button").addEventListener("click", getdata);
 //sends a message to background to detect patterns on page.
 function getdata() {
     chrome.runtime.sendMessage({ message: "GetData" },
@@ -230,90 +238,18 @@ function renderlist(data) {
     data.grouped_details = _.groupBy(data.details, (item) => {
         return item.category_name
     })
-    console.log(data)
     var parsedHtml = Ashe.parse($('#render_list_template').html(), data);
-    console.log(parsedHtml)
     $('#render_list').off('.mark')
     $('#render_list').on('click.mark', '.dp-list-detail', function (){
         console.log(123)
         let key = $(this).attr('data-dp-key')
         let target = _.find(data.details, {key})
-        console.log(key)
         chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
             console.log(response);
         });
 
     })
     $('#render_list').append(parsedHtml)
-    // }
-    // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    //     var checkboxes = document.querySelectorAll('')
-    // });
-}
-
-//to remove the fake activity icon once switch is toggled.
-function removeFakeActivityIcons() {
-    let checkbox = document.getElementById('id_switch_FakeActivity');
-    if (checkbox.checked == true) {
-        var toggle_icon = 'off';
-    } else {
-        var toggle_icon = 'on';
-    }
-    chrome.runtime.sendMessage({ message: "FakeActivityToggle", data: toggle_icon }, function(response) {
-        console.log(response);
-    });
-}
-
-//to remove the fake countdown icon once switch is toggled.
-function removeFakeCountdownIcons() {
-    let checkbox = document.getElementById('id_switch_FakeCountdown');
-    if (checkbox.checked == true) {
-        var toggle_icon = 'off';
-    } else {
-        var toggle_icon = 'on';
-    }
-    chrome.runtime.sendMessage({ message: "FakeCountdownToggle", data: toggle_icon }, function(response) {
-        console.log(response);
-    });
-}
-
-//to remove the fake high demand icon once switch is toggled.
-function removeFakeHighDemandIcons() {
-    let checkbox = document.getElementById('id_switch_FakeHighDemand');
-    if (checkbox.checked == true) {
-        var toggle_icon = 'off';
-    } else {
-        var toggle_icon = 'on';
-    }
-    chrome.runtime.sendMessage({ message: "FakeHighDemandToggle", data: toggle_icon }, function(response) {
-        console.log(response);
-    });
-}
-
-//to remove the fake limited time icon once switch is toggled.
-function removeFakeLimitedTimeIcons() {
-    let checkbox = document.getElementById('id_switch_FakeLimitedTime');
-    if (checkbox.checked == true) {
-        var toggle_icon = 'off';
-    } else {
-        var toggle_icon = 'on';
-    }
-    chrome.runtime.sendMessage({ message: "FakeLimitedTimeDemandToggle", data: toggle_icon }, function(response) {
-        console.log(response);
-    });
-}
-
-//to remove the fake low stock icon once switch is toggled.
-function removeFakeLowStockIcons() {
-    let checkbox = document.getElementById('id_switch_FakeLowStock');
-    if (checkbox.checked == true) {
-        var toggle_icon = 'off';
-    } else {
-        var toggle_icon = 'on';
-    }
-    chrome.runtime.sendMessage({ message: "FakeLowStockDemandToggle", data: toggle_icon }, function(response) {
-        console.log(response);
-    });
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

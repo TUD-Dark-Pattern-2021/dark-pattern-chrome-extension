@@ -32,7 +32,7 @@
             <li class="nav_list nav_list_active" id="about">About</li>
             <li class="nav_list " id="results">Results</li>
             <li class="nav_list" id="reports">Report</li>
-            <li class="nav_list" id="settings">Setings</li>
+            <li class="nav_list" id="settings">Settings</li>
         </ul>
     </nav>
 
@@ -163,13 +163,58 @@
 
 
 
-            <div id="settings_page" class="settings_container">Settings page
+            <div id="settings_page" class="settings_container">
+<!--                <h2>-->
+<!--                    Settings page-->
+<!--                </h2>-->
+                <div class="settings-auto-scan">
+                    <h3>Auto scan</h3>
+                    <label class="autoswitch">
+                        <input type="checkbox" id = "autoscan">
+                        <span class="autoslider"></span>
+                    </label>
+                </div>
 
-                <div>Auto scan</div>
-                <label class="autoswitch">
-                    <input type="checkbox" id = "autoscan">
-                    <span class="autoslider"></span>
-                  </label>
+                <div class="settings-detect-filters">
+                    <h3>Detect filters</h3>
+                    <ul>
+                        <li>
+                            <label for="id_switch_FakeActivity">Fake Activity</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity"/>
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeCountdown">Fake Countdown</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown"/>
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeHighDemand">Fake HighDemand</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeLimitedTime">Fake LimitedTime</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime"/>
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeLowStock">Fake LowStock</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -188,14 +233,8 @@
                     <div class="dp-list-left">
                         <img src="../images/right-arrow.png" class="right-arrow"/>
                         <img src = "../images/misdirection_green.png" class = "img_sizing" />
-                        <span class = "category_list">{{key}} </span>
+                        <span class = "category_list">{{detail|firstSlug}} </span>
                     </div>
-                    <span class = "switch_wrapper">
-                        <label class="switch">
-                            <input type="checkbox" checked id = id_switch_${category_names[i]} />
-                            <span class="slider"></span>
-                        </label>
-                    </span>
                 </div>
                 {% for key, detailContent in detail %}
                     <ul class="dp-list-detail-wrapper">
