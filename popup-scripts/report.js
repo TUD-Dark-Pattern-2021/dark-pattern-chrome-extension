@@ -1,3 +1,6 @@
+//JS file for handling all the logic benhind the report functionaility in the UI. Beigns with some bit of error checking
+//to make sure all form fields are filled out. the it creates an array with the inputted values and sends it to the background.js
+
 document.getElementById("SubmitButton").addEventListener('click', function() {
     if (document.getElementById("WebsiteURL").value == "" || document.getElementById("keyword").value == "" || document.getElementById("PatternCategory").value == "" || document.getElementById("PatternDescription").value == "") {
         document.getElementById("warning").style.display = "block";
@@ -32,7 +35,7 @@ function submitform() {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("hello");
+    //console.log("hello");
     if (request.message == "formWasAdded") {
         document.getElementById("reportform").reset();
         document.getElementById("success").style.display = "block";

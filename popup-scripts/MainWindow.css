@@ -1,5 +1,5 @@
 body {
-    width: 250px;
+    width: 550px;
     height: 450px;
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
 }
@@ -12,15 +12,76 @@ li {
     margin: 0;
     padding: 0;
 }
+
+.logo {
+    width: 65px;
+    height: 60px;
+    margin: 3px 0px 10px 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 27.3% 72.7%;
+    grid-template-rows: 30px;
+    grid-auto-rows: 30px;
+    margin: 0 20px 15px 10px;
+}
+
+.grid-item {
+    margin: 0 20px 0 0;
+}
+
+.item1 {
+    grid-column: 1;
+    grid-row: 1/ span 2;
+}
+
+.item2 {
+    grid-column: 2;
+    grid-row: 1;
+    padding-bottom: 5px;
+}
+
+.item3 {
+    grid-column: 2;
+    grid-row: 2;
+    padding-top: 5px;
+}
+
+.results_grid_container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 159px;
+    grid-auto-rows: 159px;
+}
+
+.item1_results {
+    grid-column: 1;
+    grid-row: 1/ span 2;
+    border-right: 1px solid #656565;
+}
+
+.item2_results {
+    grid-column: 2;
+    grid-row: 1;
+    border-bottom: 1px solid #656565;
+}
+
+.item3_results {
+    grid-column: 2;
+    grid-row: 2;
+}
+
 .website_name {
     font-size: 16px;
-    margin: 10px 0px 10px 10px;
+    margin: 10px 10px 10px 0px;
     color: #211D2E;
     font-weight: 700;
+    float: left;
 }
 
 .detect_button {
-    width: 230px;
+    width: 243px;
     height: 27px;
     background: #FEDB00;
     border: 0px solid #080808;
@@ -28,8 +89,9 @@ li {
     font-size: 14px;
     color: #211D2E;
     font-weight: 700;
-    margin: 0px 10px 15px 10px;
+    margin: 0px 10px 15px 0px;
     cursor: pointer;
+    float: left;
 }
 
 .button_wrapper {
@@ -40,7 +102,7 @@ li {
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    width: 92%;
+    width: 94.2%;
     margin: 5px 10px 0px 10px;
     padding: 0;
 }
@@ -59,7 +121,6 @@ li {
     border-top-right-radius: 3px;
     font-weight: 500;
     color: #5B5D6A;
-    ;
 }
 
 .nav_list_active {
@@ -84,6 +145,12 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 5px;
+}
+
+.about_text {
+    text-align: left;
+    margin: 10px 10px 10px 10px;
 }
 
 .none_detected {
@@ -93,14 +160,51 @@ li {
 }
 
 .border_div {
-    width: 218px;
+    width: 100%;
     height: 318px;
     border: 0.72px solid #656565;
     border-radius: 2.88px;
 }
 
 .results_container {
+    display: none;
+}
+
+.about_container {
     display: block;
+    font-size: 13px;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-weight: 500;
+    padding: 0;
+}
+
+.about_list {
+    columns: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 20px;
+    font-size: 12px;
+}
+
+.question_text {
+    font-size: 12px;
+}
+
+.about_questions {
+    font-size: 13px;
+    width: auto;
+    margin: 0 0 5px 0px;
+    font-family: 'HiraginoSans-W5', sans-serif;
+    color: #211D2E;
+    font-weight: 700;
+    border-bottom: 2px solid #211D2E;
+    display: inline-block;
+}
+
+.imgliststyle {
+    height: 12px;
+    width: 12px;
+    margin-right: 5px;
 }
 
 .reports_container {
@@ -136,7 +240,7 @@ li {
 .doughnut_wrapper {
     display: flex;
     justify-content: center;
-    margin: 5px 0px 20px 0px;
+    margin: 5px 0px 20px 10px;
 }
 
 .totaltext {
@@ -165,7 +269,7 @@ li {
 }
 
 .renderlist {
-    height: 116px;
+    height: 100px;
     overflow: auto;
 }
 
@@ -240,32 +344,13 @@ input:checked+.slider:before {
     transform: translateX(12px);
 }
 
-.loading {
-    margin: 100px auto 0;
-    width: 70px;
-    text-align: center;
-}
-
-.loading>div {
-    width: 18px;
-    height: 18px;
-    background-color: #191914;
-    border-radius: 100%;
-    display: inline-block;
-    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
-
-.loading .bounce1 {
-    -webkit-animation-delay: -0.32s;
-    animation-delay: -0.32s;
-    background-color: #2093ed;
-}
-
-.loading .bounce2 {
-    -webkit-animation-delay: -0.16s;
-    animation-delay: -0.16s;
-    background-color: #ff2b63;
+.checkbox_text {
+    text-align: left;
+    font-family: 'HiraginoSans-W5', sans-serif;
+    color: #211D2E;
+    font-weight: 700;
+    font-size: 12px;
+    margin: 3px 0 10px 5px;
 }
 
 .dp-list {
@@ -299,6 +384,12 @@ input:checked+.slider:before {
 }
 .dp-list-detail:hover {
     background-color: #ccc;
+}
+
+.percentage_style {
+    font-size: 20px;
+    color: red;
+    text-align: center;
 }
 
 @-webkit-keyframes sk-bouncedelay {
