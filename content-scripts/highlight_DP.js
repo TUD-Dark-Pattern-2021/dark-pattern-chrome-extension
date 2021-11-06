@@ -11,13 +11,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'navigateToClickedElement') {
-        console.log(request);
-        console.log($(request.data).html())
         const target_offset = $(request.data).offset();
         const target_top = target_offset.top;
-        console.log(target_top)
+        const height = window.innerHeight|| document.documentElement.clientHeight||
+            document.body.clientHeight;
         //goto that anchor by setting the body scroll top to anchor top
-        $('html, body').animate({scrollTop:target_top}, 300);
+        $('html, body').animate({scrollTop:target_top + height/2}, 300);
     }
 });
 

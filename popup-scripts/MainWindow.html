@@ -22,17 +22,12 @@
         </div>
     </div>
 
-
-
-
-
-
     <nav>
         <ul class="nav_ul">
             <li class="nav_list nav_list_active" id="about">About</li>
             <li class="nav_list " id="results">Results</li>
             <li class="nav_list" id="reports">Report</li>
-            <li class="nav_list" id="settings">Setings</li>
+            <li class="nav_list" id="settings">Settings</li>
         </ul>
     </nav>
 
@@ -64,12 +59,6 @@
                 </div>
             </div>
 
-
-
-
-
-
-
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
 
@@ -85,7 +74,7 @@
                                 </div>
 
                                 <div class="totaltext">Total Patterns: <span id="number_detected" class="numdetected"></span></div>
-                                <div class="small_title">Pattern Type<span class="hide_show">Hide&sol;Show</span></div>
+                                <div class="small_title">Pattern Type</div>
                                 <div id="render_list" class="renderlist"></div>
                             </div>
                         </div>
@@ -103,7 +92,6 @@
                 </div>
             </div>
 
-
             <div id="reports_page" class="reports_container">
                 <div class="success" id="success">Thank's for submitting a report</div>
                 <div class="warningmessage" id="warning">Please make sure all of the form fields are filled out</div>
@@ -115,27 +103,66 @@
                     <label for="WebsiteURL" class="websiteurl">Keyword</label><br>
                     <input type="text" id="keyword" name="keyword" class="urlinput" required><br>
 
-                    <!-- <label for="screenshot" class="screenshot_text">Dark Pattern Screenshot</label><br>
-                    <input type="file" id="screenshot" name="screenshot" class="screenshotinput"> -->
-
-                    <label class="websiteurl">Pattern Category</label>
+                    <label class="websiteurl">Pattern Category</label><br>
                     <input type="text" id="PatternCategory" name="PatternCategory" class="urlinput" required><br>
 
-                    <label class="websiteurl">Description</label>
+                    <label class="websiteurl">Description</label><br>
                     <input type="text" id="PatternDescription" name="PatternDescription" class="urlinput" required><br>
 
                     <input type="button" id="SubmitButton" name="SubmitButton" class="submitbutton" value="Submit"><br>
                 </form>
             </div>
 
-
-
             <div id="settings_page" class="settings_container">
-                <div>Auto scan</div>
-                <label class="autoswitch">
-                    <input type="checkbox" id = "autoscan">
-                    <span class="autoslider"></span>
-                  </label>
+
+                <div class="settings-auto-scan">
+                    <h3>Auto scan</h3>
+                    <label class="autoswitch">
+                        <input type="checkbox" id = "autoscan">
+                        <span class="autoslider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-detect-filters">
+                    <h3>Detect filters</h3>
+                    <ul>
+                        <li>
+                            <label for="id_switch_FakeActivity">Fake Activity</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeCountdown">Fake Countdown</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeHighDemand">Fake HighDemand</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeLimitedTime">Fake LimitedTime</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="id_switch_FakeLowStock">Fake LowStock</label>
+                            <div class="switch">
+                                <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
+                                <span class="slider"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -149,16 +176,11 @@
             <li class="dp-list">
                 <div class="dp-list-title">
                     <div class="dp-list-left">
+
                         <img src="../images/right-arrow.png" class="right-arrow" />
                         <img src="../images/misdirection_green.png" class="img_sizing" />
-                        <span class="category_list">{{key}} </span>
+                        <span class="category_list">{{detail|firstSlug}} </span>
                     </div>
-                    <span class="switch_wrapper">
-                        <label class="switch">
-                            <input type="checkbox" checked id = id_switch_${category_names[i]} />
-                            <span class="slider"></span>
-                    </label>
-                    </span>
                 </div>
                 {% for key, detailContent in detail %}
                 <ul class="dp-list-detail-wrapper">
@@ -166,6 +188,7 @@
                         {{key|addOne}}:{{detailContent.content}}
                     </li>
                 </ul>
+
                 {% endfor %}
             </li>
             {% endfor %}
