@@ -2,10 +2,27 @@
 // 1. grabs the HTML of the current webpage to send to node server
 // 2. check whether autoscan is turned on or off and creates a toast popup based on the patterns found on the page.
 
+window.onload = function() {
+    var browser_viewport_h = $(window).height();
+    var HTML_doc_height = $(document).height();
+    var scroll = $(window).scrollTop();
+
+    console.log(scroll);
+    let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
+}
+
+window.onscroll = function() {
+
+}
+
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
         scanforCheckboxes();
-        sendResponse({ data: document.body.innerHTML });
+        let html = stripScripts(document.body.innerHTML);
+        //console.log(html);
+        sendResponse({ data: html });
+
 
     } else if (request.message == 'createtoastpopup') {
         createToastPopup(request.data);
@@ -16,6 +33,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         sendResponse("calculated!");
     }
 });
+
+function stripScripts(s) {
+
+    var div = document.createElement('div');
+    div.innerHTML = s;
+    var scripts = div.getElementsByTagName('script');
+    var i = scripts.length;
+    while (i--) {
+        scripts[i].parentNode.removeChild(scripts[i]);
+    }
+    return div.innerHTML;
+
+}
+
 
 function createToastPopup(data) {
     let toastpopup = document.createElement('div');
@@ -62,9 +93,9 @@ function scanforCheckboxes() {
 function calculatePercentageScreenVisible() {
     var browser_viewport_h = $(window).height();
     var HTML_doc_height = $(document).height();
-    console.log(browser_viewport_h, HTML_doc_height);
+    //console.log(browser_viewport_h, HTML_doc_height);
     let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
-    console.log(percentage + "% of the webpage is visible on screen")
+    //console.log(percentage + "% of the webpage is visible on screen")
 
     chrome.runtime.sendMessage({ message: "screenvisiblity", data: percentage }, function(response) {
         console.log(response);

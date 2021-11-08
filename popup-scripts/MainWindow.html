@@ -115,53 +115,65 @@
 
             <div id="settings_page" class="settings_container">
 
-                <div class="settings-auto-scan">
-                    <h3>Auto scan</h3>
-                    <label class="autoswitch">
-                        <input type="checkbox" id = "autoscan">
-                        <span class="autoslider"></span>
-                    </label>
+
+                <div class="settingtitle">Auto scan</div>
+                <div class="autoscanborder">
+                    <div class="explanationText">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</div>
+
+                    <div class="autoswitchwrapper">
+                        <span class="onOfftext">Off</span>
+
+                        <div class="switch">
+                            <input type="checkbox" checked id="autoscan">
+                            <span class="slider"></span>
+                        </div>
+                        <span class="onOfftext">On</span>
+                    </div>
                 </div>
 
+
                 <div class="settings-detect-filters">
-                    <h3>Detect filters</h3>
-                    <ul>
-                        <li>
-                            <label for="id_switch_FakeActivity">Fake Activity</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeCountdown">Fake Countdown</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeHighDemand">Fake HighDemand</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeLimitedTime">Fake LimitedTime</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeLowStock">Fake LowStock</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="settingtitle">Detect filters</div>
+
+                    <div class="filterborder">
+                        <ul>
+                            <li>
+                                <label for="id_switch_FakeActivity" class="typetext">Fake Activity</label>
+                                <div class="switch">
+                                    <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity" />
+                                    <span class="slider"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label for="id_switch_FakeCountdown">Fake Countdown</label>
+                                <div class="switch">
+                                    <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown" />
+                                    <span class="slider"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label for="id_switch_FakeHighDemand">Fake HighDemand</label>
+                                <div class="switch">
+                                    <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
+                                    <span class="slider"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label for="id_switch_FakeLimitedTime">Fake LimitedTime</label>
+                                <div class="switch">
+                                    <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime" />
+                                    <span class="slider"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label for="id_switch_FakeLowStock">Fake LowStock</label>
+                                <div class="switch">
+                                    <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
+                                    <span class="slider"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
