@@ -1,6 +1,6 @@
     body {
         width: 400px;
-        height: 450px;
+        height: 460px;
         font-family: 'Hiragino Sans GB SemiBold', sans-serif;
         margin: 0;
         padding: 0px;
@@ -207,7 +207,7 @@
     
     .content_wrapper {
         width: auto;
-        height: 321px;
+        height: 331px;
         margin: 0px 10px 10px 10px;
         background-color: #F1F1F1;
         display: flex;
@@ -270,9 +270,14 @@
     }
     
     .imgliststyle {
-        height: 12px;
-        width: 12px;
+        height: 18px;
+        width: 18px;
         margin-right: 5px;
+        vertical-align: middle;
+    }
+    
+    .itemspacer {
+        margin: 0 0 5px 0;
     }
     
     .reports_container {
@@ -305,7 +310,7 @@
     }
     
     .settings-detect-filters ul li label {
-        font-size: 16px;
+        font-size: 13px;
         line-height: 20px;
         width: 180px;
     }

@@ -3,7 +3,7 @@
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 15px;
     color: #211D2E;
-    font-weight: 600;
+    font-weight: 700;
     margin: 15px 0 5px 15px;
 }
 
@@ -45,7 +45,19 @@
 }
 
 .typetext {
-    margin: 5px 10px 5px 25px;
-    font-size: 11px;
+    float: left;
+    font-size: 9px;
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-weight: 600;
+}
+
+.switchposition {
+    float: right;
+    margin: 5px 10px 0 0;
+}
+
+.typewrappers {
+    margin: 5px 40px 0px 40px;
+    width: 100%;
+    padding: 0 10px 0 10px;
 }

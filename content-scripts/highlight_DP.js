@@ -13,18 +13,31 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'navigateToClickedElement') {
         const target_offset = $(request.data).offset();
         const target_top = target_offset.top;
-        const height = window.innerHeight|| document.documentElement.clientHeight||
+        const height = window.innerHeight || document.documentElement.clientHeight ||
             document.body.clientHeight;
         //goto that anchor by setting the body scroll top to anchor top
-        $('html, body').animate({scrollTop:target_top + height/2}, 300);
+        $('html, body').animate({ scrollTop: target_top + height / 2 }, 300);
     }
 });
 
 
+// function addFakeActivityIcon(data) {
+//     var DP_text = data.details[item].tag;
+//     let fakeActivity_img = chrome.runtime.getURL("../images/FakeActivity.png");
+//     let icon = document.createElement('img');
+//     $(icon).attr("src", fakeActivity_img).addClass('DP_misdirection_icon')
+// }
+
 //function to highlight all given DP on a webpage so far.
 function highlight_DP(data) {
 
-    let misdirection_img = chrome.runtime.getURL("../images/misdirection.png");
+
+    // let fakeCountdown_img = chrome.runtime.getURL("../images/FakeActivity.png");
+    // let fakeHighDemand_img = chrome.runtime.getURL("../images/FakeActivity.png");
+    // let limitedTime_img = chrome.runtime.getURL("../images/FakeActivity.png");
+    // let lowStock_img = chrome.runtime.getURL("../images/FakeActivity.png");
+
+    let misdirection_img = chrome.runtime.getURL("../images/FakeActivity.png");
     let scarcity_img = chrome.runtime.getURL("../images/scarcity.png");
     let forcedActivity_img = chrome.runtime.getURL("../images/forced_activity.png");
     let urgency_img = chrome.runtime.getURL("../images/urgency.png");
@@ -35,9 +48,24 @@ function highlight_DP(data) {
     let urgency_img_green = chrome.runtime.getURL("../images/urgency_green.png");
     let socialProof_img_green = chrome.runtime.getURL("../images/social_proof_green.png");
 
-    // $(DP_text).css({ border: '5px solid red' });
+
+
 
     for (item = 0; item < data.total_counts; item++) {
+        // if (data.details[item].category_name === "FakeActivity") {
+        //     addFakeActivityIcon(data);
+        // } else if (data.details[item].category_name === "FakeCountdown") {
+
+        // } else if (data.details[item].category_name === "FakeHighDemand") {
+
+        // } else if (data.details[item].category_name === "FakeLimitedTime") {
+
+        // } else if (data.details[item].category_name === "FakeLowStock") {
+
+        // }
+
+
+
         let category = data.details[item].category_name;
         DP_text = data.details[item].tag;
         let icon = document.createElement("img");
@@ -45,6 +73,7 @@ function highlight_DP(data) {
         let icon_show = document.createElement("img");
         let DP_text_border = document.createElement('div');
         icon.id = `DP_id_${item}`;
+
         //Misdirection
         if (category === "FakeActivity") {
             icon.setAttribute("src", misdirection_img);
@@ -54,9 +83,9 @@ function highlight_DP(data) {
             //     showpopup(this);
             // };
             icon_div.className = "DP_misdirection_div";
-            icon_show.className = "DP_misdirection_icon_show";
-            icon_show.setAttribute("src", misdirection_img_green);
-            icon_div.append(icon_show);
+            //icon_show.className = "DP_misdirection_icon_show";
+            //icon_show.setAttribute("src", misdirection_img_green);
+            //icon_div.append(icon_show);
             icon_div.append(icon);
             //create border
             DP_text_border.classList.add('DP_text_border_misdirection', "DP_text_border");

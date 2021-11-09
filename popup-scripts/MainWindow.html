@@ -46,17 +46,15 @@
                     <div>
                         <div class="about_questions">What Patterns can be detected?</div>
                         <ul class="about_list">
-                            <li><img src="../images/misdirection.png" class="imgliststyle">Fake Activity</li>
-                            <li><img src="../images/scarcity.png" class="imgliststyle">Fake Countdown Timers</li>
-                            <li><img src="../images/Obstruction.png" class="imgliststyle">Fake Low Stock Messages</li>
-                            <li><img src="../images/social_proof.png" class="imgliststyle">Fake High Demand Messages</li>
-                            <li><img src="../images/urgency.png" class="imgliststyle">Fake Limited Time Messages</li>
+                            <li class="itemspacer"><img src="../images/FakeActivity.png" class="imgliststyle"> <span> Fake Activity</span></li>
+                            <li class="itemspacer"><img src="../images/FakeCountdown.png" class="imgliststyle"> Fake Countdown Timers</li>
+                            <li class="itemspacer"><img src="../images/LowStock.png" class="imgliststyle"> Fake Low Stock Messages</li>
+                            <li class="itemspacer"><img src="../images/HighDemand.png" class="imgliststyle"> Fake High Demand Messages</li>
+                            <li class="itemspacer"><img src="../images/LimitedTime.png" class="imgliststyle"> Fake Limited Time Messages</li>
                         </ul>
                     </div>
-                    <br>
-                    <br>
-                    <a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a>
                 </div>
+                <div style="text-align: center;"><a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a></div>
             </div>
 
             <div id="results_page" class="results_container">
@@ -133,54 +131,70 @@
 
 
                 <div class="settings-detect-filters">
-                    <div class="settingtitle">Detect filters</div>
+                    <div class="settingtitle">Detection filters</div>
 
                     <div class="filterborder">
                         <ul>
                             <li>
-                                <label for="id_switch_FakeActivity" class="typetext">Fake Activity</label>
-                                <div class="switch">
-                                    <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity" />
-                                    <span class="slider"></span>
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeActivity" class="typetext">Fake Activity</label>
+
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity" />
+                                        <span class="slider"></span>
+                                    </div>
                                 </div>
                             </li>
                             <li>
-                                <label for="id_switch_FakeCountdown">Fake Countdown</label>
-                                <div class="switch">
-                                    <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown" />
-                                    <span class="slider"></span>
+
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeCountdown" class="typetext">Fake Countdown</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <li>
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeHighDemand" class="typetext">Fake High-Demand</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeLimitedTime" class="typetext">Fake Limited-Time</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime" />
+                                        <span class="slider"></span>
+                                    </div>
                                 </div>
                             </li>
                             <li>
-                                <label for="id_switch_FakeHighDemand">Fake HighDemand</label>
-                                <div class="switch">
-                                    <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
-                                    <span class="slider"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <label for="id_switch_FakeLimitedTime">Fake LimitedTime</label>
-                                <div class="switch">
-                                    <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime" />
-                                    <span class="slider"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <label for="id_switch_FakeLowStock">Fake LowStock</label>
-                                <div class="switch">
-                                    <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
-                                    <span class="slider"></span>
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeLowStock" class="typetext">Fake Low-Stock</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
+                                        <span class="slider"></span>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
+
         </div>
 
-
-
     </div>
+
 
     <script id="render_list_template" type="text/html">
         <ul class="">
@@ -190,7 +204,7 @@
                     <div class="dp-list-left">
 
                         <img src="../images/right-arrow.png" class="right-arrow" />
-                        <img src="../images/misdirection_green.png" class="img_sizing" />
+                        <span id="typeiconholder"></span>
                         <span class="category_list">{{detail|firstSlug}} </span>
                     </div>
                 </div>

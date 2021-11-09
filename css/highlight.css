@@ -36,7 +36,8 @@
     padding-top: 0px;
 }
 
-.DP_misdirection_div img:last-child {
+
+/* .DP_misdirection_div img:last-child {
     position: relative;
     top: 0px;
     margin: 0px;
@@ -53,7 +54,7 @@
 
 .DP_misdirection_div:hover img:last-child {
     opacity: 1;
-}
+} */
 
 .DP_text_border {
     display: inline-block;
