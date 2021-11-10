@@ -87,7 +87,8 @@ async function sendData(raw_html) {
             });
         })
         .catch(error => console.log('error', error));
-    console.log("retrieved!")
+    console.log("an error was caught!")
+    chrome.runtime.sendMessage({ message: "anErrorWasCaught" });
 }
 
 

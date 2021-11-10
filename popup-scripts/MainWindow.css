@@ -517,3 +517,7 @@
             transform: scale(1.0);
         }
     }
+    
+    .error {
+        display: none;
+    }

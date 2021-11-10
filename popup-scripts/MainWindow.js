@@ -15,12 +15,12 @@ window.onload = function() {
                 });
                 let storage_data = results[key];
                 if ((storage_data.data.details).length == 0) {
-                    $("#no_detection, #full_results").hide();
+                    $("#no_detection, #full_results, #error").hide();
                     $("#infoContainer, #noDetection").show();
                     document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
 
                 } else {
-                    $("#no_detection, #noDetection").hide();
+                    $("#no_detection, #noDetection, #error").hide();
                     $("#infoContainer, #full_results").show();
                     document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
                     buildchart(storage_data.data);
@@ -131,14 +131,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         if ((request.data.data.details).length == 0) {
             $("#infoContainer, #noDetection").show();
-            $("#no_detection, #full_results").hide();
+            $("#no_detection, #full_results, #error").hide();
         } else {
             $("#infoContainer, #full_results").show();
-            $("#no_detection, #noDetection").hide();
+            $("#no_detection, #noDetection, #error").hide();
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
         }
         sendResponse("Data arrived at Popup.js");
+    } else if (request.message == "anErrorWasCaught") {
+        $("#detection_button").html("Detect Dark Patterns").attr('disabled', false).css('background-color', '#FEDB00');
+        $("#results_page, #error").show();
+        $("#reports_page, #about_page, #settings_page, #no_detection").hide();
     }
 });
 
@@ -223,7 +227,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 })
 
 function checkboxDataDisplay(data) {
-    document.getElementById("checked_checkboxes2").innerHTML = "There are a total of " + data[0] + " checkboxes on this page, and " + data[1] + " are already checked!"
+    let unchecked = chrome.runtime.getURL("../images/unchecked_checkbox.png");
+    let checked = chrome.runtime.getURL("../images/checked_checkbox.png");
+    document.getElementById("total_checkboxes").innerHTML = "Total checkboxes and radio buttons on the page: " + data[0];
+    document.getElementById("checked_checkboxes").innerHTML = `<img src = ${unchecked} style = "width 20px; height=20px"> <span>${data[0] - data[1]}</span>`;
+    document.getElementById("unchecked_checkboxes").innerHTML = `<img src = ${checked} style = "width 20px; height=20px"> <span>${data[1]}</span>`;
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.storage.local.set({
             [tabs[0].id + "_checkboxes"]: data
