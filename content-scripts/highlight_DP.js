@@ -37,46 +37,32 @@ function highlight_DP(data) {
     // let limitedTime_img = chrome.runtime.getURL("../images/FakeActivity.png");
     // let lowStock_img = chrome.runtime.getURL("../images/FakeActivity.png");
 
-    let misdirection_img = chrome.runtime.getURL("../images/FakeActivity.png");
-    let scarcity_img = chrome.runtime.getURL("../images/scarcity.png");
-    let forcedActivity_img = chrome.runtime.getURL("../images/forced_activity.png");
-    let urgency_img = chrome.runtime.getURL("../images/urgency.png");
-    let socialProof_img = chrome.runtime.getURL("../images/social_proof.png");
-    let misdirection_img_green = chrome.runtime.getURL("../images/misdirection_green.png");
-    let scarcity_img_green = chrome.runtime.getURL("../images/scarcity_green.png");
-    let forcedActivity_img_green = chrome.runtime.getURL("../images/forced_activity_green.png");
-    let urgency_img_green = chrome.runtime.getURL("../images/urgency_green.png");
-    let socialProof_img_green = chrome.runtime.getURL("../images/social_proof_green.png");
+    let fakeActivity_img = chrome.runtime.getURL("../images/FakeActivity.png");
+    let fakeCountdown_img = chrome.runtime.getURL("../images/FakeCountdown.png");
+    let lowStock_img = chrome.runtime.getURL("../images/LowStock.png");
+    let highDemand_img = chrome.runtime.getURL("../images/HighDemand.png");
+    let limitedTime_img = chrome.runtime.getURL("../images/LimitedTime.png");
+    //let misdirection_img_green = chrome.runtime.getURL("../images/misdirection_green.png");
+    //let scarcity_img_green = chrome.runtime.getURL("../images/scarcity_green.png");
+    //let forcedActivity_img_green = chrome.runtime.getURL("../images/forced_activity_green.png");
+    //let urgency_img_green = chrome.runtime.getURL("../images/urgency_green.png");
+    //let socialProof_img_green = chrome.runtime.getURL("../images/social_proof_green.png");
 
 
 
 
     for (item = 0; item < data.total_counts; item++) {
-        // if (data.details[item].category_name === "FakeActivity") {
-        //     addFakeActivityIcon(data);
-        // } else if (data.details[item].category_name === "FakeCountdown") {
-
-        // } else if (data.details[item].category_name === "FakeHighDemand") {
-
-        // } else if (data.details[item].category_name === "FakeLimitedTime") {
-
-        // } else if (data.details[item].category_name === "FakeLowStock") {
-
-        // }
-
-
 
         let category = data.details[item].category_name;
         DP_text = data.details[item].tag;
         let icon = document.createElement("img");
         let icon_div = document.createElement("div");
-        let icon_show = document.createElement("img");
+        //let icon_show = document.createElement("img");
         let DP_text_border = document.createElement('div');
         icon.id = `DP_id_${item}`;
-
         //Misdirection
-        if (category === "FakeActivity") {
-            icon.setAttribute("src", misdirection_img);
+        if (category == "FakeActivity") {
+            icon.setAttribute("src", fakeActivity_img);
             icon.className = "DP_misdirection_icon";
             icon.setAttribute("data-internalid", data.details[item].category_name);
             // icon.onclick = function() {
@@ -87,8 +73,10 @@ function highlight_DP(data) {
             //icon_show.setAttribute("src", misdirection_img_green);
             //icon_div.append(icon_show);
             icon_div.append(icon);
+
             //create border
             DP_text_border.classList.add('DP_text_border_misdirection', "DP_text_border");
+
             if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
                 if ($(DP_text).parents('.DP_text_border_div').children(".DP_misdirection_div").is(".DP_misdirection_div")) {} else {
                     $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
@@ -101,22 +89,25 @@ function highlight_DP(data) {
                 $(DP_text).parent().prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
             }
+
+
             //Scarcity
         } else if (category === "FakeCountdown") {
 
-            icon.setAttribute("src", scarcity_img);
+
+            icon.setAttribute("src", fakeCountdown_img);
             icon.className = "DP_scarcity_icon";
             icon.setAttribute("data-internalid", data.details[item].category_name);
             // icon.onclick = function() {
             //     showpopup(this);
             // };
             icon_div.className = "DP_scarcity_div";
-            icon_show.className = "DP_scarcity_icon_show";
-            icon_show.setAttribute("src", scarcity_img_green);
-            icon_div.append(icon_show);
+            // icon_show.className = "DP_scarcity_icon_show";
+            // icon_show.setAttribute("src", scarcity_img_green);
+            // icon_div.append(icon_show);
             icon_div.append(icon);
             //create border
-            DP_text_border.id = "DP_broder_scarcity"
+            //DP_text_border.id = "DP_broder_scarcity"
             DP_text_border.classList.add('DP_text_border_scarcity', "DP_text_border_fakecountdown");
             if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
                 if ($(DP_text).parents('.DP_text_border_div').children(".DP_scarcity_div").is(".DP_scarcity_div")) {} else {
@@ -131,17 +122,19 @@ function highlight_DP(data) {
                 $(DP_text).wrap(DP_text_border);
             }
 
+
+
         } else if (category === "FakeHighDemand") {
-            icon.setAttribute("src", urgency_img);
+            icon.setAttribute("src", highDemand_img);
             icon.className = "DP_urgency_icon";
             icon.setAttribute("data-internalid", data.details[item].category_name);
             // icon.onclick = function() {
             //     showpopup(this);
             // };
             icon_div.className = "DP_urgency_div";
-            icon_show.className = "DP_urgency_icon_show";
-            icon_show.setAttribute("src", urgency_img_green);
-            icon_div.append(icon_show)
+            // icon_show.className = "DP_urgency_icon_show";
+            // icon_show.setAttribute("src", urgency_img_green);
+            // icon_div.append(icon_show)
             icon_div.append(icon)
                 //create border
             DP_text_border.classList.add("DP_text_border_urgency", "DP_text_border_highdemand");
@@ -159,16 +152,16 @@ function highlight_DP(data) {
             }
 
         } else if (category === "FakeLimitedTime") {
-            icon.setAttribute("src", socialProof_img);
+            icon.setAttribute("src", limitedTime_img);
             icon.className = "DP_socialProof_icon";
             icon.setAttribute("data-internalid", data.details[item].category_name);
             // icon.onclick = function() {
             //     showpopup(this);
             // };
             icon_div.className = "DP_socialProof_div";
-            icon_show.className = "DP_socialProof_icon_show";
-            icon_show.setAttribute("src", socialProof_img_green);
-            icon_div.append(icon_show)
+            //icon_show.className = "DP_socialProof_icon_show";
+            // icon_show.setAttribute("src", socialProof_img_green);
+            // icon_div.append(icon_show)
             icon_div.append(icon)
                 //create border
             DP_text_border.classList.add('DP_text_border_socialProof', "DP_text_border_limitedtime");
@@ -186,16 +179,16 @@ function highlight_DP(data) {
             }
 
         } else if (category === "FakeLowStock") {
-            icon.setAttribute("src", forcedActivity_img);
+            icon.setAttribute("src", lowStock_img);
             icon.className = "DP_forcedActivity_icon";
             icon.setAttribute("data-internalid", data.details[item].category_name);
             // icon.onclick = function() {
             //     showpopup(this);
             // };
             icon_div.className = "DP_forcedActivity_div";
-            icon_show.className = "DP_forcedActivity_icon_show";
-            icon_show.setAttribute("src", forcedActivity_img_green);
-            icon_div.append(icon_show)
+            //icon_show.className = "DP_forcedActivity_icon_show";
+            // icon_show.setAttribute("src", forcedActivity_img_green);
+            // icon_div.append(icon_show)
             icon_div.append(icon)
                 //create border
             DP_text_border.classList.add('DP_text_border_forcedActivity', "DP_text_border_lowstock");

@@ -3,7 +3,7 @@
     top: 0px;
     left: 0;
     right: 0;
-    margin: auto;
+    margin-left: 15%;
     max-width: 300px;
     font-size: 20px;
     padding: 6px;
@@ -12,17 +12,8 @@
     border-radius: 5px;
     border: 1px solid black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 1s, top 1s, visibility 1s;
+    display: none;
     z-index: 999999999;
-}
-
-.toast--visible {
-    visibility: visible;
-    top: 50px;
-    opacity: 1;
-    transition: opacity 0.5s, top 0.5s, visibility 0.5s;
 }
 
 .patterns_not_found {
@@ -31,4 +22,16 @@
 
 .patterns_found {
     background-color: yellow;
+}
+
+.typelist {
+    text-align: left;
+}
+
+.toastwrapper {
+    text-align: left;
+    font-size: 15px;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    color: #211D2E;
+    font-weight: 600;
 }

@@ -57,8 +57,20 @@ function createToastPopup(data) {
         toastpopup.className += " patterns_not_found";
 
     } else {
-        toastpopup.innerText = "Careful! Dark Patterns were found on this page";
-        console.log(data.data.items_counts);
+        var key = [];
+        Object.keys(data.data.items_counts).forEach(function(item) {
+            key.push(item.match(/[A-Z][a-z]+|[0-9]+/g).join(" "))
+        });
+        toastpopup.innerHTML = `<div class = "toastwrapper">
+        <div>Careful! There where ${data.data.total_counts} dark patterns found on this webpage</div>
+        <div>The types of patterns found on this webpage are: </div>
+        <ul class = "typelist">
+            ${key.map(type => `
+            <li>${type}</li>
+            `).join('')}
+        </ul>
+        </div>
+        `;
         toastpopup.className += " patterns_found";
     }
     document.body.appendChild(toastpopup);
@@ -68,12 +80,8 @@ function createToastPopup(data) {
 
 
 function showandhidetoast() {
-    let toast = document.getElementById("toastpopup")
-    toast.classList.add("toast--visible");
-
-    setTimeout(function() {
-        toast.classList.remove("toast--visible");
-    }, 4000);
+    $("#toastpopup").show('slow');
+    $("#toastpopup").delay(10000).hide('slow', function(){ toast.remove()})
 }
 
 function scanforCheckboxes() {
