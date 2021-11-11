@@ -250,3 +250,37 @@ function updatescrollbarposition(percentage) {
     document.getElementById("scrollbar").style.background = `linear-gradient(90deg, red 10%, white 0%);`
         // $("#scrollbar").css("background", `linear-gradient(90deg, red ${percentage}%, white 0%);`);
 }
+
+// Sync up our elements.
+syncScroll($('#scrollbar'), $('html, body'));
+
+function syncScroll(el1, el2) {
+    var $el1 = $(el1);
+    var $el2 = $(el2);
+
+    console.log($el1,$el2)
+    var forcedScroll = false;
+
+    $el1.scroll(function() {
+        performScroll($el1, $el2);
+    });
+    $el2.scroll(function() {
+        performScroll($el2, $el1);
+    });
+
+    function performScroll($scrolled, $toScroll) {
+        if (forcedScroll) return (forcedScroll = false);
+        var percent = ($scrolled.scrollTop() /
+            ($scrolled[0].scrollHeight - $scrolled.outerHeight())) * 100;
+        setScrollTopFromPercent($toScroll, percent);
+    }
+
+    function setScrollTopFromPercent($el, percent) {
+        chrome.runtime.sendMessage({ message: "syncScroll", data: {
+                el: $el,
+                percent
+            }}, function(response) {
+            console.log(response);
+        });
+    }
+}
