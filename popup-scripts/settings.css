@@ -13,6 +13,7 @@
     height: 40px;
     width: auto;
     border-radius: 3px;
+    position: relative;
 }
 
 .explanationText {
@@ -42,6 +43,7 @@
     height: 150px;
     width: auto;
     border-radius: 3px;
+    position: relative;
 }
 
 .typetext {

@@ -135,3 +135,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     return true;
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request.data)
+    if (request.message === 'syncScroll') {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { message: "syncScroll", data: request.data});
+        });
+    }
+    return true;
+});

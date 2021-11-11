@@ -20,6 +20,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request.data)
+    let $el = $('html, body')
+    if (request.message === 'syncScroll') {
+        let { percent } = request.data
+        var scrollTopPos = (percent / 100) * $el.height();
+        forcedScroll = true;
+        console.log(scrollTopPos)
+        $el.scrollTop(scrollTopPos);
+    }
+});
+
+
 
 // function addFakeActivityIcon(data) {
 //     var DP_text = data.details[item].tag;
