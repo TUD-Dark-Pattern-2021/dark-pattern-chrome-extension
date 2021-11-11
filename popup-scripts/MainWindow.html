@@ -78,14 +78,30 @@
                             </div>
                         </div>
                         <div class="item2_results">
-                            <div class="checkbox_text" id="total_checkboxes"></div>
-                            <div class="checkbox_text" id="checked_checkboxes"></div>
-                            <div class="checkbox_text" id="unchecked_checkboxes"></div>
+                            <div class="checkbox_text">Checkboxes + Radio Buttons on Webpage</div>
+                            <div class="totaltext">Total: <span id="totalcheckboxes" class="numdetected"></span></div>
+                            <div class="checkbox_img_wrapper" id="checked_checkboxes"></div>
+                            <div class="checkbox_img_wrapper" id="unchecked_checkboxes"></div>
+                            <div style="margin-bottom: 25px;"></div>
+
+                            <div class="tooltip-wrap">
+                                <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                                <div class="tooltip-content">
+                                    <p class="tooltip_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</p>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="item3_results">
                             <div class="doughnuttitle">Percentage of the webpage visible on screen:</div>
                             <div id="screenpercentage"></div>
+                            <div class="scrolltracker" id="scrollbar"></div>
+                            <div class="tooltip-wrap">
+                                <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                                <div class="tooltip-content">
+                                    <p class="tooltip_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,8 +133,6 @@
 
                 <div class="settingtitle">Auto scan</div>
                 <div class="autoscanborder">
-                    <div class="explanationText">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</div>
-
                     <div class="autoswitchwrapper">
                         <span class="onOfftext">Off</span>
 
@@ -127,7 +141,17 @@
                             <span class="slider"></span>
                         </div>
                         <span class="onOfftext">On</span>
+
+
                     </div>
+                    <div class="tooltip-wrap">
+                        <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                        <div class="tooltip-content">
+                            <p class="tooltip_text">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</p>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
@@ -188,6 +212,13 @@
                                 </div>
                             </li>
                         </ul>
+                        <div style="margin-bottom: 5px;"></div>
+                        <div class="tooltip-wrap">
+                            <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                            <div class="tooltip-content">
+                                <p class="tooltip_text">If a Dark Pattern type is turned off, it will no longer be highlighted, on the webpage or shown in the detection results</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,7 +236,7 @@
                     <div class="dp-list-left">
 
                         <img src="../images/right-arrow.png" class="right-arrow" />
-                        <span id="typeiconholder"></span>
+                        <img src="../images/FakeCountdown.png" class="img_sizing" />
                         <span class="category_list">{{detail|firstSlug}} </span>
                     </div>
                 </div>

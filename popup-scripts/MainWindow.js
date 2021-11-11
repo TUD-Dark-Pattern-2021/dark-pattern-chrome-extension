@@ -1,7 +1,6 @@
 //when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
 //opens as normal
 window.onload = function() {
-
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         var key = (tabs[0].id).toString();
         console.log(key);
@@ -32,6 +31,9 @@ window.onload = function() {
                 $("#results").addClass("nav_list_active");
             }
 
+        });
+        chrome.tabs.sendMessage(tabs[0].id, { message: "getscollbarposition" }, function(response) {
+            updatescrollbarposition(response)
         });
 
     });
@@ -229,9 +231,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 function checkboxDataDisplay(data) {
     let unchecked = chrome.runtime.getURL("../images/unchecked_checkbox.png");
     let checked = chrome.runtime.getURL("../images/checked_checkbox.png");
-    document.getElementById("total_checkboxes").innerHTML = "Total checkboxes and radio buttons on the page: " + data[0];
-    document.getElementById("checked_checkboxes").innerHTML = `<img src = ${unchecked} style = "width 20px; height=20px"> <span>${data[0] - data[1]}</span>`;
-    document.getElementById("unchecked_checkboxes").innerHTML = `<img src = ${checked} style = "width 20px; height=20px"> <span>${data[1]}</span>`;
+    document.getElementById("totalcheckboxes").innerHTML = data[0];
+    document.getElementById("checked_checkboxes").innerHTML = `<img src = ${unchecked} style = "width 20px; height=20px; vertical-align: middle; margin-right: 10px;"> <span style = "margin-right: 10px">-</span> <span>${data[0] - data[1]}</span>`;
+    document.getElementById("unchecked_checkboxes").innerHTML = `<img src = ${checked} style = "width 20px; height=20px; vertical-align: middle; margin-right: 10px;"> <span style = "margin-right: 10px">-</span> <span>${data[1]}</span>`;
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.storage.local.set({
             [tabs[0].id + "_checkboxes"]: data
@@ -241,4 +243,10 @@ function checkboxDataDisplay(data) {
 
 function displayPagePercentageVisible(percentage) {
     document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style">${percentage}%</div>`
+}
+
+function updatescrollbarposition(percentage) {
+    console.log(percentage);
+    document.getElementById("scrollbar").style.background = `linear-gradient(90deg, red 10%, white 0%);`
+        // $("#scrollbar").css("background", `linear-gradient(90deg, red ${percentage}%, white 0%);`);
 }

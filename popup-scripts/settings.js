@@ -17,5 +17,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === "disabledetectbutton") {
         console.log("hsadfads");
         $("#detection_button").html("Detecting...please wait").attr('disabled', true).css('background-color', 'grey');
+    } else if (request.message === "scollbarposition") {
+        console.log(request.data);
     }
 })

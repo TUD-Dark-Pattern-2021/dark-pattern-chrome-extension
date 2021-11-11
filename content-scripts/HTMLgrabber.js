@@ -3,12 +3,7 @@
 // 2. check whether autoscan is turned on or off and creates a toast popup based on the patterns found on the page.
 
 window.onload = function() {
-    var browser_viewport_h = $(window).height();
-    var HTML_doc_height = $(document).height();
-    var scroll = $(window).scrollTop();
 
-    console.log(scroll);
-    let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
 }
 
 window.onscroll = function() {
@@ -31,8 +26,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     } else if (request.message === "getpercentagescreenvisible") {
         calculatePercentageScreenVisible();
         sendResponse("calculated!");
+    } else if (request.message === "getscollbarposition") {
+        let pos = scrollBarPosition();
+        sendResponse(pos);
     }
 });
+
+
 
 function stripScripts(s) {
 
@@ -108,4 +108,12 @@ function calculatePercentageScreenVisible() {
     chrome.runtime.sendMessage({ message: "screenvisiblity", data: percentage }, function(response) {
         console.log(response);
     })
+}
+
+function scrollBarPosition(){
+    var browser_viewport_h = $(window).height();
+    var HTML_doc_height = $(document).height();
+    //var scroll = $(window).scrollTop();
+    let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
+    return percentage;
 }
