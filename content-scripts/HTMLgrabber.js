@@ -2,19 +2,51 @@
 // 1. grabs the HTML of the current webpage to send to node server
 // 2. check whether autoscan is turned on or off and creates a toast popup based on the patterns found on the page.
 
+window.onload = function() {
+
+}
+
+window.onscroll = function() {
+
+}
+
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
         scanforCheckboxes();
-        sendResponse({ data: document.body.innerHTML });
+        let html = stripScripts(document.body.innerHTML);
+        //console.log(html);
+        sendResponse({ data: html });
+
 
     } else if (request.message == 'createtoastpopup') {
         createToastPopup(request.data);
+        showandhidetoast();
         sendResponse("user has been alerted");
     } else if (request.message === "getpercentagescreenvisible") {
         calculatePercentageScreenVisible();
         sendResponse("calculated!");
+    } else if (request.message === "getscollbarposition") {
+        let pos = scrollBarPosition();
+        sendResponse(pos);
     }
 });
+
+
+
+function stripScripts(s) {
+
+    var div = document.createElement('div');
+    div.innerHTML = s;
+    var scripts = div.getElementsByTagName('script');
+    var i = scripts.length;
+    while (i--) {
+        scripts[i].parentNode.removeChild(scripts[i]);
+    }
+    return div.innerHTML;
+
+}
+
 
 function createToastPopup(data) {
     let toastpopup = document.createElement('div');
@@ -25,23 +57,31 @@ function createToastPopup(data) {
         toastpopup.className += " patterns_not_found";
 
     } else {
-        toastpopup.innerText = "Careful! Dark Patterns were found on this page";
-        console.log(data.data.items_counts);
+        var key = [];
+        Object.keys(data.data.items_counts).forEach(function(item) {
+            key.push(item.match(/[A-Z][a-z]+|[0-9]+/g).join(" "))
+        });
+        toastpopup.innerHTML = `<div class = "toastwrapper">
+        <div>Careful! There where ${data.data.total_counts} dark patterns found on this webpage</div>
+        <div>The types of patterns found on this webpage are: </div>
+        <ul class = "typelist">
+            ${key.map(type => `
+            <li>${type}</li>
+            `).join('')}
+        </ul>
+        </div>
+        `;
         toastpopup.className += " patterns_found";
     }
     document.body.appendChild(toastpopup);
-    showandhidetoast()
+
 }
 
 
 
 function showandhidetoast() {
-    let toast = document.getElementById("toastpopup")
-    toast.classList.add("toast--visible");
-
-    setTimeout(function() {
-        toast.classList.remove("toast--visible");
-    }, 4000);
+    $("#toastpopup").show('slow');
+    $("#toastpopup").delay(10000).hide('slow', function(){ toast.remove()})
 }
 
 function scanforCheckboxes() {
@@ -61,11 +101,19 @@ function scanforCheckboxes() {
 function calculatePercentageScreenVisible() {
     var browser_viewport_h = $(window).height();
     var HTML_doc_height = $(document).height();
-    console.log(browser_viewport_h, HTML_doc_height);
+    //console.log(browser_viewport_h, HTML_doc_height);
     let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
-    console.log(percentage + "% of the webpage is visible on screen")
+    //console.log(percentage + "% of the webpage is visible on screen")
 
     chrome.runtime.sendMessage({ message: "screenvisiblity", data: percentage }, function(response) {
         console.log(response);
     })
+}
+
+function scrollBarPosition(){
+    var browser_viewport_h = $(window).height();
+    var HTML_doc_height = $(document).height();
+    //var scroll = $(window).scrollTop();
+    let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
+    return percentage;
 }

@@ -22,11 +22,6 @@
         </div>
     </div>
 
-
-
-
-
-
     <nav>
         <ul class="nav_ul">
             <li class="nav_list nav_list_active" id="about">About</li>
@@ -51,32 +46,20 @@
                     <div>
                         <div class="about_questions">What Patterns can be detected?</div>
                         <ul class="about_list">
-                            <li><img src="../images/misdirection.png" class="imgliststyle">Fake Activity</li>
-                            <li><img src="../images/scarcity.png" class="imgliststyle">Fake Countdown Timers</li>
-                            <li><img src="../images/Obstruction.png" class="imgliststyle">Fake Low Stock Messages</li>
-                            <li><img src="../images/social_proof.png" class="imgliststyle">Fake High Demand Messages</li>
-                            <li><img src="../images/urgency.png" class="imgliststyle">Fake Limited Time Messages</li>
+                            <li class="itemspacer"><img src="../images/FakeActivity.png" class="imgliststyle"> <span> Fake Activity</span></li>
+                            <li class="itemspacer"><img src="../images/FakeCountdown.png" class="imgliststyle"> Fake Countdown Timers</li>
+                            <li class="itemspacer"><img src="../images/LowStock.png" class="imgliststyle"> Fake Low Stock Messages</li>
+                            <li class="itemspacer"><img src="../images/HighDemand.png" class="imgliststyle"> Fake High Demand Messages</li>
+                            <li class="itemspacer"><img src="../images/LimitedTime.png" class="imgliststyle"> Fake Limited Time Messages</li>
                         </ul>
                     </div>
-                    <br>
-                    <br>
-                    <a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a>
                 </div>
+                <div style="text-align: center;"><a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a></div>
             </div>
-
-
-
-
-
-
 
             <div id="results_page" class="results_container">
                 <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
-
-
-                <!--                    <div class="totaltext">Total Dark Patterns Detected: <span id="number_detected" class="numdetected"></span></div>-->
-                <!--                    <div class="small_title">Dark Pattern Category<span class="hide_show">Hide/Show</span></div>-->
-                <!--                    <div id="render_list" class="renderlist">-->
+                <div id="error" class="error">An error occured, please press the detect button to scan again</div>
 
                 <div id="infoContainer" class="info_container">
                     <div class="results_grid_container">
@@ -90,24 +73,39 @@
                                 </div>
 
                                 <div class="totaltext">Total Patterns: <span id="number_detected" class="numdetected"></span></div>
-                                <div class="small_title">Pattern Type<span class="hide_show">Hide&sol;Show</span></div>
+                                <div class="small_title">Pattern Type</div>
                                 <div id="render_list" class="renderlist"></div>
                             </div>
                         </div>
                         <div class="item2_results">
-                            <div class="checkbox_text" id="total_checkboxes"></div>
-                            <div class="checkbox_text" id="checked_checkboxes"></div>
-                            <div class="checkbox_text" id="checked_checkboxes2"></div>
+                            <div class="checkbox_text">Checkboxes + Radio Buttons on Webpage</div>
+                            <div class="totaltext">Total: <span id="totalcheckboxes" class="numdetected"></span></div>
+                            <div class="checkbox_img_wrapper" id="checked_checkboxes"></div>
+                            <div class="checkbox_img_wrapper" id="unchecked_checkboxes"></div>
+                            <div style="margin-bottom: 25px;"></div>
+
+                            <div class="tooltip-wrap">
+                                <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                                <div class="tooltip-content">
+                                    <p class="tooltip_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</p>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="item3_results">
                             <div class="doughnuttitle">Percentage of the webpage visible on screen:</div>
                             <div id="screenpercentage"></div>
+                            <div class="scrolltracker" id="scrollbar"></div>
+                            <div class="tooltip-wrap">
+                                <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                                <div class="tooltip-content">
+                                    <p class="tooltip_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
 
             <div id="reports_page" class="reports_container">
                 <div class="success" id="success">Thank's for submitting a report</div>
@@ -120,81 +118,114 @@
                     <label for="WebsiteURL" class="websiteurl">Keyword</label><br>
                     <input type="text" id="keyword" name="keyword" class="urlinput" required><br>
 
-                    <!-- <label for="screenshot" class="screenshot_text">Dark Pattern Screenshot</label><br>
-                    <input type="file" id="screenshot" name="screenshot" class="screenshotinput"> -->
-
-                    <label class="websiteurl">Pattern Category</label>
+                    <label class="websiteurl">Pattern Category</label><br>
                     <input type="text" id="PatternCategory" name="PatternCategory" class="urlinput" required><br>
 
-                    <label class="websiteurl">Description</label>
+                    <label class="websiteurl">Description</label><br>
                     <input type="text" id="PatternDescription" name="PatternDescription" class="urlinput" required><br>
 
                     <input type="button" id="SubmitButton" name="SubmitButton" class="submitbutton" value="Submit"><br>
                 </form>
             </div>
 
-
-
             <div id="settings_page" class="settings_container">
 
-<!--                <h2>-->
-<!--                    Settings page-->
-<!--                </h2>-->
-                <div class="settings-auto-scan">
-                    <h3>Auto scan</h3>
-                    <label class="autoswitch">
-                        <input type="checkbox" id = "autoscan">
-                        <span class="autoslider"></span>
-                    </label>
+
+                <div class="settingtitle">Auto scan</div>
+                <div class="autoscanborder">
+                    <div class="autoswitchwrapper">
+                        <span class="onOfftext">Off</span>
+
+                        <div class="switch">
+                            <input type="checkbox" checked id="autoscan">
+                            <span class="slider"></span>
+                        </div>
+                        <span class="onOfftext">On</span>
+
+
+                    </div>
+                    <div class="tooltip-wrap">
+                        <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                        <div class="tooltip-content">
+                            <p class="tooltip_text">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</p>
+                        </div>
+                    </div>
+
+
                 </div>
+
 
                 <div class="settings-detect-filters">
-                    <h3>Detect filters</h3>
-                    <ul>
-                        <li>
-                            <label for="id_switch_FakeActivity">Fake Activity</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity"/>
-                                <span class="slider"></span>
+                    <div class="settingtitle">Detection filters</div>
+
+                    <div class="filterborder">
+                        <ul>
+                            <li>
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeActivity" class="typetext">Fake Activity</label>
+
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeActivity" data-type="FakeActivity" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeCountdown" class="typetext">Fake Countdown</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <li>
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeHighDemand" class="typetext">Fake High-Demand</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeLimitedTime" class="typetext">Fake Limited-Time</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="typewrappers">
+                                    <label for="id_switch_FakeLowStock" class="typetext">Fake Low-Stock</label>
+                                    <div class="switch switchposition">
+                                        <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
+                                        <span class="slider"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div style="margin-bottom: 5px;"></div>
+                        <div class="tooltip-wrap">
+                            <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+                            <div class="tooltip-content">
+                                <p class="tooltip_text">If a Dark Pattern type is turned off, it will no longer be highlighted, on the webpage or shown in the detection results</p>
                             </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeCountdown">Fake Countdown</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeCountdown" data-type="FakeCountdown"/>
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeHighDemand">Fake HighDemand</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeHighDemand" data-type="FakeHighDemand" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeLimitedTime">Fake LimitedTime</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeLimitedTime" data-type="FakeLimitedTime"/>
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="id_switch_FakeLowStock">Fake LowStock</label>
-                            <div class="switch">
-                                <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
-                                <span class="slider"></span>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-
-
     </div>
-
 
 
     <script id="render_list_template" type="text/html">
@@ -204,9 +235,9 @@
                 <div class="dp-list-title">
                     <div class="dp-list-left">
 
-                        <img src="../images/right-arrow.png" class="right-arrow"/>
-                        <img src = "../images/misdirection_green.png" class = "img_sizing" />
-                        <span class = "category_list">{{detail|firstSlug}} </span>
+                        <img src="../images/right-arrow.png" class="right-arrow" />
+                        <img src="../images/FakeCountdown.png" class="img_sizing" />
+                        <span class="category_list">{{detail|firstSlug}} </span>
                     </div>
                 </div>
                 {% for key, detailContent in detail %}

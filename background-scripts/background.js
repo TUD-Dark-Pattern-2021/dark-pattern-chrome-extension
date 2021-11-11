@@ -6,10 +6,13 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { message: "GetHTML" }, function(response) {
                         sendData(response.data);
+
                     });
+
                 });
+                chrome.runtime.sendMessage({ message: "disabledetectbutton" });
             } else if (result.autoscan === false) {
-                // console.log("Auto scan is off");
+                console.log("Auto scan is off");
             }
         });
     }
@@ -44,7 +47,7 @@ async function sendData(raw_html) {
         .then(data => {
 
             console.log('data==============', data)
-            chrome.storage.local.get({filters: {}}, function(response) {
+            chrome.storage.local.get({ filters: {} }, function(response) {
                 console.log('filters:', response)
                 let result = data.data
                 for (let i in response.filters) {
@@ -74,7 +77,7 @@ async function sendData(raw_html) {
                         console.log(data);
                     });
                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                        chrome.tabs.sendMessage(tabs[0].id, { message: "DarkPatternsWereFoundByAutoDetect", data: data }, function(response) {
+                        chrome.tabs.sendMessage(tabs[0].id, { message: "createtoastpopup", data: data }, function(response) {
                             // console.log(response);
                         })
                     });
@@ -84,7 +87,8 @@ async function sendData(raw_html) {
             });
         })
         .catch(error => console.log('error', error));
-    console.log("retrieved!")
+    console.log("an error was caught!")
+    chrome.runtime.sendMessage({ message: "anErrorWasCaught" });
 }
 
 

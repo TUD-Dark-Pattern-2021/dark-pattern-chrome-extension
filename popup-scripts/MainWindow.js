@@ -1,57 +1,42 @@
 //when extension is opened via the icon, the session storage is checked to see if there is data already being stored there from a scan already done on the page, if not extension 
 //opens as normal
 window.onload = function() {
-
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         var key = (tabs[0].id).toString();
         console.log(key);
-        chrome.tabs.sendMessage(tabs[0].id, { message: "getpercentagescreenvisible" }, function(response) {
-            // sendResponse(response);
-        });
-
-
+        chrome.tabs.sendMessage(tabs[0].id, { message: "getpercentagescreenvisible" });
         chrome.storage.local.get([key], function(results) {
-            //console.log(results[key]);
             if (results[key] == null) {
                 console.log("chrome storage is empty");
-                // document.getElementById("results_page").style.display = "none";
-                // document.getElementById("about_page").style.display = "block";
             } else {
                 chrome.storage.local.get([key + "_checkboxes"], function(results) {
                     checkboxDataDisplay(results[key + "_checkboxes"]);
                 });
                 let storage_data = results[key];
-
-                console.log(storage_data.data.details);
                 if ((storage_data.data.details).length == 0) {
+                    $("#no_detection, #full_results, #error").hide();
+                    $("#infoContainer, #noDetection").show();
                     document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-                    document.getElementById("no_detection").style.display = 'none';
-                    document.getElementById("infoContainer").style.display = 'block';
-                    document.getElementById("noDetection").style.display = 'block';
-                    document.getElementById("full_results").style.display = 'none';
-
 
                 } else {
-
-                    document.getElementById("no_detection").style.display = 'none';
-                    document.getElementById("infoContainer").style.display = 'block';
-                    document.getElementById("noDetection").style.display = 'none';
-                    document.getElementById("full_results").style.display = 'block';
+                    $("#no_detection, #noDetection, #error").hide();
+                    $("#infoContainer, #full_results").show();
                     document.getElementById("number_detected").innerHTML = storage_data.data.total_counts
                     buildchart(storage_data.data);
 
                 }
-
-                document.getElementById("results_page").style.display = "block";
-                document.getElementById("about_page").style.display = "none";
-                document.getElementById("about").classList.remove("nav_list_active");
-                document.getElementById("results").classList.add("nav_list_active");
+                $("#results_page").show();
+                $("#about_page").hide();
+                $("#about").removeClass("nav_list_active");
+                $("#results").addClass("nav_list_active");
             }
 
         });
+        chrome.tabs.sendMessage(tabs[0].id, { message: "getscollbarposition" }, function(response) {
+            updatescrollbarposition(response)
+        });
 
     });
-
 
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         let domain = new URL(tabs[0].url).hostname;
@@ -59,47 +44,42 @@ window.onload = function() {
     });
 
     chrome.storage.local.get(['autoscan'], function(results) {
-        if (results.autoscan == true) {
-            document.getElementById("autoscan").checked = true;
-        }
+        $("#autoscan").attr("checked", results.autoscan);
     });
-    chrome.storage.local.get({filters: {}}, function(result) {
+
+    chrome.storage.local.get({ filters: {} }, function(result) {
         console.log('filters:', result)
         for (let k in result.filters) {
-            $(`#id_switch_${k}`).attr("checked",result.filters[k])
+            $(`#id_switch_${k}`).attr("checked", result.filters[k])
         }
     });
 
 }
 
 
-bindEvents()
+bindEvents();
 
 function bindEvents() {
-    document.getElementById("results").addEventListener("click", switchtab);
-    document.getElementById("reports").addEventListener("click", switchtab);
-    document.getElementById("settings").addEventListener("click", switchtab);
-    document.getElementById("detection_button").addEventListener("click", getdata);
-    document.getElementById("about").addEventListener("click", switchtab);
+    $("#detection_button").on('click', getdata);
+    $("#results, #reports, #settings, #about").on('click', switchtab);
 
-
-    $('#render_list').on('click', '.dp-list-left', function () {
+    $('#render_list').on('click', '.dp-list-left', function() {
 
         $(this).find('.right-arrow').toggleClass('active')
         $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
     })
 
-    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand', function (e) {
+    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand', function(e) {
         let category = $(this).attr('data-type')
         let status = $(this).is(':checked')
         console.log(status)
-        chrome.storage.local.get({filters: {}}, function (result) {
+        chrome.storage.local.get({ filters: {} }, function(result) {
             let filters = result.filters;
             filters[category] = status
-            chrome.storage.local.set({filters}, function () {
+            chrome.storage.local.set({ filters }, function() {
                 // you can use strings instead of objects
                 // if you don't  want to define default values
-                chrome.storage.local.get('filters', function (result) {
+                chrome.storage.local.get('filters', function(result) {
                     console.log(result.filters)
                 });
             });
@@ -109,82 +89,62 @@ function bindEvents() {
 
 //controlls the 3 different tabs on the extension UI
 function switchtab() {
-    let active = document.getElementsByClassName("nav_list_active");
-    active[0].classList.remove("nav_list_active");
-    document.getElementById(this.id).classList.add("nav_list_active");
+
+    $(".nav_list_active").removeClass("nav_list_active");
+    $(this).addClass("nav_list_active");
 
     if (this.id == "results") {
-        document.getElementById("results_page").style.display = "block";
-        document.getElementById("reports_page").style.display = "none";
-        document.getElementById("settings_page").style.display = "none";
-        document.getElementById("about_page").style.display = "none";
+        $("#reports_page, #settings_page, #about_page").hide();
+        $("#results_page").show();
+
     } else if (this.id == "reports") {
-        document.getElementById("results_page").style.display = "none";
-        document.getElementById("reports_page").style.display = "block";
-        document.getElementById("settings_page").style.display = "none";
-        document.getElementById("about_page").style.display = "none";
+        $("#results_page, #settings_page, #about_page").hide();
+        $("#reports_page").show();
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             let domain = new URL(tabs[0].url);
             document.getElementById("WebsiteURL").value = domain;
         });
-    } else if (this.id == "settings") {
-        document.getElementById("results_page").style.display = "none";
-        document.getElementById("reports_page").style.display = "none";
-        document.getElementById("settings_page").style.display = "block";
-        document.getElementById("about_page").style.display = "none";
-    } else if (this.id == "about") {
-        document.getElementById("results_page").style.display = "none";
-        document.getElementById("reports_page").style.display = "none";
-        document.getElementById("settings_page").style.display = "none";
-        document.getElementById("about_page").style.display = "block";
-    }
 
-    var current_selected = document.querySelectorAll('.nav_list.nav_list_active');
-    if (current_selected.length == 1) {
-        current_selected[0].classList.remove('nav_list_active');
+    } else if (this.id == "settings") {
+        $("#results_page, #reports_page, #about_page").hide();
+        $("#settings_page").show();
+
+    } else if (this.id == "about") {
+        $("#results_page, #reports_page, #settings_page").hide();
+        $("#about_page").show();
     }
-    this.classList.add('nav_list_active');
 }
-// document.getElementById("detection_button").addEventListener("click", getdata);
 //sends a message to background to detect patterns on page.
 function getdata() {
-    chrome.runtime.sendMessage({ message: "GetData" },
-        function(response) {
-            //console.log(response);
-            document.getElementById("detection_button").innerHTML = "Detecting...please wait";
-        });
+    chrome.runtime.sendMessage({ message: "GetData" }, function() {
+        $("#detection_button").html("Detecting...please wait").attr('disabled', true).css('background-color', 'grey');
+    });
 }
 
 //fires once data is gotten back from the node server, if no patterns are found it does something and if patterns are found, it uses the data to build the results UI
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message == 'Data Retrieved') {
+        $("#detection_button").html("Detect Dark Patterns").attr('disabled', false).css('background-color', '#FEDB00');
+        $("#results_page").show();
+        $("#reports_page, #about_page, #settings_page").hide();
 
-        document.getElementById("results_page").style.display = "block";
-        document.getElementById("reports_page").style.display = "none";
-        document.getElementById("settings_page").style.display = "none";
-        document.getElementById("about_page").style.display = "none";
-        let active = document.getElementsByClassName("nav_list_active");
-        active[0].classList.remove("nav_list_active");
-        document.getElementById("results").classList.add("nav_list_active");
+        $(".nav_list_active").removeClass("nav_list_active");
+        $("#results").addClass("nav_list_active");
 
-        sendResponse("Data arrived at Popup.js");
         if ((request.data.data.details).length == 0) {
-
-            document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-            document.getElementById("no_detection").style.display = 'none';
-            document.getElementById("infoContainer").style.display = 'block';
-            document.getElementById("noDetection").style.display = 'block';
-            document.getElementById("full_results").style.display = 'none';
+            $("#infoContainer, #noDetection").show();
+            $("#no_detection, #full_results, #error").hide();
         } else {
-            document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
-            document.getElementById("no_detection").style.display = 'none';
-            document.getElementById("infoContainer").style.display = 'block';
-            document.getElementById("noDetection").style.display = 'none';
-            document.getElementById("full_results").style.display = 'block';
+            $("#infoContainer, #full_results").show();
+            $("#no_detection, #noDetection, #error").hide();
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
         }
-
+        sendResponse("Data arrived at Popup.js");
+    } else if (request.message == "anErrorWasCaught") {
+        $("#detection_button").html("Detect Dark Patterns").attr('disabled', false).css('background-color', '#FEDB00');
+        $("#results_page, #error").show();
+        $("#reports_page, #about_page, #settings_page, #no_detection").hide();
     }
 });
 
@@ -240,15 +200,16 @@ function renderlist(data) {
 
     data.grouped_details = _.groupBy(data.details, (item) => {
         return item.category_name
-    })
+    });
+    console.log(data);
     var parsedHtml = Ashe.parse($('#render_list_template').html(), data);
     $('#render_list').off('.mark')
 
     $('#render_list').on('click.mark', '.dp-list-detail', function() {
-        console.log(123)
+        //console.log(123)
         let key = $(this).attr('data-dp-key')
 
-        let target = _.find(data.details, {key})
+        let target = _.find(data.details, { key })
         chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
             console.log(response);
         });
@@ -268,9 +229,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 })
 
 function checkboxDataDisplay(data) {
-    console.log(data);
-    console.log(data[0]);
-    document.getElementById("checked_checkboxes2").innerHTML = "There are a total of " + data[0] + " checkboxes on this page, and " + data[1] + " are already checked!"
+    let unchecked = chrome.runtime.getURL("../images/unchecked_checkbox.png");
+    let checked = chrome.runtime.getURL("../images/checked_checkbox.png");
+    document.getElementById("totalcheckboxes").innerHTML = data[0];
+    document.getElementById("checked_checkboxes").innerHTML = `<img src = ${unchecked} style = "width 20px; height=20px; vertical-align: middle; margin-right: 10px;"> <span style = "margin-right: 10px">-</span> <span>${data[0] - data[1]}</span>`;
+    document.getElementById("unchecked_checkboxes").innerHTML = `<img src = ${checked} style = "width 20px; height=20px; vertical-align: middle; margin-right: 10px;"> <span style = "margin-right: 10px">-</span> <span>${data[1]}</span>`;
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.storage.local.set({
             [tabs[0].id + "_checkboxes"]: data
@@ -280,4 +243,10 @@ function checkboxDataDisplay(data) {
 
 function displayPagePercentageVisible(percentage) {
     document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style">${percentage}%</div>`
+}
+
+function updatescrollbarposition(percentage) {
+    console.log(percentage);
+    document.getElementById("scrollbar").style.background = `linear-gradient(90deg, red 10%, white 0%);`
+        // $("#scrollbar").css("background", `linear-gradient(90deg, red ${percentage}%, white 0%);`);
 }
