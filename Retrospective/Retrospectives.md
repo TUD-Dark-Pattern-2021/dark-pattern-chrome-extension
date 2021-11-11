@@ -1,3 +1,27 @@
+11/11/2021 - Retrospective
+
+Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- AWS EC2 crashed everytime when i want to deploy  ( yunpeng liu )
+- can't protect our wallets in the end  ( yunpeng liu )
+
+
+ Sad
+- Some features in front end are hard to implement  ( Alan Dowley )
+- AWS is finally starting to cost us money  ( Jordan Donnelly )
+
+
+ Glad
+- Ocr feature working  ( Jordan Donnelly )
+- New features in extension UI    ( Lan Zeng )
+- Getting closer to our final UI  ( Alan Dowley )
+- I code python again!   ( yunpeng liu )
+- Design idea for website is really nice  ( Jordan Donnelly )
+- we have many content in Website now    ( Yufei Su )
+
+![Screenshot](Retrospective-Week8.PNG)
+
 04/11/2021 - Retrospective
 
 Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
