@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 async function sendData(raw_html) {
     console.log("sending...")
     encoded_html = encodeURIComponent(raw_html);
-    await fetch("http://localhost:8080/api/dp/detect", {
+    await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/detect", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             timeout: 0,
