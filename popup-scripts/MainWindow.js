@@ -143,7 +143,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse("Data arrived at Popup.js");
     } else if (request.message == "anErrorWasCaught") {
         $("#detection_button").html("Detect Dark Patterns").attr('disabled', false).css('background-color', '#FEDB00');
-        $("#results_page, #error").show();
+        $("#results_page, #error").show().html(request.data);
         $("#reports_page, #about_page, #settings_page, #no_detection").hide();
     }
 });
