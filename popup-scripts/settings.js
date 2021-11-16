@@ -20,4 +20,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if (request.message === "scollbarposition") {
         console.log(request.data);
     }
+});
+
+document.getElementById("id_switch_ORC").addEventListener('click', function() {
+    //
 })
