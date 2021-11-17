@@ -22,6 +22,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-document.getElementById("id_switch_ORC").addEventListener('click', function() {
-    //
-})
+
+$('#id_switch_ORC').on('click', function(e) {
+    if ($(this).is(':checked')) {
+        chrome.storage.local.set({ ORC: true }, function() {
+            console.log("ORC on");
+        });
+    } else {
+        chrome.storage.local.set({ ORC: false }, function() {
+            console.log("ORC Off");
+        });
+    }
+});

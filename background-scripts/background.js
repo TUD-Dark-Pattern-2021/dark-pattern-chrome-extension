@@ -36,8 +36,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 //fucntion to get the data from the api running on the node server, and then sends the response data to another content script
 async function sendData(raw_html) {
-    console.log("sending...")
+    console.log("sending...");
     encoded_html = encodeURIComponent(raw_html);
+    var ORC_value = new Promise(function(resolve, reject) {
+        chrome.storage.local.get(['ORC'], function(result) {
+            resolve(result.ORC);
+        });
+    });
+
+    const configOut = await ORC_value;
+    console.log(configOut);
+
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/detect", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -140,7 +149,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log(request.data)
     if (request.message === 'syncScroll') {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { message: "syncScroll", data: request.data});
+            chrome.tabs.sendMessage(tabs[0].id, { message: "syncScroll", data: request.data });
         });
     }
     return true;
