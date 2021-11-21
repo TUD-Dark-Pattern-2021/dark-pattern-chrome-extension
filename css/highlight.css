@@ -62,7 +62,7 @@
 
 .DP_text_border_misdirection {
     display: inline-block;
-    border: 5px dotted red;
+    border: 5px dotted #FF5869;
 }
 
 
@@ -142,7 +142,7 @@
 
 .DP_text_border_scarcity {
     display: inline-block;
-    border: 5px dotted red;
+    border: 5px dotted #FF8200;
 }
 
 
@@ -209,7 +209,7 @@
 } */
 
 .DP_text_border_urgency {
-    border: 5px dotted red;
+    border: 5px dotted #FEDB00;
     display: inline-block;
 }
 
@@ -279,7 +279,7 @@
 } */
 
 .DP_text_border_socialProof {
-    border: 5px dotted red;
+    border: 5px dotted #69B3E7;
     display: inline-block;
 }
 
@@ -358,7 +358,7 @@
 } */
 
 .DP_text_border_forcedActivity {
-    border: 5px dotted red;
+    border: 5px dotted #FC9BB3;
     display: inline-block;
 }
 

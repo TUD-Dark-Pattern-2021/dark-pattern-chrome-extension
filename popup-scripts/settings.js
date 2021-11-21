@@ -20,4 +20,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if (request.message === "scollbarposition") {
         console.log(request.data);
     }
-})
+});
+
+
+$('#id_switch_ORC').on('click', function(e) {
+    if ($(this).is(':checked')) {
+        chrome.storage.local.set({ ORC: true }, function() {
+            console.log("ORC on");
+        });
+    } else {
+        chrome.storage.local.set({ ORC: false }, function() {
+            console.log("ORC Off");
+        });
+    }
+});

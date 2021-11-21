@@ -1,3 +1,29 @@
+
+18/11/2021 - Retrospective
+
+18/11/2021
+
+Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- Cannot shrink too much time on Image Detection for now  ( Quanwei )
+- Too muc time spent on user evaluation report  ( Alan Dowley )
+
+
+ Sad
+- Not much coding for this week  spent too long on user evaluation  ( Lan Zeng )
+- There is a lot of things wrong with UI  which need to be addressed  ( Alan Dowley )
+- An error appeared with Damian  ( Jordan Donnelly )
+
+
+ Glad
+- Got useful feedback from our eser evalutation  ( Alan Dowley )
+- User evaluation went well  ( Jordan Donnelly )
+- Results from usability testing help us to see a direction to improve UI  ( Lan Zeng )
+- The Evaluation Report was done by all of us  ( Yufei Su )
+- We have a lot of user tests this week  ( Yufei Su )
+
+
 11/11/2021 - Retrospective
 
 Participants: Yufei Su, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun

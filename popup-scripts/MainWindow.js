@@ -80,7 +80,7 @@ function bindEvents() {
                 // you can use strings instead of objects
                 // if you don't  want to define default values
                 chrome.storage.local.get('filters', function(result) {
-                    console.log(result.filters)
+                    console.log(result.filters);
                 });
             });
         });
@@ -258,7 +258,7 @@ function syncScroll(el1, el2) {
     var $el1 = $(el1);
     var $el2 = $(el2);
 
-    console.log($el1,$el2)
+    console.log($el1, $el2)
     var forcedScroll = false;
 
     $el1.scroll(function() {
@@ -276,10 +276,13 @@ function syncScroll(el1, el2) {
     }
 
     function setScrollTopFromPercent($el, percent) {
-        chrome.runtime.sendMessage({ message: "syncScroll", data: {
+        chrome.runtime.sendMessage({
+            message: "syncScroll",
+            data: {
                 el: $el,
                 percent
-            }}, function(response) {
+            }
+        }, function(response) {
             console.log(response);
         });
     }
