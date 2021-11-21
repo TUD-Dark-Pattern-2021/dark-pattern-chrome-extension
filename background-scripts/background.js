@@ -56,6 +56,13 @@ async function sendData(raw_html) {
         .then(data => {
 
             console.log('data==============', data)
+            if(data.errcode !== 200) {
+
+                console.log("an error of python service was caught!", data.data.message)
+                chrome.runtime.sendMessage({ message: "anErrorWasCaught", data: data.data.message });
+            }
+
+
             chrome.storage.local.get({ filters: {} }, function(response) {
                 console.log('filters:', response)
                 let result = data.data
@@ -95,9 +102,11 @@ async function sendData(raw_html) {
 
             });
         })
-        .catch(error => console.log('error', error));
-    console.log("an error was caught!")
-    chrome.runtime.sendMessage({ message: "anErrorWasCaught" });
+        .catch(error => {
+            console.log('error', error)
+            console.log("an error of node service was caught!")
+            chrome.runtime.sendMessage({ message: "anErrorWasCaught" });
+        });
 }
 
 
