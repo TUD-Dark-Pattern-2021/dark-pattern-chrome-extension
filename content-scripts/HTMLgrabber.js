@@ -62,7 +62,7 @@ function createToastPopup(data) {
             key.push(item.match(/[A-Z][a-z]+|[0-9]+/g).join(" "))
         });
         toastpopup.innerHTML = `<div class = "toastwrapper">
-        <div>Careful! There where ${data.data.total_counts} dark patterns found on this webpage</div>
+        <div>Careful! There were ${data.data.total_counts} dark patterns found on this webpage</div>
         <div>The types of patterns found on this webpage are: </div>
         <ul class = "typelist">
             ${key.map(type => `
@@ -81,7 +81,7 @@ function createToastPopup(data) {
 
 function showandhidetoast() {
     $("#toastpopup").show('slow');
-    $("#toastpopup").delay(10000).hide('slow', function(){ toast.remove()})
+    $("#toastpopup").delay(15000).hide('slow', function(){ toast.remove()})
 }
 
 function scanforCheckboxes() {

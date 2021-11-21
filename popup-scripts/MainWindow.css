@@ -215,11 +215,11 @@
     }
     
     .results_container {
-        display: none;
+        display: block;
     }
     
     .about_container {
-        display: block;
+        display: none;
         font-size: 13px;
         font-family: 'Hiragino Sans GB SemiBold', sans-serif;
         font-weight: 500;
@@ -506,16 +506,19 @@
     .error {
         display: none;
     }
+    
     .screen-percentage-content {
         display: flex;
         align-items: start;
         justify-content: end;
     }
+    
     .scrolltracker {
         width: 20px;
         height: 190px;
         overflow: scroll;
     }
+    
     .scrolltracker-bullet {
         height: 300px;
     }
