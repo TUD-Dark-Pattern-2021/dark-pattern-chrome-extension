@@ -1,16 +1,6 @@
 //this listner function does a few things:
 // 1. grabs the HTML of the current webpage to send to node server
 // 2. check whether autoscan is turned on or off and creates a toast popup based on the patterns found on the page.
-
-window.onload = function() {
-
-}
-
-window.onscroll = function() {
-
-}
-
-
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
         scanforCheckboxes();
@@ -29,6 +19,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     } else if (request.message === "getscollbarposition") {
         let pos = scrollBarPosition();
         sendResponse(pos);
+    } else if (request.message === "DisplayAutoScanIsWorking") {
+
+        displayAutoScanIsWorking();
     }
 });
 
@@ -47,6 +40,20 @@ function stripScripts(s) {
 
 }
 
+function displayAutoScanIsWorking() {
+    console.log("sdfasdfdfa===========")
+    let autoscanpopup = document.createElement('div');
+    autoscanpopup.id = "autoscanPopup";
+    autoscanpopup.className = "autoscanpopup_toast";
+    autoscanpopup.innerHTML = `<div class = "grid_container">
+    <div class = "item1"></div>
+    <div class = "item2 autodetecttext">The Detector is detecting dark pattern on this webpage...</div>
+    <div class = "item3"></div>
+    </div>
+    `;
+    document.body.appendChild(autoscanpopup);
+
+}
 
 function createToastPopup(data) {
     let toastpopup = document.createElement('div');
@@ -113,7 +120,6 @@ function calculatePercentageScreenVisible() {
 function scrollBarPosition(){
     var browser_viewport_h = $(window).height();
     var HTML_doc_height = $(document).height();
-    //var scroll = $(window).scrollTop();
     let percentage = ((browser_viewport_h / HTML_doc_height) * 100).toFixed(3);
     return percentage;
 }
