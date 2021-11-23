@@ -45,16 +45,25 @@
                     <div class="question_text">The Dark Pattern Detector aims to detect and highlight these patterns on webpages. Click on the "Detect Dark Pattern" button to get started. </div> <br>
                     <div>
                         <div class="about_questions">What Patterns can be detected?</div>
-                        <ul class="about_list">
+                        <div class="faq_types_grid">
+                            <div class="FAQ_item1 item_spacer"><img src="../images/FakeActivity.png" class="imgliststyle_single">Fake Activity</div>
+                            <div class="FAQ_item2 item_spacer"><img src="../images/FakeCountdown.png" class="imgliststyle">Fake Countdown Timers</div>
+                            <div class="FAQ_item3 item_spacer"><img src="../images/LowStock.png" class="imgliststyle">Fake Low Stock Messages</div>
+                            <div class="FAQ_item4 item_spacer"><img src="../images/HighDemand.png" class="imgliststyle">Fake High Demand Messages</div>
+                            <div class="FAQ_item5 item_spacer"><img src="../images/LimitedTime.png" class="imgliststyle">Fake Limited Time Messages</div>
+                            <div class="FAQ_item6 item_spacer"><img src="../images/FakeActivity.png" class="imgliststyle_single">Confirmshamning</div>
+                        </div>
+
+                        <!-- <ul class="about_list">
                             <li class="itemspacer"><img src="../images/FakeActivity.png" class="imgliststyle"> <span> Fake Activity</span></li>
                             <li class="itemspacer"><img src="../images/FakeCountdown.png" class="imgliststyle"> Fake Countdown Timers</li>
                             <li class="itemspacer"><img src="../images/LowStock.png" class="imgliststyle"> Fake Low Stock Messages</li>
                             <li class="itemspacer"><img src="../images/HighDemand.png" class="imgliststyle"> Fake High Demand Messages</li>
                             <li class="itemspacer"><img src="../images/LimitedTime.png" class="imgliststyle"> Fake Limited Time Messages</li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
-                <div style="text-align: center;"><a href="#" style="font-size: 12px;">Visit our website for more information on Dark Patterns!</a></div>
+                <div style="text-align: center;"><a href="http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/" style="font-size: 12px;" target="_blank">Visit our website for more information on Dark Patterns!</a></div>
             </div>
 
             <div id="results_page" class="results_container">
@@ -138,7 +147,7 @@
             <div id="settings_page" class="settings_container">
 
 
-                <div class="settingtitle">Auto scan</div>
+                <div class="settingtitle">Auto scan<img src="../images/question-mark.png" alt="?????/" class="questionmark" id="autoscan_info" /></div>
                 <div class="autoscanborder">
                     <div class="autoswitchwrapper">
                         <span class="onOfftext">Off</span>
@@ -151,20 +160,20 @@
 
 
                     </div>
-                    <div class="tooltip-wrap">
+                    <!-- <div class="tooltip-wrap">
                         <div class="tooltip-content">
                             <p class="tooltip_text">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</p>
                         </div>
                         <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
 
-                    </div>
+                    </div> -->
 
 
                 </div>
 
 
                 <div class="settings-detect-filters">
-                    <div class="settingtitle">Detection filters</div>
+                    <div class="settingtitle">Detection filters<img src="../images/question-mark.png" alt="?????/" class="questionmark" id="filter_info" /></div>
 
                     <div class="filterborder">
                         <ul>
@@ -235,7 +244,7 @@
                                 </div>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <div class="typewrappers">
                                     <label for="id_switch_ORC" class="typetext">OCR</label>
                                     <div class="autoswitchwrapper"><span class="onOfftext">Off</span>
@@ -246,22 +255,45 @@
                                         <span class="onOfftext">On</span>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
-                        <div style="margin-bottom: 5px;"></div>
-                        <div class="tooltip-wrap">
+                        <!-- <div class="tooltip-wrap">
                             <div class="tooltip-content">
                                 <p class="tooltip_text">If a Dark Pattern type is turned off, it will no longer be highlighted, on the webpage or shown in the detection results</p>
                             </div>
                             <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
 
-                        </div>
+                        </div> -->
                     </div>
                 </div>
+
+                <div class="settingtitle">Optical Character Recgonition (OCR)<img src="../images/question-mark.png" alt="?????/" class="questionmark" id="ocr_info" /></div>
+                <div class="autoscanborder">
+                    <div class="autoswitchwrapper">
+                        <span class="onOfftext">Off</span>
+
+                        <div class="switch">
+                            <input type="checkbox" id="id_switch_ORC">
+                            <span class="slider"></span>
+                        </div>
+                        <span class="onOfftext">On</span>
+
+
+                    </div>
+                    <!-- <div class="tooltip-wrap">
+                        <div class="tooltip-content">
+                            <p class="tooltip_text">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</p>
+                        </div>
+                        <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+
+                    </div> -->
+
+
+                </div>
+
             </div>
 
         </div>
-
     </div>
 
 

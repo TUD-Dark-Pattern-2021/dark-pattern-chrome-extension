@@ -250,8 +250,16 @@
     }
     
     .imgliststyle {
-        height: 18px;
-        width: 18px;
+        height: 32px;
+        width: 32px;
+        margin-right: 5px;
+        vertical-align: top;
+        float: left;
+    }
+    
+    .imgliststyle_single {
+        height: 32px;
+        width: 32px;
         margin-right: 5px;
         vertical-align: middle;
     }
@@ -526,7 +534,9 @@
     .questionmark {
         width: 16px;
         height: 16px;
-        margin: 4px 1px 0 0;
+        margin: 0px 0 0 10px;
+        vertical-align: middle;
+        cursor: pointer;
     }
     
     .tooltip-wrap {

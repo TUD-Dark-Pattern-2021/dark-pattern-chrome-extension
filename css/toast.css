@@ -44,8 +44,6 @@
     margin-left: 15%;
     width: 413px;
     height: 131px;
-    font-size: 20px;
-    padding: 6px;
     color: black;
     text-align: center;
     background: #FFF4AF;
@@ -57,7 +55,7 @@
 
 .grid_container {
     display: grid;
-    grid-template-columns: auto 275px auto;
+    grid-template-columns: 79px 275px 59px;
 }
 
 .item1 {
@@ -74,9 +72,28 @@
 
 .autodetecttext {
     font-family: HiraginoSans-W2;
-    font-size: 21px;
+    font-size: 22px;
     color: #201500;
     line-height: 27px;
     font-weight: 200;
     margin: 25px 0 0 0;
+}
+
+.DP_logo {
+    height: 32px;
+    width: 35px;
+    margin: 28px 0 0 20px;
+}
+
+.dots {
+    height: 64px;
+    width: 64px;
+}
+
+.closepopup {
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
 }

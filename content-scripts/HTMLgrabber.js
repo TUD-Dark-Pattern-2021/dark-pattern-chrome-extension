@@ -41,14 +41,17 @@ function stripScripts(s) {
 }
 
 function displayAutoScanIsWorking() {
+    let logo = chrome.runtime.getURL("../images/logo.png");
+    let dots = chrome.runtime.getURL("../images/option.png");
+    let close = chrome.runtime.getURL("../images/cross.png");
     console.log("sdfasdfdfa===========")
     let autoscanpopup = document.createElement('div');
     autoscanpopup.id = "autoscanPopup";
     autoscanpopup.className = "autoscanpopup_toast";
     autoscanpopup.innerHTML = `<div class = "grid_container">
-    <div class = "item1"></div>
-    <div class = "item2 autodetecttext">The Detector is detecting dark pattern on this webpage...</div>
-    <div class = "item3"></div>
+    <div class = "item1"><img src = ${logo} alt = "DP Logo" class = "DP_logo"></div>
+    <div class = "item2 autodetecttext"><div>The Detector is detecting dark pattern on this page</div><div><img src = ${dots} alt = ". . ." class = "dots"></div></div>
+    <div class = "item3"><img src = ${close} alt = "X" class = "closepopup"></div>
     </div>
     `;
     document.body.appendChild(autoscanpopup);
