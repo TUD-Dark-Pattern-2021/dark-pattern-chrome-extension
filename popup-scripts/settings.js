@@ -34,3 +34,30 @@ $('#id_switch_ORC').on('click', function(e) {
         });
     }
 });
+
+$('#autoscan_info').on({
+    mouseenter: function() {
+        $('#autoscan_info_text').show();
+    },
+    mouseleave: function() {
+        $('#autoscan_info_text').hide();
+    }
+});
+
+$('#filter_info').on({
+    mouseenter: function() {
+        $('#detection_info_text').show();
+    },
+    mouseleave: function() {
+        $('#detection_info_text').hide();
+    }
+});
+
+$('#ocr_info').on({
+    mouseenter: function() {
+        $('#ocr_info_text').show();
+    },
+    mouseleave: function() {
+        $('#ocr_info_text').hide();
+    }
+});

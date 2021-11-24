@@ -199,7 +199,7 @@ function renderlist(data) {
     document.getElementById('render_list').innerHTML = '';
 
     data.grouped_details = _.groupBy(data.details, (item) => {
-        return item.category_name
+        return item.type_name
     });
     console.log(data);
     var parsedHtml = Ashe.parse($('#render_list_template').html(), data);

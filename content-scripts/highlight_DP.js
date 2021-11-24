@@ -42,7 +42,7 @@ function highlight_DP(data) {
 
     for (item = 0; item < data.total_counts; item++) {
 
-        let category = data.details[item].category_name;
+        let category = data.details[item].type_name;
         DP_text = data.details[item].tag;
         let icon = document.createElement("img");
         let icon_div = document.createElement("div");
