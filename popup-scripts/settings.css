@@ -1,5 +1,12 @@
 .settingtitle {
-    width: 133px;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-size: 15px;
+    color: #211D2E;
+    font-weight: 700;
+    margin: 15px 0 5px 15px;
+}
+
+.ORC_title {
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 15px;
     color: #211D2E;
@@ -10,7 +17,7 @@
 .autoscanborder {
     margin: 0 15px 0 15px;
     border: 1px solid black;
-    height: 40px;
+    height: auto;
     width: auto;
     border-radius: 3px;
     position: relative;
@@ -27,7 +34,7 @@
 .autoswitchwrapper {
     display: flex;
     justify-content: center;
-    margin: 5px 0 0 0;
+    margin: 7px 0 7px 0;
 }
 
 .onOfftext {
@@ -40,7 +47,7 @@
 .filterborder {
     margin: 0 15px 10px 15px;
     border: 1px solid black;
-    height: 150px;
+    height: 135px;
     width: auto;
     border-radius: 3px;
     position: relative;
@@ -55,11 +62,100 @@
 
 .switchposition {
     float: right;
-    margin: 5px 10px 0 0;
+    margin: 0px 0px 0 0;
 }
 
 .typewrappers {
     margin: 5px 40px 0px 40px;
     width: 100%;
+    height: 20px;
     padding: 0 10px 0 10px;
+}
+
+.faq_types_grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+}
+
+.FAQ_item1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.FAQ_item2 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.FAQ_item3 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.FAQ_item4 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.FAQ_item5 {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.FAQ_item6 {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.FAQ_item1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.item_spacer {
+    margin: 5px 0 0 0;
+    font-size: 13px;
+}
+
+.autoscan_info_text {
+    display: none;
+    position: fixed;
+    top: 127px;
+    left: 140px;
+    width: 200px;
+    background-color: white;
+    z-index: 999999999;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.detection_info_text {
+    display: none;
+    position: fixed;
+    top: 197px;
+    left: 181px;
+    width: 161px;
+    background-color: white;
+    z-index: 999999999;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.ocr_info_text {
+    display: none;
+    position: fixed;
+    top: 255px;
+    left: 130px;
+    width: 161px;
+    background-color: white;
+    z-index: 999999999;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 5px;
 }

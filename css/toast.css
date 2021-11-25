@@ -1,37 +1,162 @@
 .toast_popup {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 0;
     right: 0;
-    margin-left: 15%;
-    max-width: 300px;
-    font-size: 20px;
+    margin-left: 5%;
+    width: 515px;
+    min-height: 200px;
+    font-size: 16px;
     padding: 6px;
-    color: black;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid black;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #201500;
+    background-color: #ffdb58;
+    box-shadow: 0px 2px 2px 0px rgba(162, 147, 79, 1);
+    border-radius: 16px;
     display: none;
     z-index: 999999999;
 }
 
-.patterns_not_found {
-    background-color: green;
+.autoscanpopup_toast {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin-left: 5%;
+    width: 413px;
+    min-height: 100px;
+    color: black;
+    text-align: center;
+    background: #FFF4AF;
+    border: 1px solid #FDDB01;
+    border-radius: 8px;
+    display: block;
+    z-index: 999999999;
 }
 
-.patterns_found {
-    background-color: yellow;
+.logo {
+    height: 32px;
+    width: 35px;
+    margin: 15px 0 0 15px;
 }
 
-.typelist {
-    text-align: left;
-}
-
-.toastwrapper {
-    text-align: left;
-    font-size: 15px;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
-    color: #211D2E;
+.careful {
+    margin: 15px 0 5px 0;
+    line-height: 23px;
     font-weight: 600;
+    font-size: 20px;
+    font-family: 'HiraginoSans-W5', sans-serif;
+}
+
+.warning_text {
+    font-size: 18px;
+    color: #201500;
+    line-height: 23px;
+    font-weight: 200;
+    font-family: 'HiraginoSans-W2', sans-serif;
+    margin: 0 0 5px 0;
+}
+
+.list_icon {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+}
+
+.dp_ul {
+    list-style-type: none;
+    columns: 2;
+    padding-left: 20px;
+}
+
+.dp_li {
+    margin: 0 0 5px 0;
+    list-style-type: none;
+}
+
+.outlined_text {
+    border: 4px red dashed;
+    font-weight: 200;
+    font-family: 'HiraginoSans-W2', sans-serif;
+    margin: 5px 5px 10px 5px;
+    padding: 5px;
+}
+
+.noDPpopup {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin-left: 5%;
+    width: 413px;
+    height: 131px;
+    color: black;
+    text-align: center;
+    background: #D7FFD6;
+    border: 1px solid #55A846;
+    border-radius: 8px;
+    display: none;
+    z-index: 999999999;
+}
+
+.grid_container_patternsfound {
+    display: grid;
+    grid-template-columns: 60px 420px auto;
+}
+
+.item1_found {
+    grid-column: 1;
+}
+
+.item2_found {
+    grid-column: 2;
+}
+
+.item3_found {
+    grid-column: 3;
+}
+
+.grid_container {
+    display: grid;
+    grid-template-columns: 79px 275px 59px;
+}
+
+.item1 {
+    grid-column: 1;
+}
+
+.item2 {
+    grid-column: 2;
+}
+
+.item3 {
+    grid-column: 3;
+}
+
+.autodetecttext {
+    font-family: HiraginoSans-W2;
+    font-size: 22px;
+    color: #201500;
+    line-height: 27px;
+    font-weight: 200;
+    margin: 25px 0 0 0;
+}
+
+.DP_logo {
+    height: 32px;
+    width: 35px;
+    margin: 28px 0 0 20px;
+}
+
+.dots {
+    height: 64px;
+    width: 64px;
+}
+
+.closepopup {
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
 }

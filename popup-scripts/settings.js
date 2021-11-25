@@ -34,3 +34,45 @@ $('#id_switch_ORC').on('click', function(e) {
         });
     }
 });
+
+$('#autoscan_info').on({
+    mouseenter: function() {
+        $('#autoscan_info_text').show();
+    },
+    mouseleave: function() {
+        $('#autoscan_info_text').hide();
+    }
+});
+
+$('#filter_info').on({
+    mouseenter: function() {
+        $('#detection_info_text').show();
+    },
+    mouseleave: function() {
+        $('#detection_info_text').hide();
+    }
+});
+
+$('#ocr_info').on({
+    mouseenter: function() {
+        $('#ocr_info_text').show();
+    },
+    mouseleave: function() {
+        $('#ocr_info_text').hide();
+    }
+});
+
+
+$('#expand').on('click', function(e) {
+    if ($('#fullwrapper').hasClass("scaled")) {
+
+        $('#fullwrapper').removeClass("scaled");
+        $('body').animate({ width: "400px", height: "460px" }, 70);
+        $(this).attr("src", "../images/expand.png");
+
+    } else {
+        $('#fullwrapper').addClass("scaled");
+        $('body').animate({ width: "483px", height: "557px" }, 70);
+        $(this).attr("src", "../images/collapse.png");
+    }
+});
