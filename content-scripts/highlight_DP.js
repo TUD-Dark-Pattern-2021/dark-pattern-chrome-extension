@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const height = window.innerHeight || document.documentElement.clientHeight ||
             document.body.clientHeight;
         //goto that anchor by setting the body scroll top to anchor top
-        $('html, body').animate({ scrollTop: target_top + height / 2 }, 300);
+        $('html, body').animate({ scrollTop: target_top + height / 2 + 500 }, 400);
     }
 });
 
@@ -36,7 +36,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 function highlight_DP(data) {
     let fakeActivity_img = chrome.runtime.getURL("../images/FakeActivity.png");
     let fakeCountdown_img = chrome.runtime.getURL("../images/FakeCountdown.png");
-    let lowStock_img = chrome.runtime.getURL("../images/LowStock.png");
+    let lowStock_img = chrome.runtime.getURL("../images/FakeLowStock.png");
     let highDemand_img = chrome.runtime.getURL("../images/HighDemand.png");
     let limitedTime_img = chrome.runtime.getURL("../images/LimitedTime.png");
 

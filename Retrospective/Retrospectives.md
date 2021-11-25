@@ -1,7 +1,27 @@
+25/11/2021 - Retrospective
+
+Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- Took me so long to fix the dataset error  but in the end it was something so simple that I overlooked.  ( Jordan Donnelly )
+--- XDXDXD  ( Lan Zeng )
+- The color of pie Chart has not been decided yet  didn't do the survey yet  ( Yufei Su, 1 Up Vote  )
+- Stuck in resolving conflicts  ( Quanwei, 1 Up Vote  )
+
+
+ Sad
+- Need to build (add) a webpage next week for evaluation for all the DPs included in this project.  ( Lan Zeng )
+- Not all the UI changes got implemented yet  ( Alan Dowley )
+
+
+ Glad
+- Deployed Confirmshaming DP Detection  now all the DPs included in this project are done.  ( Lan Zeng, 2 Up Votes  )
+- Happy that we are so close to completing the primary goals.  ( Jordan Donnelly, 1 Up Vote  )
+- We got one more dp to detect!  ( yunpeng liu, 2 Up Votes  )
+- Mostly just little tasks left  ( Alan Dowley )
+![Screenshot](Retrospective-Week10.PNG)
 
 18/11/2021 - Retrospective
-
-18/11/2021
 
 Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
 
@@ -22,7 +42,7 @@ Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan 
 - Results from usability testing help us to see a direction to improve UI  ( Lan Zeng )
 - The Evaluation Report was done by all of us  ( Yufei Su )
 - We have a lot of user tests this week  ( Yufei Su )
-
+![Screenshot](Retrospective-Week9.PNG)
 
 11/11/2021 - Retrospective
 

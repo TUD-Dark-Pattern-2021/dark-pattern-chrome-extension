@@ -61,3 +61,18 @@ $('#ocr_info').on({
         $('#ocr_info_text').hide();
     }
 });
+
+
+$('#expand').on('click', function(e) {
+    if ($('#fullwrapper').hasClass("scaled")) {
+
+        $('#fullwrapper').removeClass("scaled");
+        $('body').animate({ width: "400px", height: "460px" }, 70);
+        $(this).attr("src", "../images/expand.png");
+
+    } else {
+        $('#fullwrapper').addClass("scaled");
+        $('body').animate({ width: "483px", height: "557px" }, 70);
+        $(this).attr("src", "../images/collapse.png");
+    }
+});

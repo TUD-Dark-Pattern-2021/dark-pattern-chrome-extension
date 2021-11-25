@@ -1,9 +1,9 @@
 .toast_popup {
     position: fixed;
-    top: 100px;
+    top: 0;
     left: 0;
     right: 0;
-    margin-left: 15%;
+    margin-left: 5%;
     width: 515px;
     min-height: 200px;
     font-size: 16px;
@@ -12,16 +12,16 @@
     background-color: #ffdb58;
     box-shadow: 0px 2px 2px 0px rgba(162, 147, 79, 1);
     border-radius: 16px;
-    display: block;
+    display: none;
     z-index: 999999999;
 }
 
 .autoscanpopup_toast {
     position: fixed;
-    top: 100px;
+    top: 0px;
     left: 0;
     right: 0;
-    margin-left: 15%;
+    margin-left: 5%;
     width: 413px;
     min-height: 100px;
     color: black;
@@ -63,29 +63,31 @@
     vertical-align: middle;
 }
 
-ul {
+.dp_ul {
     list-style-type: none;
     columns: 2;
     padding-left: 20px;
 }
 
-li {
+.dp_li {
     margin: 0 0 5px 0;
+    list-style-type: none;
 }
 
 .outlined_text {
     border: 4px red dashed;
     font-weight: 200;
     font-family: 'HiraginoSans-W2', sans-serif;
-    margin: 0 0 10px 0;
+    margin: 5px 5px 10px 5px;
+    padding: 5px;
 }
 
 .noDPpopup {
     position: fixed;
-    top: 100px;
+    top: 0px;
     left: 0;
     right: 0;
-    margin-left: 15%;
+    margin-left: 5%;
     width: 413px;
     height: 131px;
     color: black;

@@ -8,12 +8,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         //console.log(html);
         sendResponse({ data: html });
     } else if (request.message == 'createtoastpopup') {
+        try {
+            $('#autoscanPopup').hide();
+        } catch (e) {
+            console.log(e);
+        }
+
         if (request.data.data.details == 0) {
             createNoDPFoundPopUp();
         } else {
             createToastPopup(request.data);
         }
-
         showandhidetoast();
         sendResponse("user has been alerted");
     } else if (request.message === "getpercentagescreenvisible") {
@@ -67,11 +72,6 @@ function displayAutoScanIsWorking() {
 
 
 function createNoDPFoundPopUp() {
-    try {
-        $('#autoscanPopup').hide();
-    } catch (e) {
-        console.log(e);
-    }
     let logo = chrome.runtime.getURL("../images/logo.png");
     let close = chrome.runtime.getURL("../images/cross.png");
     let noDPpopup = document.createElement('div');
@@ -94,8 +94,6 @@ function createNoDPFoundPopUp() {
     $("#NoDPpopup").delay(10000).fadeOut('slow', function() { $(this).remove() });
 }
 
-
-
 function createToastPopup(data) {
     let logo = chrome.runtime.getURL("../images/logo.png");
     let toastpopup = document.createElement('div');
@@ -103,10 +101,13 @@ function createToastPopup(data) {
     let FA = chrome.runtime.getURL("../images/FakeActivity.png");
     toastpopup.id = "toastpopup";
     toastpopup.className = "toast_popup";
-    // var key = [];
-    // Object.keys(data.data.items_counts).forEach(function(item) {
-    //     key.push(item.match(/[A-Z][a-z]+|[0-9]+/g).join(" "))
-    // });
+    var key = [];
+    var img = [];
+    Object.keys(data.data.items_counts).forEach(function(item) {
+        key.push(item.match(/[A-Z][a-z]+|[0-9]+/g).join(" "))
+        img.push(item);
+    });
+    console.log(img);
     toastpopup.innerHTML = `<div class = "grid_container_patternsfound">
         <div class = "item1_found"><img src = ${logo} alt = "DP Logo" class = "logo"></div>
         <div class = "item2_found">
@@ -114,35 +115,43 @@ function createToastPopup(data) {
          <div class = "warning_text">There were ${data.data.total_counts} dark patterns found on this webpage.</div>
          <div class = "warning_text">The patterns types are:</div>
          <div>
-         <ul class = "list_styling">
-         <li><img src = ${FA} alt = "Fake Activity Icon" class = "list_icon"><span class = "warning_text">Fake Activity</span></li>
-         <li><img src = ${FA} alt = "Fake Activity Icon" class = "list_icon"><span class = "warning_text">Fake Activity</span></li>
-         <li><img src = ${FA} alt = "Fake Activity Icon" class = "list_icon"><span class = "warning_text">Fake Activity</span></li>
-         <li><img src = ${FA} alt = "Fake Activity Icon" class = "list_icon"><span class = "warning_text">Fake Activity</span></li>
-         <li><img src = ${FA} alt = "Fake Activity Icon" class = "list_icon"><span class = "warning_text">Fake Activity</span></li>
+        
+
+             <ul class = "list_styling dp_ul">
+             ${key.map((type, index) => `
+             <li class = "dp_li"><img src = ${chrome.runtime.getURL(`../images/${img[index]}.png`)} alt = "Icon" class = "list_icon"><span class = "warning_text">${type}</span></li>
+             `).join('')}
+         
+         
          </ul>
 
          <div class = "outlined_text">Each dark pattern will have an icon beside it and be highlighted with dashed coloured boxes similar to this text!</div>
          </div>
          
          </div>
-        <div class = "item3_found"><img src = ${close} alt = "X" class = "closepopup" id = "closeNoDPpopup"></div>
+        <div class = "item3_found"><img src = ${close} alt = "X" class = "closepopup" id = "closePatternsFound"></div>
+        </div>
         </div>
         `;
-    toastpopup.className += " patterns_found";
+
+
+    toastpopup.onclick = function(event) {
+        if (event.target.id === 'closePatternsFound') {
+            $('#toastpopup').hide();
+        }
+    }
     document.body.appendChild(toastpopup);
 
+    $("#toastpopup").fadeIn("slow");
+    $("#toastpopup").delay(12000).fadeOut('slow', function() { $(this).remove() });
+
     //     <ul class = "typelist">
-    //     ${key.map(type => `
+    //     ${key.map((type, index) => `
     //     <li>${type}</li>
     //     `).join('')}
     // </ul>
 
 }
-
-
-
-
 
 function scanforCheckboxes() {
     var all_checkboxes = [];
