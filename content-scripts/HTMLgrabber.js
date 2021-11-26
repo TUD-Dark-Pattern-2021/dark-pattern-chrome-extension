@@ -3,9 +3,13 @@
 // 2. check whether autoscan is turned on or off and creates a toast popup based on the patterns found on the page.
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
+        try {
+            $('#toastpopup').remove();
+        } catch (e) {
+            console.log(e);
+        }
         scanforCheckboxes();
         let html = stripScripts(document.body.innerHTML);
-        //console.log(html);
         sendResponse({ data: html });
     } else if (request.message == 'createtoastpopup') {
         try {
@@ -115,19 +119,13 @@ function createToastPopup(data) {
          <div class = "warning_text">There were ${data.data.total_counts} dark patterns found on this webpage.</div>
          <div class = "warning_text">The patterns types are:</div>
          <div>
-        
-
              <ul class = "list_styling dp_ul">
              ${key.map((type, index) => `
-             <li class = "dp_li"><img src = ${chrome.runtime.getURL(`../images/${img[index]}.png`)} alt = "Icon" class = "list_icon"><span class = "warning_text">${type}</span></li>
+             <li class = "dp_li"><div class = "wrap"><img src = ${chrome.runtime.getURL(`../images/${img[index]}.png`)} alt = "Icon" class = "list_icon"><span class = "warning_text">${type}</span></div></li>
              `).join('')}
-         
-         
          </ul>
-
          <div class = "outlined_text">Each dark pattern will have an icon beside it and be highlighted with dashed coloured boxes similar to this text!</div>
          </div>
-         
          </div>
         <div class = "item3_found"><img src = ${close} alt = "X" class = "closepopup" id = "closePatternsFound"></div>
         </div>
@@ -137,7 +135,8 @@ function createToastPopup(data) {
 
     toastpopup.onclick = function(event) {
         if (event.target.id === 'closePatternsFound') {
-            $('#toastpopup').hide();
+            $('#toastpopup').hide().remove();
+
         }
     }
     document.body.appendChild(toastpopup);

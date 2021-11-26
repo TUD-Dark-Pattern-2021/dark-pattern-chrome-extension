@@ -37,8 +37,8 @@ function highlight_DP(data) {
     let fakeActivity_img = chrome.runtime.getURL("../images/FakeActivity.png");
     let fakeCountdown_img = chrome.runtime.getURL("../images/FakeCountdown.png");
     let lowStock_img = chrome.runtime.getURL("../images/FakeLowStock.png");
-    let highDemand_img = chrome.runtime.getURL("../images/HighDemand.png");
-    let limitedTime_img = chrome.runtime.getURL("../images/LimitedTime.png");
+    let highDemand_img = chrome.runtime.getURL("../images/FakeHighDemand.png");
+    let limitedTime_img = chrome.runtime.getURL("../images/FakeLimitedTime.png");
 
     for (item = 0; item < data.total_counts; item++) {
 
@@ -49,7 +49,7 @@ function highlight_DP(data) {
         let DP_text_border = document.createElement('div');
         icon.id = `DP_id_${item}`;
         //Misdirection
-        if (category == "FakeActivity") {
+        if (category == "FakeActivity" || category == 'Confirmshaming') {
             icon.setAttribute("src", fakeActivity_img);
             icon.className = "DP_misdirection_icon";
             icon.setAttribute("data-internalid", data.details[item].category_name);

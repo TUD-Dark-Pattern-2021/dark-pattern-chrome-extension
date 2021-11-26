@@ -11,5 +11,8 @@ Ashe.addModifiers({
     },
     firstSlug: function(str) {
         return str[0].type_name_slug
+    },
+    imgname: function(str) {
+        return str[0].type_name
     }
 });
