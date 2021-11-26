@@ -47,6 +47,11 @@ window.onload = function() {
         $("#autoscan").attr("checked", results.autoscan);
     });
 
+    chrome.storage.local.get(['ORC'], function(results) {
+            $("#id_switch_ORC").attr("checked", results.ORC);
+    });
+
+
     chrome.storage.local.get({ filters: {} }, function(result) {
         console.log('filters:', result)
         for (let k in result.filters) {
