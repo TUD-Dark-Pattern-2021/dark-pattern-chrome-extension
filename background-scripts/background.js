@@ -47,14 +47,14 @@ async function sendData(raw_html) {
         });
     });
 
-    const configOut = await ORC_value;
-    console.log(configOut);
+    const isORCon = await ORC_value;
+    console.log(isORCon);
 
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/detect", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             timeout: 0,
-            body: JSON.stringify({ "html": encoded_html }),
+            body: JSON.stringify({ "html": encoded_html, is_orc : Number(isORCon) }),
         }).then(response => response.json())
         .then(data => {
 
