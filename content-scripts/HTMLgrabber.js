@@ -5,6 +5,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.message == 'GetHTML') {
         try {
             $('#toastpopup').remove();
+            $("img.identifier").remove();
+            document.querySelectorAll('.identifier').forEach(function(elem) {
+                try {
+                    $(elem).contents().unwrap();
+                } catch (e) {
+                    alert("hello");
+                }
+            });
         } catch (e) {
             console.log(e);
         }

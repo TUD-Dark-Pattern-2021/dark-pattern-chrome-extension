@@ -48,7 +48,7 @@ window.onload = function() {
     });
 
     chrome.storage.local.get(['ORC'], function(results) {
-            $("#id_switch_ORC").attr("checked", results.ORC);
+        $("#id_switch_ORC").attr("checked", results.ORC);
     });
 
 
@@ -156,14 +156,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 //builds the doughnut chart using chartjs
 function buildchart(data) {
     cat_colours = [];
+    cat_names_split = [];
     //console.log(data.data.items_counts);
 
-    const colours = { 'FakeActivity': "#FF5869", 'FakeCountdown': "#FF8200", 'FakeHighDemand': "#FEDB00", 'FakeLimitedTime': "#69B3E7", 'FakeLowStock': "#FC9BB3" };
+    const colours = { 'FakeActivity': "#FF5869", 'FakeCountdown': "#FF8200", 'FakeHighDemand': "#FEDB00", 'FakeLimitedTime': "#69B3E7", 'FakeLowStock': "#FC9BB3", 'Confirmshaming': "#4aff71" };
     let categories = data.items_counts
 
     var cat_names = Object.keys(categories);
+    cat_names.forEach(elem => {
+        cat_names_split.push(elem.match(/[A-Z][a-z]+|[0-9]+/g).join(" "));
+    });
     var cat_num = Object.values(categories);
-    //console.log(cat_names);
+    console.log(cat_names_split);
 
     for (x = 0; x < cat_names.length; x++) {
         cat_colours.push(colours[cat_names[x]]);
@@ -173,12 +177,12 @@ function buildchart(data) {
     Chart.helpers.each(Chart.instances, function(instance) {
         instance.destroy();
     });
-    const chart = document.getElementById("doughnut_chart");
-    let doughnut_chart = new Chart(chart, {
+    const canv = document.getElementById("doughnut_chart").getContext("2d");
+    new Chart(canv, {
         type: 'doughnut',
         data: {
 
-            labels: cat_names,
+            labels: cat_names_split,
             datasets: [{
                 backgroundColor: cat_colours,
                 data: cat_num
@@ -191,13 +195,22 @@ function buildchart(data) {
                     display: false
                 },
             },
+            onHover: (event, chartElement) => {
+                event.native.target.style.cursor = chartElement[0] ? 'pointer' : 'default';
+            },
+
+            onClick: (e, activeEls) => {
+                let dataIndex = activeEls[0].index;
+                let label = e.chart.data.labels[dataIndex];
+                $('#' + label.replace(/\s+/g, '')).trigger('click');
+            },
             responsive: false
         }
+
     });
 
-    renderlist(data)
+    renderlist(data);
 }
-
 
 //creates the list of categories on the restuls page, with a toggle switch for each one as well
 function renderlist(data) {

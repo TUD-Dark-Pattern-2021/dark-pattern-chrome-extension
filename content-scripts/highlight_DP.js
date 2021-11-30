@@ -1,6 +1,8 @@
 //message listener for messages from background script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'Data Gotten') {
+
+
         console.log(request.data.data);
         highlight_DP(request.data.data);
         sendResponse("Dark Patterns Highlighted");
@@ -16,7 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const height = window.innerHeight || document.documentElement.clientHeight ||
             document.body.clientHeight;
         //goto that anchor by setting the body scroll top to anchor top
-        $('html, body').animate({ scrollTop: target_top + height / 2 + 500 }, 400);
+        $('html, body').animate({ scrollTop: target_top + height / 2 }, 400);
     }
 });
 
@@ -32,136 +34,72 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+
+
 //function to highlight all given DP on a webpage so far.
 function highlight_DP(data) {
     let fakeActivity_img = chrome.runtime.getURL("../images/FakeActivity.png");
     let fakeCountdown_img = chrome.runtime.getURL("../images/FakeCountdown.png");
     let lowStock_img = chrome.runtime.getURL("../images/FakeLowStock.png");
-    let highDemand_img = chrome.runtime.getURL("../images/FakeHighDemand.png");
-    let limitedTime_img = chrome.runtime.getURL("../images/FakeLimitedTime.png");
+    let highDemand_img = chrome.runtime.getURL("../images/HighDemand.png");
+    let limitedTime_img = chrome.runtime.getURL("../images/LimitedTime.png");
+    let confirmshaming_img = chrome.runtime.getURL("../images/LimitedTime.png");
 
     for (item = 0; item < data.total_counts; item++) {
-
         let category = data.details[item].type_name;
         DP_text = data.details[item].tag;
+
         let icon = document.createElement("img");
-        let icon_div = document.createElement("div");
-        let DP_text_border = document.createElement('div');
         icon.id = `DP_id_${item}`;
-        //Misdirection
-        if (category == "FakeActivity" || category == 'Confirmshaming') {
+        icon.classList.add("DP_type_icon", "identifier");
+        icon.setAttribute("data-internalid", data.details[item].category_name);
+
+        let icon_div = document.createElement("div");
+        icon_div.classList.add("DP_type_div", "identifier")
+
+        let DP_text_border = document.createElement('div');
+
+        if (category == "FakeActivity") {
             icon.setAttribute("src", fakeActivity_img);
-            icon.className = "DP_misdirection_icon";
-            icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon_div.className = "DP_misdirection_div";
-            icon_div.append(icon);
-            //create border
-            DP_text_border.classList.add('DP_text_border_misdirection', "DP_text_border");
+            DP_text_border.classList.add('DP_text_border_fakeActivity', "identifier");
 
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
-                if ($(DP_text).parents('.DP_text_border_div').children(".DP_misdirection_div").is(".DP_misdirection_div")) {} else {
-                    $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
-                    $(DP_text).wrap(DP_text_border);
-                }
-            } else {
-                let DP_text_div = document.createElement('div');
-                DP_text_div.className = "DP_text_border_div"
-                $(DP_text).wrap(DP_text_div);
-                $(DP_text).parent().prepend(icon_div);
-                $(DP_text).wrap(DP_text_border);
-            }
-
-
-            //Scarcity
         } else if (category === "FakeCountdown") {
-
-
             icon.setAttribute("src", fakeCountdown_img);
-            icon.className = "DP_scarcity_icon";
-            icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon_div.className = "DP_scarcity_div";
-            icon_div.append(icon);
-            //create border
-            DP_text_border.classList.add('DP_text_border_scarcity', "DP_text_border_fakecountdown");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
-                if ($(DP_text).parents('.DP_text_border_div').children(".DP_scarcity_div").is(".DP_scarcity_div")) {} else {
-                    $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
-                    $(DP_text).wrap(DP_text_border);
-                }
-            } else {
-                let DP_text_div = document.createElement('div');
-                DP_text_div.className = "DP_text_border_div"
-                $(DP_text).wrap(DP_text_div);
-                $(DP_text).parent().prepend(icon_div);
-                $(DP_text).wrap(DP_text_border);
-            }
-
-
+            DP_text_border.classList.add('DP_text_border_fakeCountdown', "identifier");
 
         } else if (category === "FakeHighDemand") {
             icon.setAttribute("src", highDemand_img);
-            icon.className = "DP_urgency_icon";
-            icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon_div.className = "DP_urgency_div";
-            icon_div.append(icon)
-                //create border
-            DP_text_border.classList.add("DP_text_border_urgency", "DP_text_border_highdemand");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
-                if ($(DP_text).parents('.DP_text_border_div').children(".DP_urgency_div").is(".DP_urgency_div")) {} else {
-                    $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
-                    $(DP_text).wrap(DP_text_border);
-                }
-            } else {
-                let DP_text_div = document.createElement('div');
-                DP_text_div.className = "DP_text_border_div"
-                $(DP_text).wrap(DP_text_div);
-                $(DP_text).parent().prepend(icon_div);
-                $(DP_text).wrap(DP_text_border);
-            }
+            DP_text_border.classList.add("DP_text_border_fakeHighDemand", "identifier");
 
         } else if (category === "FakeLimitedTime") {
             icon.setAttribute("src", limitedTime_img);
-            icon.className = "DP_socialProof_icon";
-            icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon_div.className = "DP_socialProof_div";
-            icon_div.append(icon)
-                //create border
-            DP_text_border.classList.add('DP_text_border_socialProof', "DP_text_border_limitedtime");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
-                if ($(DP_text).parents('.DP_text_border_div').children(".DP_socialProof_div").is(".DP_socialProof_div")) {} else {
-                    $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
-                    $(DP_text).wrap(DP_text_border);
-                }
-            } else {
-                let DP_text_div = document.createElement('div');
-                DP_text_div.className = "DP_text_border_div"
-                $(DP_text).wrap(DP_text_div);
-                $(DP_text).parent().prepend(icon_div);
-                $(DP_text).wrap(DP_text_border);
-            }
+            DP_text_border.classList.add('DP_text_border_fakeLimitedTime', "identifier");
 
         } else if (category === "FakeLowStock") {
             icon.setAttribute("src", lowStock_img);
-            icon.className = "DP_forcedActivity_icon";
-            icon.setAttribute("data-internalid", data.details[item].category_name);
-            icon_div.className = "DP_forcedActivity_div";
-            icon_div.append(icon)
-                //create border
-            DP_text_border.classList.add('DP_text_border_forcedActivity', "DP_text_border_lowstock");
-            if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
-                if ($(DP_text).parents('.DP_text_border_div').children(".DP_forcedActivity_div").is(".DP_forcedActivity_div")) {} else {
-                    $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
-                    $(DP_text).wrap(DP_text_border);
-                }
-            } else {
-                let DP_text_div = document.createElement('div');
-                DP_text_div.className = "DP_text_border_div"
-                $(DP_text).wrap(DP_text_div);
-                $(DP_text).parent().prepend(icon_div);
+            DP_text_border.classList.add('DP_text_border_fakeLowStock', "identifier");
+
+        } else if (category === 'Confirmshaming') {
+            icon.setAttribute("src", confirmshaming_img);
+            DP_text_border.classList.add('DP_text_border_confirmshaming');
+        }
+
+        icon_div.append(icon);
+        if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
+            if ($(DP_text).parents('.DP_text_border_div').children(".DP_type_div").is(".DP_type_div")) {} else {
+                $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
             }
+        } else {
+            let DP_text_div = document.createElement('div');
+            DP_text_div.classList.add("DP_text_border_div", "identifier");
+            $(DP_text).wrap(DP_text_div);
+            $(DP_text).parent().prepend(icon_div);
+            $(DP_text).wrap(DP_text_border);
         }
     }
+
+
 
     //function to create the little popup coming out of each highlighted dark pattern
     //function contains a lot of logic which controls where the popup will appear on the screen based off of where the highlighted DP icon is located

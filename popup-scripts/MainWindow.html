@@ -258,6 +258,7 @@
         </div>
     </div>
 
+
     <script id="render_list_template" type="text/html">
         <ul class="">
             {% for key, detail in grouped_details %}
@@ -267,7 +268,7 @@
 
                         <img src="../images/right-arrow.png" class="right-arrow" />
                         <img src="../images/{{detail|imgname}}.png" class="img_sizing" />
-                        <span class="category_list">{{detail|firstSlug}} </span>
+                        <span id="{{detail|imgname}}" class="category_list">{{detail|firstSlug}} </span>
                     </div>
                 </div>
                 {% for key, detailContent in detail %}
