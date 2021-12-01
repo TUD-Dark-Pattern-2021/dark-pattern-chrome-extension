@@ -159,7 +159,7 @@ function buildchart(data) {
     cat_names_split = [];
     //console.log(data.data.items_counts);
 
-    const colours = { 'FakeActivity': "#FF5869", 'FakeCountdown': "#FF8200", 'FakeHighDemand': "#FEDB00", 'FakeLimitedTime': "#69B3E7", 'FakeLowStock': "#FC9BB3", 'Confirmshaming': "#4aff71" };
+    const colours = { 'FakeActivity': "#fc34b4", 'FakeCountdown': "#fb0534", 'FakeHighDemand': "#0aca66", 'FakeLimitedTime': "#745cfc", 'FakeLowStock': "#f9a81e", 'Confirmshaming': "#08b0f7" };
     let categories = data.items_counts
 
     var cat_names = Object.keys(categories);

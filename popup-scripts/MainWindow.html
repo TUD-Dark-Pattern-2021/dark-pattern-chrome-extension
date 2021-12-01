@@ -54,7 +54,7 @@
                                 <div class="FAQ_item3 item_spacer"><img src="../images/FakeLowStock.png" class="imgliststyle">Fake Low Stock Messages</div>
                                 <div class="FAQ_item4 item_spacer"><img src="../images/FakeHighDemand.png" class="imgliststyle">Fake High Demand Messages</div>
                                 <div class="FAQ_item5 item_spacer"><img src="../images/FakeLimitedTime.png" class="imgliststyle">Fake Limited Time Messages</div>
-                                <div class="FAQ_item6 item_spacer"><img src="../images/FakeActivity.png" class="imgliststyle_single">Confirmshamning</div>
+                                <div class="FAQ_item6 item_spacer"><img src="../images/Confirmshaming.png" class="imgliststyle_single">Confirmshamning</div>
                             </div>
 
                         </div>
@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div class="totaltext">Total Patterns: <span id="number_detected" class="numdetected"></span></div>
-                                    <div class="small_title">Pattern Type</div>
+                                    <div class="small_title">Pattern Type <span style="float: right;"><img src="../images/question-mark.png" alt="?????/" class="questionmark_types" id = "patternTypeInfo"></span></div>
                                     <div id="render_list" class="renderlist"></div>
                                 </div>
                             </div>
@@ -117,24 +117,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class="patterntype_info_text" id="patternType_info_text">Click on a pattern type to see a list of all the ones detected that are of that type. Click on specific pattern of that type to naviagate to it on the webpage.</div>
                 </div>
 
                 <div id="reports_page" class="reports_container">
+                    <img src="../images/question-mark.png" alt="?????/" class="questionmark_report" id="reportpage_questionmark" />
+                    <div>If you come across a dark pattern on a webpage, that is not detected but should be, please fill in the form, giving as much detail as possible about this undetected pattern. </div>
                     <div class="success" id="success">Thank's for submitting a report</div>
                     <div class="warningmessage" id="warning">Please make sure all of the form fields are filled out</div>
 
                     <form class="reportform" id="reportform">
                         <label for="WebsiteURL" class="websiteurl">Website URL</label><br>
-                        <input type="text" id="WebsiteURL" name="WebsiteURL" class="urlinput" required><br>
+                        <input type="text" id="WebsiteURL" name="WebsiteURL" class="urlinput"><br>
 
                         <label for="WebsiteURL" class="websiteurl">Keyword</label><br>
-                        <input type="text" id="keyword" name="keyword" class="urlinput" required><br>
+                        <input type="text" id="keyword" name="keyword" class="urlinput" placeholder="Input the dark pattern phrase"><br>
+                        <label class="websiteurl">Dark Pattern Type</label><br>
+                        <select name="type" id="patternType" class="patterntypeinput">
+                            <option value="fakeactivity">Fake Activity</option>
+                            <option value="fakecountdown">Fake Countdown</option>
+                            <option value="fakelimitedtime">Fake Limited-Time</option>
+                            <option value="fakelowstock">Fake Low-Stock</option>
+                            <option value="fakehighdemand">Fake High-Demand</option>
+                            <option value="confirmshaming">Confirmshaming</option>
+                        </select>
 
-                        <label class="websiteurl">Pattern Category</label><br>
-                        <input type="text" id="PatternCategory" name="PatternCategory" class="urlinput" required><br>
+                        <br>
 
-                        <label class="websiteurl">Description</label><br>
-                        <input type="text" id="PatternDescription" name="PatternDescription" class="urlinput" required><br>
+                        <label class="websiteurl">Describe the Issue</label><br>
+                        <textarea type="text" id="PatternDescription" name="PatternDescription" class="description_input" placeholder="Descibe why it is a dark pattern of this type"></textarea><br>
+
 
                         <input type="button" id="SubmitButton" name="SubmitButton" class="submitbutton" value="Submit"><br>
                     </form>

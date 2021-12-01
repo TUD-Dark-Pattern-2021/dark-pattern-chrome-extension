@@ -42,8 +42,8 @@ function highlight_DP(data) {
     let fakeCountdown_img = chrome.runtime.getURL("../images/FakeCountdown.png");
     let lowStock_img = chrome.runtime.getURL("../images/FakeLowStock.png");
     let highDemand_img = chrome.runtime.getURL("../images/HighDemand.png");
-    let limitedTime_img = chrome.runtime.getURL("../images/LimitedTime.png");
-    let confirmshaming_img = chrome.runtime.getURL("../images/LimitedTime.png");
+    let limitedTime_img = chrome.runtime.getURL("../images/FakeLimitedTime.png");
+    let confirmshaming_img = chrome.runtime.getURL("../images/FakeLimitedTime.png");
 
     for (item = 0; item < data.total_counts; item++) {
         let category = data.details[item].type_name;
