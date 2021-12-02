@@ -1,3 +1,27 @@
+02/12/2021 - Retrospective
+
+Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- Still left a few issues to solve  ( Quanwei, 1 Up Vote  )
+- Auto Training is still causing problems  ( Jordan Donnelly, 1 Up Vote  )
+--- :( There there.  ( Lan Zeng )
+
+
+ Sad
+- Only 1 week left to do the rest of the technical stuff. Still want to try more to improve the models  but the time and data are limited.  ( Lan Zeng, 1 Up Vote  )
+- There's still a lot of work to be done on the introduction video  ( Yufei Su, 1 Up Vote  )
+
+
+ Glad
+- fixed few bugs!  ( yunpeng liu, 2 Up Votes  )
+- The final version of the extension is almost already    ( Lan Zeng, 2 Up Votes  )
+- Nearly finished with the coding of for the project  ( Alan Dowley, 2 Up Votes  )
+- Got user feedback on the color of the icon    ( Yufei Su, 1 Up Vote  )
+- AWS DynamoDB isnt as expensive as we thought  ( Jordan Donnelly, 1 Up Vote  )
+![Screenshot](Retrospective-Week11.PNG)
+
+
 25/11/2021 - Retrospective
 
 Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun

@@ -598,3 +598,8 @@
         font-size: 13px;
         font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     }
+    
+    a:link,
+    a:visited {
+        color: blue;
+    }

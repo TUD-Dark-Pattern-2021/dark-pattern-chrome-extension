@@ -41,9 +41,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         sendResponse(pos);
     } else if (request.message === "DisplayAutoScanIsWorking") {
         displayAutoScanIsWorking();
+    } else if (request.message === "removeallpopups") {
+        removeallpopups();
     }
 });
 
+function removeallpopups() {
+    $("#autoscanPopup").remove();
+    $('#NoDPpopup').remove();
+    $('#toastpopup').remove();
+}
 
 
 function stripScripts(s) {
@@ -74,7 +81,7 @@ function displayAutoScanIsWorking() {
     `;
     autoscanpopup.onclick = function(event) {
         if (event.target.id === 'closepopup') {
-            $('#autoscanPopup').hide();
+            $('#autoscanPopup').remove();
         }
     }
     document.body.appendChild(autoscanpopup);
@@ -97,7 +104,7 @@ function createNoDPFoundPopUp() {
     `;
     noDPpopup.onclick = function(event) {
         if (event.target.id === 'closeNoDPpopup') {
-            $('#NoDPpopup').hide();
+            $('#NoDPpopup').remove();
         }
     }
     document.body.appendChild(noDPpopup);

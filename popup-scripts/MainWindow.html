@@ -122,9 +122,8 @@
 
                 <div id="reports_page" class="reports_container">
                     <img src="../images/question-mark.png" alt="?????/" class="questionmark_report" id="reportpage_questionmark" />
-                    <div>If you come across a dark pattern on a webpage, that is not detected but should be, please fill in the form, giving as much detail as possible about this undetected pattern. </div>
+                    <div class="helpUs_info" id="helpUs">If you come across a dark pattern on a webpage, that is not detected but should be, please fill in the form, giving as much detail as possible about this undetected pattern. </div>
                     <div class="success" id="success">Thank's for submitting a report</div>
-                    <div class="warningmessage" id="warning">Please make sure all of the form fields are filled out</div>
 
                     <form class="reportform" id="reportform">
                         <label for="WebsiteURL" class="websiteurl">Website URL</label><br>
@@ -146,6 +145,9 @@
 
                         <label class="websiteurl">Describe the Issue</label><br>
                         <textarea type="text" id="PatternDescription" name="PatternDescription" class="description_input" placeholder="Descibe why it is a dark pattern of this type"></textarea><br>
+
+                        <input type="checkbox" id="report_type" name="report_type" class="checkbox_input">
+                        <label for="report_type" class="checkbox">Check if reporting mis-highlighted content.</label><br><br>
 
 
                         <input type="button" id="SubmitButton" name="SubmitButton" class="submitbutton" value="Submit"><br>
@@ -297,6 +299,7 @@
     </script>
 
     <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/chart.min.js"></script>
     <script src="../js/ash.js"></script>
     <script src="../js/ash.modifier.js"></script>
