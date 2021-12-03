@@ -288,7 +288,7 @@
                 {% for key, detailContent in detail %}
                 <ul class="dp-list-detail-wrapper">
                     <li class="dp-list-detail" data-dp-key="{{detailContent.key}}">
-                        {{key|addOne}}:{{detailContent.content}}
+                        <a href="javacript:;" title="{{key|addOne}}:{{detailContent.content}}">{{key|addOne}}:{{detailContent.content}}</a>
                     </li>
                 </ul>
 
