@@ -18,9 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const height = window.innerHeight || document.documentElement.clientHeight ||
             document.body.clientHeight;
         //goto that anchor by setting the body scroll top to anchor top
-
         $('html, body').animate({ scrollTop: target_top - height / 2 }, 400);
-
     }
 });
 
@@ -43,9 +41,9 @@ function highlight_DP(data) {
     let fakeActivity_img = chrome.runtime.getURL("../images/FakeActivity.png");
     let fakeCountdown_img = chrome.runtime.getURL("../images/FakeCountdown.png");
     let lowStock_img = chrome.runtime.getURL("../images/FakeLowStock.png");
-    let highDemand_img = chrome.runtime.getURL("../images/HighDemand.png");
+    let highDemand_img = chrome.runtime.getURL("../images/FakeHighDemand.png");
     let limitedTime_img = chrome.runtime.getURL("../images/FakeLimitedTime.png");
-    let confirmshaming_img = chrome.runtime.getURL("../images/FakeLimitedTime.png");
+    let confirmshaming_img = chrome.runtime.getURL("../images/Confirmshaming.png");
 
     for (item = 0; item < data.total_counts; item++) {
         let category = data.details[item].type_name;
@@ -54,7 +52,7 @@ function highlight_DP(data) {
         let icon = document.createElement("img");
         icon.id = `DP_id_${item}`;
         icon.classList.add("DP_type_icon", "identifier");
-        icon.setAttribute("data-internalid", data.details[item].category_name);
+        icon.setAttribute("data-internalid", data.details[item].type_name);
 
         let icon_div = document.createElement("div");
         icon_div.classList.add("DP_type_div", "identifier")
@@ -78,12 +76,14 @@ function highlight_DP(data) {
             DP_text_border.classList.add('DP_text_border_fakeLimitedTime', "identifier");
 
         } else if (category === "FakeLowStock") {
+            console.log("sdfasdfasdfasdfasdf==============fakelowstock");
             icon.setAttribute("src", lowStock_img);
             DP_text_border.classList.add('DP_text_border_fakeLowStock', "identifier");
 
         } else if (category === 'Confirmshaming') {
+            console.log("sdfasdfasdfasdfasdf==============f");
             icon.setAttribute("src", confirmshaming_img);
-            DP_text_border.classList.add('DP_text_border_confirmshaming');
+            DP_text_border.classList.add('DP_text_border_confirmshaming', "identifier");
         }
 
         icon_div.append(icon);

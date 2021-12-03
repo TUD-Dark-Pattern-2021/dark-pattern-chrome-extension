@@ -44,6 +44,7 @@ window.onload = function() {
     });
 
     chrome.storage.local.get(['autoscan'], function(results) {
+        console.log(results, autoscan);
         $("#autoscan").attr("checked", results.autoscan);
     });
 

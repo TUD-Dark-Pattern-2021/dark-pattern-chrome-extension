@@ -31,7 +31,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         } else {
             createToastPopup(request.data);
         }
-        showandhidetoast();
         sendResponse("user has been alerted");
     } else if (request.message === "getpercentagescreenvisible") {
         calculatePercentageScreenVisible();

@@ -1,7 +1,7 @@
 // Initialize
 
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.local.set({ autoscan: true });
+    chrome.storage.local.set({ autoscan: false });
 });
 
 //function to check whether autoscan is turned on or off in the extension
