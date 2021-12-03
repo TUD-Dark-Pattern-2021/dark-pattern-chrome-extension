@@ -59,7 +59,7 @@
 
                         </div>
                     </div>
-                    <div style="text-align: center;"><a href="http://www.dpexplained.com/" style="font-size: 12px;" target="_blank">Visit our website for more information on Dark Patterns!</a></div>
+                    <div style="text-align: center;"><a href="http://www.dpexplained.com/" style="font-size: 12px;" target="_blank" id="linktowebsite">Visit our website for more information on Dark Patterns!</a></div>
                 </div>
 
                 <div id="results_page" class="results_container">
@@ -163,7 +163,7 @@
                             <span class="onOfftext">Off</span>
 
                             <div class="switch">
-                                <input type="checkbox" checked id="autoscan">
+                                <input type="checkbox" id="autoscan">
                                 <span class="slider"></span>
                             </div>
                             <span class="onOfftext">On</span>
@@ -288,7 +288,7 @@
                 {% for key, detailContent in detail %}
                 <ul class="dp-list-detail-wrapper">
                     <li class="dp-list-detail" data-dp-key="{{detailContent.key}}">
-                        <a href="javacript:;" title="{{key|addOne}}:{{detailContent.content}}">{{key|addOne}}:{{detailContent.content}}</a>
+                        <a href="javascript:;" title="{{key|addOne}}:{{detailContent.content}}">{{key|addOne}}:{{detailContent.content}}</a>
                     </li>
                 </ul>
 

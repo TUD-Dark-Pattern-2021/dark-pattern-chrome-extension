@@ -19,31 +19,31 @@
 
 .DP_text_border_fakeActivity {
     display: inline-block;
-    border: 5px dotted #F999BD;
+    border: 5px dotted #fc34b4;
 }
 
 .DP_text_border_fakeCountdown {
     display: inline-block;
-    border: 5px dotted #FF7F7F;
+    border: 5px dotted #fb0534;
 }
 
 .DP_text_border_fakeHighDemand {
-    border: 5px dotted #A6DE95;
+    border: 5px dotted #0aca66;
     display: inline-block;
 }
 
 .DP_text_border_fakeLimitedTime {
-    border: 5px dotted #CB8FF6;
+    border: 5px dotted #745cfc;
     display: inline-block;
 }
 
 .DP_text_border_fakeLowStock {
-    border: 5px dotted #FFD67D;
+    border: 5px dotted #f9a81e;
     display: inline-block;
 }
 
 .DP_text_border_confirmshaming {
-    border: 5px dotted #7BC6FF;
+    border: 5px dotted #08b0f7;
     display: inline-block;
 }
 

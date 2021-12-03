@@ -496,6 +496,7 @@
     .dp-list-detail-wrapper {
         display: none;
     }
+    
     .dp-list-detail-wrapper a {
         color: inherit;
         text-decoration: none;
@@ -575,7 +576,7 @@
     .questionmark_types {
         width: 16px;
         height: 16px;
-        margin: -6px 2px 0 10px;
+        margin: -7px 2px 0 10px;
         vertical-align: middle;
         cursor: pointer;
     }
@@ -603,7 +604,6 @@
         font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     }
     
-    a:link,
-    a:visited {
+    .linktowebsite {
         color: blue;
     }
