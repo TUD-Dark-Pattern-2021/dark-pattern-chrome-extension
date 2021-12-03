@@ -6,16 +6,52 @@
     width: 45px;
     height: 7px;
     font-family: 'Hiragino Sans GB SemiBold', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     color: #211D2E;
     font-weight: 600;
+    margin: 0 0 5px 10px;
+}
+
+.checkbox {
+    width: 45px;
+    height: 7px;
+    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-size: 14px;
+    color: #211D2E;
+    font-weight: 600;
+    margin: 0 0 5px 10px;
+}
+
+.checkbox_input {
+    margin: 0 0 0 11px;
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+}
+
+.patterntypeinput {
+    border: 1px solid black;
+    width: 316px;
+    height: 25px;
+    border-radius: 3px;
+    margin: 0 10px 5px 10px;
 }
 
 .urlinput {
     border: 1px solid black;
-    width: 191px;
+    width: 311px;
+    height: 20px;
     border-radius: 3px;
-    margin: 0 0 5px 0;
+    margin: 0 10px 5px 10px;
+}
+
+.description_input {
+    border: 1px solid black;
+    width: 311px;
+    height: 50px;
+    border-radius: 3px;
+    margin: 0 10px 5px 10px;
+    resize: none;
 }
 
 .screenshot_text {
@@ -92,11 +128,15 @@
 }
 
 .submitbutton {
+    background-color: black;
+    color: white;
     cursor: pointer;
-    width: 197px;
+    width: 271px;
+    height: 27px;
     border: 1px solid black;
     margin-top: 5px;
     border-radius: 3px;
+    margin: 5px 0px 0px 34px;
 }
 
 .success {
@@ -113,4 +153,14 @@
     font-size: 14px;
     display: none;
     ;
+}
+
+.questionmark_report {
+    width: 16px;
+    height: 16px;
+    margin: 0px 0 0 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    float: right;
+    margin: -7px 3px 0 10px;
 }

@@ -62,6 +62,24 @@ $('#ocr_info').on({
     }
 });
 
+$('#patternTypeInfo').on({
+    mouseenter: function() {
+        $('#patternType_info_text').show();
+    },
+    mouseleave: function() {
+        $('#patternType_info_text').hide();
+    }
+});
+
+$('#reportpage_questionmark').on({
+    mouseenter: function() {
+        $('#helpUs').show();
+    },
+    mouseleave: function() {
+        $('#helpUs').hide();
+    }
+});
+
 
 $('#expand').on('click', function(e) {
     if ($('#fullwrapper').hasClass("scaled")) {

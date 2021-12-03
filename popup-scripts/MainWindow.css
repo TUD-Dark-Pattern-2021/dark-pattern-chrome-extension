@@ -386,21 +386,21 @@
     }
     
     .renderlist {
-        height: 117px;
+        height: 127px;
         overflow: auto;
     }
     
     .category_list {
-        /*margin: 8px 10px 0px 5px;*/
         font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 600;
-        font-size: 10px;
+        font-size: 13px;
     }
     
     .img_sizing {
-        width: 11px;
-        height: 11px;
+        width: 16px;
+        height: 16px;
+        vertical-align: bottom;
     }
     
     .switch {
@@ -572,6 +572,14 @@
         cursor: pointer;
     }
     
+    .questionmark_types {
+        width: 16px;
+        height: 16px;
+        margin: -6px 2px 0 10px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    
     .tooltip-wrap {
         position: absolute;
         bottom: 0;
@@ -593,4 +601,9 @@
         margin: 5px 5px 5px 5px;
         font-size: 13px;
         font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    }
+    
+    a:link,
+    a:visited {
+        color: blue;
     }

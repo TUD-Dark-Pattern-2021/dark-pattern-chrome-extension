@@ -60,7 +60,7 @@ async function sendData(raw_html) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             timeout: 0,
-            body: JSON.stringify({ "html": encoded_html, is_orc : Number(isORCon) }),
+            body: JSON.stringify({ "html": encoded_html, is_orc: Number(isORCon) }),
         }).then(response => response.json())
         .then(data => {
 
@@ -123,7 +123,13 @@ async function sendData(raw_html) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     //console.log(tabId);
     if (changeInfo.status == 'loading' && tab.active) {
+        console.log("================sfasdfdsaf");
         chrome.storage.local.remove([tabId.toString()]);
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { message: "removeallpopups" }, function(response) {
+                // console.log(response);
+            })
+        });
     }
 });
 
