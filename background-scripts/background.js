@@ -1,3 +1,9 @@
+// Initialize
+
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.storage.local.set({ autoscan: true });
+});
+
 //function to check whether autoscan is turned on or off in the extension
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && tab.active) {

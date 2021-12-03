@@ -18,7 +18,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const height = window.innerHeight || document.documentElement.clientHeight ||
             document.body.clientHeight;
         //goto that anchor by setting the body scroll top to anchor top
+<<<<<<< HEAD
         $('html, body').animate({ scrollTop: target_top + height / 2 }, 400);
+=======
+        $('html, body').animate({ scrollTop: target_top - height / 2 }, 400);
+>>>>>>> a41751d8e5fae504716a131806a231e5fa6f69ab
     }
 });
 
