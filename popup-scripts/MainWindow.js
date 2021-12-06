@@ -75,7 +75,7 @@ function bindEvents() {
         $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
     })
 
-    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand, #id_switch_confirmshaming', function(e) {
+    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand, #id_switch_Confirmshaming', function(e) {
         let category = $(this).attr('data-type')
         let status = $(this).is(':checked')
         console.log(status)

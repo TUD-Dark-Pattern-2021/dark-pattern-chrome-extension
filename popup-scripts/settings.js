@@ -80,6 +80,14 @@ $('#reportpage_questionmark').on({
     }
 });
 
+$('#questionmark_checkboxes').on({
+    mouseenter: function() {
+        $('#checkbox_info_text').show();
+    },
+    mouseleave: function() {
+        $('#checkbox_info_text').hide();
+    }
+});
 
 $('#expand').on('click', function(e) {
     if ($('#fullwrapper').hasClass("scaled")) {
