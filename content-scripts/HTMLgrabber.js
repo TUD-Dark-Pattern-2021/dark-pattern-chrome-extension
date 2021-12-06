@@ -26,7 +26,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             console.log(e);
         }
 
-        if (request.data.data.details == 0) {
+        if (Object.keys(request.data.data.items_counts).length === 0) {
             createNoDPFoundPopUp();
         } else {
             createToastPopup(request.data);

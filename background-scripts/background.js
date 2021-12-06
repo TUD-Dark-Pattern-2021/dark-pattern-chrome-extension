@@ -84,7 +84,7 @@ async function sendData(raw_html) {
                     }
 
                 }
-                console.log('result=========', result)
+                console.log('result=========', data);
 
 
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {

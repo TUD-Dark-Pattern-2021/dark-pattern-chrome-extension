@@ -122,15 +122,36 @@
 
                 <div id="reports_page" class="reports_container">
                     <img src="../images/question-mark.png" alt="?????/" class="questionmark_report" id="reportpage_questionmark" />
-                    <div class="helpUs_info" id="helpUs">If you come across a dark pattern on a webpage, that is not detected but should be, please fill in the form, giving as much detail as possible about this undetected pattern. </div>
+                    <div class="helpUs_info" id="helpUs">
+                        <div>
+                            If you come across a dark pattern on a webpage, that is not detected or a mis-highlighted pattern, please help us by filling in the form
+                        </div>
+                        <div class="item-spacer">
+                            1. Website URL - The URL of the website that the non-detected or mis-highlighted pattern is on
+                        </div>
+                        <div class="item-spacer">
+                            2. Sentence or Keywords of Dark Pattern - Input the words that are or sentence that is in the dark pattern.
+                        </div>
+                        <div class="item-spacer">
+                            3. Dark Pattern Type - Choose which type of dark pattern it is from the drop down menu
+                        </div>
+
+                        <div class="item-spacer">
+                            4. Describe the Issue - Any extra info needed, please input here
+                        </div>
+
+                        <div class="item-spacer">
+                            5. Check the box if you are reporting a mis-highlighted dark pattern.
+                        </div>
+                    </div>
                     <div class="success" id="success">Thank's for submitting a report</div>
 
                     <form class="reportform" id="reportform">
                         <label for="WebsiteURL" class="websiteurl">Website URL</label><br>
                         <input type="text" id="WebsiteURL" name="WebsiteURL" class="urlinput"><br>
 
-                        <label for="WebsiteURL" class="websiteurl">Keyword</label><br>
-                        <input type="text" id="keyword" name="keyword" class="urlinput" placeholder="Input the dark pattern phrase"><br>
+                        <label for="WebsiteURL" class="websiteurl">Sentence or Keywords of Dark Pattern</label><br>
+                        <input type="text" id="keyword" name="keyword" class="urlinput" placeholder="Input the dark pattern phrase..."><br>
                         <label class="websiteurl">Dark Pattern Type</label><br>
                         <select name="type" id="patternType" class="patterntypeinput">
                             <option value="fakeactivity">Fake Activity</option>
@@ -144,7 +165,7 @@
                         <br>
 
                         <label class="websiteurl">Describe the Issue</label><br>
-                        <textarea type="text" id="PatternDescription" name="PatternDescription" class="description_input" placeholder="Descibe why it is a dark pattern of this type"></textarea><br>
+                        <textarea type="text" id="PatternDescription" name="PatternDescription" class="description_input" placeholder="Descibe why it is a dark pattern of this type..."></textarea><br>
 
                         <input type="checkbox" id="report_type" name="report_type" class="checkbox_input">
                         <label for="report_type" class="checkbox">Check if reporting mis-highlighted content.</label><br><br>
@@ -238,6 +259,18 @@
                                         <div class="autoswitchwrapper"><span class="onOfftext">Off</span>
                                             <div class="switch switchposition">
                                                 <input type="checkbox" checked id="id_switch_FakeLowStock" data-type="FakeLowStock" />
+                                                <span class="slider"></span>
+                                            </div>
+                                            <span class="onOfftext">On</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="typewrappers">
+                                        <label for="id_switch_confirmshaming" class="typetext">Confirmshaming</label>
+                                        <div class="autoswitchwrapper"><span class="onOfftext">Off</span>
+                                            <div class="switch switchposition">
+                                                <input type="checkbox" checked id="id_switch_Confirmshaming" data-type="Confirmshaming" />
                                                 <span class="slider"></span>
                                             </div>
                                             <span class="onOfftext">On</span>

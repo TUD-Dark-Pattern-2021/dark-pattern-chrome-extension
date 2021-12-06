@@ -13,7 +13,7 @@ window.onload = function() {
                     checkboxDataDisplay(results[key + "_checkboxes"]);
                 });
                 let storage_data = results[key];
-                if ((storage_data.data.details).length == 0) {
+                if (Object.keys(storage_data.data.items_counts).length == 0) {
                     $("#no_detection, #full_results, #error").hide();
                     $("#infoContainer, #noDetection").show();
                     document.getElementById("detection_button").innerHTML = "Detect Dark Patterns";
@@ -75,7 +75,7 @@ function bindEvents() {
         $(this).parent().siblings('.dp-list-detail-wrapper').slideToggle()
     })
 
-    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand', function(e) {
+    $('.switch').on('click', '#id_switch_FakeActivity, #id_switch_FakeCountdown, #id_switch_FakeLimitedTime, #id_switch_FakeLowStock, #id_switch_FakeHighDemand, #id_switch_confirmshaming', function(e) {
         let category = $(this).attr('data-type')
         let status = $(this).is(':checked')
         console.log(status)
@@ -136,8 +136,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         $(".nav_list_active").removeClass("nav_list_active");
         $("#results").addClass("nav_list_active");
-
-        if ((request.data.data.details).length == 0) {
+        //console.log(Object.keys(request.data.data.items_counts).length);
+        if (Object.keys(request.data.data.items_counts).length == 0) {
             $("#infoContainer, #noDetection").show();
             $("#no_detection, #full_results, #error").hide();
         } else {
