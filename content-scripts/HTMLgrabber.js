@@ -157,6 +157,7 @@ function createToastPopup(data) {
     document.body.appendChild(toastpopup);
 
     $("#toastpopup").fadeIn("slow");
+    $("#toastpopup").delay(15000).fadeOut('slow', function() { $(this).remove() });
 
 }
 
