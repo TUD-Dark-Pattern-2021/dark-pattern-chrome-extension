@@ -48,8 +48,9 @@ function highlight_DP(data) {
     let confirmshaming_img = chrome.runtime.getURL("../images/Confirmshaming.png");
 
     for (item = 0; item < data.total_counts; item++) {
-        let category = data.details[item].type_name;
-        DP_text = data.details[item].tag;
+        let {type_name: category, tag:DP_text, content: dpContent} = data.details[item];
+        // let category = data.details[item].type_name;
+        // DP_text = data.details[item].tag;
 
         let icon = document.createElement("img");
         icon.id = `DP_id_${item}`;
@@ -90,7 +91,7 @@ function highlight_DP(data) {
 
         icon_div.append(icon);
         if ($(DP_text).parents('.DP_text_border_div').is('.DP_text_border_div')) {
-            if ($(DP_text).parents('.DP_text_border_div').children(".DP_type_div").is(".DP_type_div")) {} else {
+            if (!$(DP_text).parents('.DP_text_border_div').children(".DP_type_div").is(".DP_type_div")) {
                 $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
             }

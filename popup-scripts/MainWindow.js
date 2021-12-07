@@ -145,6 +145,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             $("#no_detection, #noDetection, #error").hide();
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
+            console.log(request.data.data, '============---------------------')
         }
         sendResponse("Data arrived at Popup.js");
     } else if (request.message == "anErrorWasCaught") {
