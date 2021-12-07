@@ -15,7 +15,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'navigateToClickedElement') {
         //$(request.data).css("border", "5px solid black");
         //console.log($(request.data).parent());
-        const target_offset = $(request.data).offset();
+        let targetElement = null;
+        $(request.data.tag).each((i, v) => {
+            if ($(v).html().trim().slice(0,3) === request.data.content.trim().slice(0,3)) {
+                targetElement = $(v)
+            }
+        })
+        const target_offset = targetElement.offset();
         const target_top = target_offset.top;
         const height = window.innerHeight || document.documentElement.clientHeight ||
             document.body.clientHeight;
@@ -94,6 +100,7 @@ function highlight_DP(data) {
             if (!$(DP_text).parents('.DP_text_border_div').children(".DP_type_div").is(".DP_type_div")) {
                 $(DP_text).parents(".DP_text_border_div").prepend(icon_div);
                 $(DP_text).wrap(DP_text_border);
+
             }
         } else {
             let DP_text_div = document.createElement('div');
