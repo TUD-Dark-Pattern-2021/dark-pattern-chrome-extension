@@ -13,6 +13,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'navigateToClickedElement') {
+        //$(request.data).css("border", "5px solid black");
+        //console.log($(request.data).parent());
         const target_offset = $(request.data).offset();
         const target_top = target_offset.top;
         const height = window.innerHeight || document.documentElement.clientHeight ||
@@ -68,6 +70,7 @@ function highlight_DP(data) {
             DP_text_border.classList.add('DP_text_border_fakeCountdown', "identifier");
 
         } else if (category === "FakeHighDemand") {
+            console.log("fdssssssss================");
             icon.setAttribute("src", highDemand_img);
             DP_text_border.classList.add("DP_text_border_fakeHighDemand", "identifier");
 
@@ -76,7 +79,6 @@ function highlight_DP(data) {
             DP_text_border.classList.add('DP_text_border_fakeLimitedTime', "identifier");
 
         } else if (category === "FakeLowStock") {
-            console.log("sdfasdfasdfasdfasdf==============fakelowstock");
             icon.setAttribute("src", lowStock_img);
             DP_text_border.classList.add('DP_text_border_fakeLowStock', "identifier");
 

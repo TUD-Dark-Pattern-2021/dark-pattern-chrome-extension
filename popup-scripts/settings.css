@@ -3,7 +3,7 @@
     font-size: 15px;
     color: #211D2E;
     font-weight: 700;
-    margin: 15px 0 5px 15px;
+    margin: 10px 0 5px 15px;
 }
 
 .ORC_title {
@@ -47,7 +47,7 @@
 .filterborder {
     margin: 0 15px 10px 15px;
     border: 1px solid black;
-    height: 135px;
+    height: 160px;
     width: auto;
     border-radius: 3px;
     position: relative;
@@ -132,12 +132,30 @@
     padding: 5px;
 }
 
+.checkboxes_info_text {
+    display: none;
+    position: fixed;
+    top: 168px;
+    left: 179px;
+    width: 165px;
+    background-color: white;
+    z-index: 999999999;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 2px solid #FEDB00;
+    padding: 5px;
+}
+
+.item-spacer {
+    margin-top: 5px;
+}
+
 .helpUs_info {
     display: none;
     position: fixed;
     top: 114px;
-    left: 188px;
-    width: 153px;
+    left: 35px;
+    width: 310px;
     background-color: white;
     z-index: 999999999;
     font-size: 14px;

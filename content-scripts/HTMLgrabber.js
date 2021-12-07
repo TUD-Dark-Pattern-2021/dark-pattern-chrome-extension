@@ -26,7 +26,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             console.log(e);
         }
 
-        if (request.data.data.details == 0) {
+        if (Object.keys(request.data.data.items_counts).length === 0) {
             createNoDPFoundPopUp();
         } else {
             createToastPopup(request.data);
@@ -132,14 +132,15 @@ function createToastPopup(data) {
         <div class = "careful">Careful!</div>
          <div class = "warning_text">There were ${data.data.total_counts} dark patterns found on this webpage.</div>
          <div class = "warning_text">The patterns types are:</div>
-         <div>
+         <div class = "list_wrapper">
              <ul class = "list_styling dp_ul">
              ${key.map((type, index) => `
              <li class = "dp_li"><div class = "wrap"><img src = ${chrome.runtime.getURL(`../images/${img[index]}.png`)} alt = "Icon" class = "list_icon"><span class = "warning_text">${type}</span></div></li>
              `).join('')}
          </ul>
-         <div class = "outlined_text">Each dark pattern will have an icon beside it and be highlighted with dashed coloured boxes similar to this text!</div>
          </div>
+         <div class = "outlined_text">Each dark pattern will have an icon beside it and be highlighted with dashed coloured boxes similar to this text!</div>
+
          </div>
         <div class = "item3_found"><img src = ${close} alt = "X" class = "closepopup" id = "closePatternsFound"></div>
         </div>
@@ -156,13 +157,7 @@ function createToastPopup(data) {
     document.body.appendChild(toastpopup);
 
     $("#toastpopup").fadeIn("slow");
-    $("#toastpopup").delay(12000).fadeOut('slow', function() { $(this).remove() });
-
-    //     <ul class = "typelist">
-    //     ${key.map((type, index) => `
-    //     <li>${type}</li>
-    //     `).join('')}
-    // </ul>
+    $("#toastpopup").delay(15000).fadeOut('slow', function() { $(this).remove() });
 
 }
 
