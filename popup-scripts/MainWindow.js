@@ -145,6 +145,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             $("#no_detection, #noDetection, #error").hide();
             document.getElementById("number_detected").innerHTML = request.data.data.total_counts
             buildchart(request.data.data);
+            console.log(request.data.data, '============---------------------')
         }
         sendResponse("Data arrived at Popup.js");
     } else if (request.message == "anErrorWasCaught") {
@@ -229,7 +230,10 @@ function renderlist(data) {
         let key = $(this).attr('data-dp-key')
 
         let target = _.find(data.details, { key })
-        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
+        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: {
+                tag: target.tag,
+                content:target.content
+            } }, function(response) {
             console.log(response);
         });
 

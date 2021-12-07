@@ -90,19 +90,27 @@ async function sendData(raw_html) {
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                     //let tab = tabs[0].id;
                     chrome.storage.local.set({
-                        [tabs[0].id]: data
+                        [tabs[0].id]: {
+                            data: result
+                        }
                     });
                     console.log("data is set in storage " + tabs[0].id);
                 });
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: data }, function(response) {
+                    chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: {
+                            data: result
+                        }}, function(response) {
                         console.log(response);
                     });
-                    chrome.runtime.sendMessage({ message: "Data Retrieved", data: data }, function() {
+                    chrome.runtime.sendMessage({ message: "Data Retrieved", data: {
+                            data: result
+                        }}, function() {
                         console.log(data);
                     });
                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                        chrome.tabs.sendMessage(tabs[0].id, { message: "createtoastpopup", data: data }, function(response) {
+                        chrome.tabs.sendMessage(tabs[0].id, { message: "createtoastpopup", data: {
+                                data: result
+                            } }, function(response) {
                             // console.log(response);
                         })
                     });
