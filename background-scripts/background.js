@@ -78,7 +78,7 @@ async function sendData(raw_html) {
                 for (let i in response.filters) {
                     console.log(i)
                     if (response.filters[i] === false && result.items_counts[i]) {
-                        result.details = result.details.filter((v) => v.category_name !== i)
+                        result.details = result.details.filter((v) => v.type_name !== i)
                         result.total_counts -= result.items_counts[i]
                         delete result.items_counts[i]
                     }
