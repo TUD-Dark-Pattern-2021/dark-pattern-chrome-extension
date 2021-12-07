@@ -13,14 +13,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'navigateToClickedElement') {
-        //$(request.data).css("border", "5px solid black");
-        //console.log($(request.data).parent());
         let targetElement = null;
-        $(request.data.tag).each((i, v) => {
-            if ($(v).html().trim().slice(0,3) === request.data.content.trim().slice(0,3)) {
-                targetElement = $(v)
-            }
-        })
+        if (request.data.tagType !== 'image') {
+            // a compromise to navigate to target element
+            $(request.data.tag).each((i, v) => {
+                if ($(v).html().trim().slice(0,3) === request.data.content.trim().slice(0,3)) {
+                    targetElement = $(v)
+                }
+            })
+        } else {
+            targetElement = $(request.data.tag)
+        }
+
         const target_offset = targetElement.offset();
         const target_top = target_offset.top;
         const height = window.innerHeight || document.documentElement.clientHeight ||

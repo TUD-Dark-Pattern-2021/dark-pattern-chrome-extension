@@ -232,7 +232,8 @@ function renderlist(data) {
         let target = _.find(data.details, { key })
         chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: {
                 tag: target.tag,
-                content:target.content
+                content:target.content,
+                tagType: target.tag_type
             } }, function(response) {
             console.log(response);
         });
