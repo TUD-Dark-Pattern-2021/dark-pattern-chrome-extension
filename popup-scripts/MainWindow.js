@@ -230,7 +230,10 @@ function renderlist(data) {
         let key = $(this).attr('data-dp-key')
 
         let target = _.find(data.details, { key })
-        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: target.tag }, function(response) {
+        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: {
+                tag: target.tag,
+                content:target.content
+            } }, function(response) {
             console.log(response);
         });
 
