@@ -32,9 +32,6 @@ window.onload = function() {
             }
 
         });
-        chrome.tabs.sendMessage(tabs[0].id, { message: "getscollbarposition" }, function(response) {
-            updatescrollbarposition(response)
-        });
 
     });
 
@@ -234,15 +231,10 @@ function renderlist(data) {
             message: "navigateToClickedElement",
             data: {
                 tag: target.tag,
-<<<<<<< HEAD
-                content: target.content
+                content: target.content,
+                tagType: target.tag_type
             }
         }, function(response) {
-=======
-                content:target.content,
-                tagType: target.tag_type
-            } }, function(response) {
->>>>>>> 7fe284fcdb673d5f7974de7f070c2399bfb5fe91
             console.log(response);
         });
 
@@ -275,12 +267,6 @@ function checkboxDataDisplay(data) {
 
 function displayPagePercentageVisible(percentage) {
     document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style">${percentage}%</div>`
-}
-
-function updatescrollbarposition(percentage) {
-    console.log(percentage);
-    document.getElementById("scrollbar").style.background = `linear-gradient(90deg, red 10%, white 0%);`
-        // $("#scrollbar").css("background", `linear-gradient(90deg, red ${percentage}%, white 0%);`);
 }
 
 // Sync up our elements.

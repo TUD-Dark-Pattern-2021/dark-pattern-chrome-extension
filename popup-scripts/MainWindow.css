@@ -205,11 +205,11 @@
     }
     
     .landingpage {
+        margin: 5px 5px 5px 5px;
         font-family: 'HiraginoSans-W5', sans-serif;
         text-align: center;
-        font-size: 13px;
-        font-weight: 500;
-        font-size: 15px;
+        font-weight: 600;
+        font-size: 16px;
     }
     
     .content_wrapper {
@@ -229,9 +229,11 @@
     }
     
     .none_detected {
+        margin: 5px;
         display: none;
         font-size: x-large;
         text-align: center;
+        font-weight: 700;
     }
     
     .border_div {
@@ -615,4 +617,18 @@
     
     .linktowebsite {
         color: blue;
+    }
+    
+    .gif_sizer {
+        margin-top: 10px;
+        width: 200px;
+        height: 200px;
+    }
+    
+    .questionmark_percentage {
+        width: 16px;
+        height: 16px;
+        margin: 0px 0 3px 124px;
+        vertical-align: middle;
+        cursor: pointer;
     }

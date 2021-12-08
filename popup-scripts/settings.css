@@ -195,9 +195,9 @@
 .ocr_info_text {
     display: none;
     position: fixed;
-    top: 255px;
-    left: 130px;
-    width: 161px;
+    top: 214px;
+    left: 181px;
+    width: 155px;
     background-color: white;
     z-index: 999999999;
     font-size: 14px;
