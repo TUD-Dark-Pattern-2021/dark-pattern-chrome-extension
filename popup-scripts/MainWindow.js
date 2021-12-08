@@ -230,10 +230,13 @@ function renderlist(data) {
         let key = $(this).attr('data-dp-key')
 
         let target = _.find(data.details, { key })
-        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: {
+        chrome.runtime.sendMessage({
+            message: "navigateToClickedElement",
+            data: {
                 tag: target.tag,
-                content:target.content
-            } }, function(response) {
+                content: target.content
+            }
+        }, function(response) {
             console.log(response);
         });
 
@@ -275,38 +278,38 @@ function updatescrollbarposition(percentage) {
 }
 
 // Sync up our elements.
-syncScroll($('#scrollbar'), $('html, body'));
+// syncScroll($('#scrollbar'), $('html, body'));
 
-function syncScroll(el1, el2) {
-    var $el1 = $(el1);
-    var $el2 = $(el2);
+// function syncScroll(el1, el2) {
+//     var $el1 = $(el1);
+//     var $el2 = $(el2);
 
-    console.log($el1, $el2)
-    var forcedScroll = false;
+//     console.log($el1, $el2)
+//     var forcedScroll = false;
 
-    $el1.scroll(function() {
-        performScroll($el1, $el2);
-    });
-    $el2.scroll(function() {
-        performScroll($el2, $el1);
-    });
+//     $el1.scroll(function() {
+//         performScroll($el1, $el2);
+//     });
+//     $el2.scroll(function() {
+//         performScroll($el2, $el1);
+//     });
 
-    function performScroll($scrolled, $toScroll) {
-        if (forcedScroll) return (forcedScroll = false);
-        var percent = ($scrolled.scrollTop() /
-            ($scrolled[0].scrollHeight - $scrolled.outerHeight())) * 100;
-        setScrollTopFromPercent($toScroll, percent);
-    }
+//     function performScroll($scrolled, $toScroll) {
+//         if (forcedScroll) return (forcedScroll = false);
+//         var percent = ($scrolled.scrollTop() /
+//             ($scrolled[0].scrollHeight - $scrolled.outerHeight())) * 100;
+//         setScrollTopFromPercent($toScroll, percent);
+//     }
 
-    function setScrollTopFromPercent($el, percent) {
-        chrome.runtime.sendMessage({
-            message: "syncScroll",
-            data: {
-                el: $el,
-                percent
-            }
-        }, function(response) {
-            console.log(response);
-        });
-    }
-}
+//     function setScrollTopFromPercent($el, percent) {
+//         chrome.runtime.sendMessage({
+//             message: "syncScroll",
+//             data: {
+//                 el: $el,
+//                 percent
+//             }
+//         }, function(response) {
+//             console.log(response);
+//         });
+//     }
+// }
