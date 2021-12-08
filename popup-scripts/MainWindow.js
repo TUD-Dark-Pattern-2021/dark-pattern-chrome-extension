@@ -234,9 +234,15 @@ function renderlist(data) {
             message: "navigateToClickedElement",
             data: {
                 tag: target.tag,
+<<<<<<< HEAD
                 content: target.content
             }
         }, function(response) {
+=======
+                content:target.content,
+                tagType: target.tag_type
+            } }, function(response) {
+>>>>>>> 7fe284fcdb673d5f7974de7f070c2399bfb5fe91
             console.log(response);
         });
 
