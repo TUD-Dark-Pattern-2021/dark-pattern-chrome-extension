@@ -1,3 +1,28 @@
+09/12/2021 - Retrospective
+
+Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun
+
+ Mad
+- Elastic beanstalk causing problems that take alot of time  ( Jordan Donnelly, 1 Up Vote , 1 Down Vote  )
+- Amazon Linux can always surprise me  ( Quanwei Sun, 1 Up Vote  )
+
+
+ Sad
+- No time for more functionalities to be explored    ( Lan Zeng, 2 Up Votes  )
+- Time is limited  ( yunpeng liu, 1 Up Vote  )
+
+
+ Glad
+- Coding finished    ( Lan Zeng, 3 Up Votes  )
+- nearly to the destination of this journey!  ( yunpeng liu, 2 Up Votes  )
+- Frontend Coding finished as well  ( Alan Dowley, 2 Up Votes  )
+- Cool video finished  ( Jordan Donnelly, 2 Up Votes  )
+- Report started  ( Jordan Donnelly, 1 Up Vote  )
+- We're gonna publish our extension!  ( yunpeng liu, 2 Up Votes  )
+- website nearly finish  ( Yufei Su, 1 Up Vote  )
+![Screenshot](Retrospective-Week12.PNG)
+
+
 02/12/2021 - Retrospective
 
 Participants: Yufei Su, Quanwei, yunpeng liu, Jordan Donnelly, Alan Dowley, Lan Zeng, Quanwei Sun

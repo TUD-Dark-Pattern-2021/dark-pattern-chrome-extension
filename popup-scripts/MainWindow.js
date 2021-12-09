@@ -32,9 +32,6 @@ window.onload = function() {
             }
 
         });
-        chrome.tabs.sendMessage(tabs[0].id, { message: "getscollbarposition" }, function(response) {
-            updatescrollbarposition(response)
-        });
 
     });
 
@@ -51,7 +48,6 @@ window.onload = function() {
     chrome.storage.local.get(['ORC'], function(results) {
         $("#id_switch_ORC").attr("checked", results.ORC);
     });
-
 
     chrome.storage.local.get({ filters: {} }, function(result) {
         console.log('filters:', result)
@@ -230,11 +226,14 @@ function renderlist(data) {
         let key = $(this).attr('data-dp-key')
 
         let target = _.find(data.details, { key })
-        chrome.runtime.sendMessage({ message: "navigateToClickedElement", data: {
+        chrome.runtime.sendMessage({
+            message: "navigateToClickedElement",
+            data: {
                 tag: target.tag,
-                content:target.content,
+                content: target.content,
                 tagType: target.tag_type
-            } }, function(response) {
+            }
+        }, function(response) {
             console.log(response);
         });
 
@@ -266,48 +265,48 @@ function checkboxDataDisplay(data) {
 }
 
 function displayPagePercentageVisible(percentage) {
-    document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style">${percentage}%</div>`
+    if (percentage < 90 || percentage == 100) {
+        document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style percentage_colour_good">${percentage}%</div>`
+    } else {
+        document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style percentage_colour_bad">${percentage}%</div>`
+    }
 }
 
-function updatescrollbarposition(percentage) {
-    console.log(percentage);
-    document.getElementById("scrollbar").style.background = `linear-gradient(90deg, red 10%, white 0%);`
-        // $("#scrollbar").css("background", `linear-gradient(90deg, red ${percentage}%, white 0%);`);
-}
+
 
 // Sync up our elements.
-syncScroll($('#scrollbar'), $('html, body'));
+// syncScroll($('#scrollbar'), $('html, body'));
 
-function syncScroll(el1, el2) {
-    var $el1 = $(el1);
-    var $el2 = $(el2);
+// function syncScroll(el1, el2) {
+//     var $el1 = $(el1);
+//     var $el2 = $(el2);
 
-    console.log($el1, $el2)
-    var forcedScroll = false;
+//     console.log($el1, $el2)
+//     var forcedScroll = false;
 
-    $el1.scroll(function() {
-        performScroll($el1, $el2);
-    });
-    $el2.scroll(function() {
-        performScroll($el2, $el1);
-    });
+//     $el1.scroll(function() {
+//         performScroll($el1, $el2);
+//     });
+//     $el2.scroll(function() {
+//         performScroll($el2, $el1);
+//     });
 
-    function performScroll($scrolled, $toScroll) {
-        if (forcedScroll) return (forcedScroll = false);
-        var percent = ($scrolled.scrollTop() /
-            ($scrolled[0].scrollHeight - $scrolled.outerHeight())) * 100;
-        setScrollTopFromPercent($toScroll, percent);
-    }
+//     function performScroll($scrolled, $toScroll) {
+//         if (forcedScroll) return (forcedScroll = false);
+//         var percent = ($scrolled.scrollTop() /
+//             ($scrolled[0].scrollHeight - $scrolled.outerHeight())) * 100;
+//         setScrollTopFromPercent($toScroll, percent);
+//     }
 
-    function setScrollTopFromPercent($el, percent) {
-        chrome.runtime.sendMessage({
-            message: "syncScroll",
-            data: {
-                el: $el,
-                percent
-            }
-        }, function(response) {
-            console.log(response);
-        });
-    }
-}
+//     function setScrollTopFromPercent($el, percent) {
+//         chrome.runtime.sendMessage({
+//             message: "syncScroll",
+//             data: {
+//                 el: $el,
+//                 percent
+//             }
+//         }, function(response) {
+//             console.log(response);
+//         });
+//     }
+// }

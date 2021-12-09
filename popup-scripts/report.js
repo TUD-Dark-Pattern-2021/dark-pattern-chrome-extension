@@ -25,11 +25,12 @@ function submitform() {
     let patternString = document.getElementById("keyword").value;
     let patternType = $('#patternType :selected').val();
     let description = document.getElementById("PatternDescription").value;
-    if ($("report_type").is(':checked')) {
+    if ($('#report_type').is(':checked') == true) {
         var classification = 1
     } else {
         var classification = 0
     }
+
 
     let data_object = { "url": websiteUrl, "patternString": patternString, "patternType": patternType, "classification": classification, "description": description };
     chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
@@ -37,7 +38,6 @@ function submitform() {
             console.log(response);
         }
     );
-
     $('#SubmitButton').attr("value", "Submitting...");
     $("#reportform input").prop("disabled", true);
     $("#reportform textarea").prop("disabled", true);

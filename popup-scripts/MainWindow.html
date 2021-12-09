@@ -38,15 +38,23 @@
             <div class="border_div">
 
                 <div id="about_page" class="about_container">
+                    <!-- <iframe src="https://www.youtube.com/embed/K2SSYFT61uE" title="W3Schools Free Online Web Tutorials" class="embeded_vid">
+                    </iframe> -->
                     <div class="about_text">
-                        <div class="about_questions">What are Dark Patterns?</div>
-                        <div class="question_text">
-                            Dark Patterns are tricks or design elements, used by webpages, that deliberately obscure, mislead, coerce and/or deceive you into making unintended choices and decisions.
-                        </div>
 
-                        <div class="about_questions">What does this Extension do?</div>
-                        <div class="question_text">The Dark Pattern Detector aims to detect and highlight these patterns on webpages. Click on the "Detect Dark Pattern" button to get started. </div>
                         <div>
+                            <div class="about_questions">What does this Extension do? </div><a href="https://www.youtube.com/watch?v=K2SSYFT61uE" target="_blank"><button class="introduction_vid_button">Introduction Video</button></a></div>
+                        <div class="question_text">The Shopping Tricks Finder aims to detect and highlight tricks, webapges use to coerce you into making unintended choices. These tricks are also known as Dark Patterns!
+
+                        </div>
+                        <div>
+
+                            <div class="about_questions">What are Dark Patterns?</div>
+                            <div class="question_text">
+                                Dark Patterns are tricks or design elements, that deliberately obscure, mislead, coerce and/or deceive you into making unintended choices and decisions.
+                            </div>
+
+
                             <div class="about_questions">What Patterns can be detected?</div>
                             <div class="faq_types_grid">
                                 <div class="FAQ_item1 item_spacer"><img src="../images/FakeActivity.png" class="imgliststyle_single">Fake Activity</div>
@@ -59,18 +67,27 @@
 
                         </div>
                     </div>
-                    <div style="text-align: center;"><a href="http://www.dpexplained.com/" style="font-size: 12px;" target="_blank" id="linktowebsite">Visit our website for more information on Dark Patterns!</a></div>
+                    <div class="link_div"><a href="http://www.dpexplained.com/" style="font-size: 12px;" target="_blank" class="linktowebsite">Visit www.dpexplained.com for more information on Dark Patterns!</a></div>
+
+
                 </div>
 
                 <div id="results_page" class="results_container">
-                    <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.</div>
+                    <div id="no_detection" class="landingpage">Click on the 'Detect Dark Patterns' button to detected and highlight dark patterns on this webpage.
+                        <div id="IframeWrapper" style="position: relative;">
+                            <div id="iframeBlocker" style="position: absolute; top: 0; left: 0; width:100%; height:100%;z-index:2"></div>
+                            <iframe src="https://giphy.com/embed/8XMY2rAOzk8O6midYC" width="250" height="250" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                        </div>
+                    </div>
                     <div id="error" class="error">An error occured, please press the detect button to scan again</div>
 
                     <div id="infoContainer" class="info_container">
                         <div class="results_grid_container">
 
                             <div class="item1_results">
-                                <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!</div>
+                                <div class="none_detected" id="noDetection">No Dark Patterns were detected on this page!
+                                    <div><img src="../images/b1be2980-76ca-4f35-8248-49e633d433c3.gif" class="gif_sizer"></div>
+                                </div>
                                 <div id="full_results">
                                     <div class="doughnuttitle">Breakdown of detected patterns</div>
                                     <div class="doughnut_wrapper">
@@ -90,38 +107,23 @@
                                 <div style="margin-bottom: 25px;"></div>
 
                                 <div><img src="../images/question-mark.png" alt="?????/" class="questionmark_checkboxes" id="questionmark_checkboxes" /></div>
-
-
-                                <!-- <div class="tooltip-wrap">
-                                    <div class="tooltip-content">
-                                        <p class="tooltip_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</p>
-                                    </div>
-                                    <img src="../images/question-mark.png" alt="?????/" class="questionmark_checkboxes" />
-                                </div> -->
-
                             </div>
                             <div class="item3_results">
                                 <div class="screen-percentage-content">
                                     <div style="flex: 1">
-                                        <div class="doughnuttitle">Percentage of the webpage visible on screen:</div>
+                                        <div class="percentage_title">Percentage of the webpage visible on screen:</div>
                                         <div id="screenpercentage"></div>
-                                    </div>
-                                    <div class="scrolltracker" id="scrollbar">
-                                        <div class="scrolltracker-bullet"></div>
+                                        <img src="../images/question-mark.png" alt="?????/" class="questionmark_percentage" id="questionmark_percentage" />
                                     </div>
 
-                                </div>
-                                <div class="tooltip-wrap">
-                                    <div class="tooltip-content">
-                                        <p class="tooltip_text">Webpages can sometimes hide the information you are looking for, just off of the screen</p>
-                                    </div>
-                                    <img src="../images/question-mark.png" alt="?????/" class="questionmark" />
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="patterntype_info_text" id="patternType_info_text">Click on a pattern type to see a list of all the ones detected that are of that type. Click on specific pattern of that type to naviagate to it on the webpage.</div>
                     <div class="checkboxes_info_text" id="checkbox_info_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</div>
+                    <div class="percentage_info_text" id="percentage_info_text">Webapges can sometimes hide information or choice that they do not want you to see just off the end of the screen.</div>
                 </div>
 
                 <div id="reports_page" class="reports_container">
@@ -171,7 +173,7 @@
                         <label class="websiteurl">Describe the Issue</label><br>
                         <textarea type="text" id="PatternDescription" name="PatternDescription" class="description_input" placeholder="Descibe why it is a dark pattern of this type..."></textarea><br>
 
-                        <input type="checkbox" id="report_type" name="report_type" class="checkbox_input">
+                        <input type="checkbox" name="report_type" id="report_type" class="checkbox_input">
                         <label for="report_type" class="checkbox">Check if reporting mis-highlighted content.</label><br><br>
 
 
@@ -285,7 +287,7 @@
                         </div>
                     </div>
 
-                    <div class="settingtitle">Optical Character Recgonition (OCR)<img src="../images/question-mark.png" alt="?????/" class="questionmark" id="ocr_info" /></div>
+                    <div class="settingtitle">Image Detection<img src="../images/question-mark.png" alt="?????/" class="questionmark" id="ocr_info" /></div>
                     <div class="autoscanborder">
                         <div class="autoswitchwrapper">
                             <span class="onOfftext">Off</span>
@@ -304,7 +306,7 @@
 
                 <div class="autoscan_info_text" id="autoscan_info_text">When auto scan is turned on, the exentsion will automatically scan for dark patterns on any webapge you visit!</div>
                 <div class="detection_info_text" id="detection_info_text">If a Dark Pattern type is turned off, it will no longer be highlighted, on the webpage or shown in the detection results.</div>
-                <div class="ocr_info_text" id="ocr_info_text">Turning on OCR will allow the detector to detect dark patterns that are present on images on the webpage. Turning on OCR will add 20 seconds to the detection time.</div>
+                <div class="ocr_info_text" id="ocr_info_text">Turning on image detection will allow the detector to detect dark patterns that are present on images, using optical character recgonition. Turning on image detection can add about 20 seconds to the detection time.</div>
             </div>
         </div>
     </div>

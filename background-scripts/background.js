@@ -1,4 +1,7 @@
 // Initialize
+chrome.action.setTitle({
+    title: 'Shopping Tricks Detector'
+});
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ autoscan: false });
@@ -97,20 +100,29 @@ async function sendData(raw_html) {
                     console.log("data is set in storage " + tabs[0].id);
                 });
                 chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, { message: "Data Gotten", data: {
+                    chrome.tabs.sendMessage(tabs[0].id, {
+                        message: "Data Gotten",
+                        data: {
                             data: result
-                        }}, function(response) {
+                        }
+                    }, function(response) {
                         console.log(response);
                     });
-                    chrome.runtime.sendMessage({ message: "Data Retrieved", data: {
+                    chrome.runtime.sendMessage({
+                        message: "Data Retrieved",
+                        data: {
                             data: result
-                        }}, function() {
+                        }
+                    }, function() {
                         console.log(data);
                     });
                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                        chrome.tabs.sendMessage(tabs[0].id, { message: "createtoastpopup", data: {
+                        chrome.tabs.sendMessage(tabs[0].id, {
+                            message: "createtoastpopup",
+                            data: {
                                 data: result
-                            } }, function(response) {
+                            }
+                        }, function(response) {
                             // console.log(response);
                         })
                     });
@@ -152,6 +164,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 //sending the submitted report the the node and handlign the repsonse accordingly
 async function sendReport(data) {
+
     console.log(data)
     // await fetch("http://localhost:8080/api/dp/newReport", {
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/newReport", {

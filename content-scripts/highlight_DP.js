@@ -115,8 +115,6 @@ function highlight_DP(data) {
         }
     }
 
-
-
     //function to create the little popup coming out of each highlighted dark pattern
     //function contains a lot of logic which controls where the popup will appear on the screen based off of where the highlighted DP icon is located
     function showpopup(object) {

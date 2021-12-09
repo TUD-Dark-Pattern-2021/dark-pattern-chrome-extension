@@ -33,7 +33,7 @@
     .logo {
         width: 60px;
         height: 55px;
-        margin: 8px 0px 10px 15px;
+        margin: 8px 0px 10px 7px;
     }
     
     .grid-container {
@@ -205,11 +205,11 @@
     }
     
     .landingpage {
+        margin: 5px 5px 5px 5px;
         font-family: 'HiraginoSans-W5', sans-serif;
         text-align: center;
-        font-size: 13px;
-        font-weight: 500;
-        font-size: 15px;
+        font-weight: 600;
+        font-size: 16px;
     }
     
     .content_wrapper {
@@ -229,9 +229,11 @@
     }
     
     .none_detected {
+        margin: 5px;
         display: none;
         font-size: x-large;
         text-align: center;
+        font-weight: 700;
     }
     
     .border_div {
@@ -345,6 +347,15 @@
         display: none;
     }
     
+    .percentage_title {
+        text-align: center;
+        font-family: 'HiraginoSans-W5', sans-serif;
+        color: #211D2E;
+        font-weight: 700;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    
     .doughnuttitle {
         text-align: center;
         font-family: 'HiraginoSans-W5', sans-serif;
@@ -386,7 +397,7 @@
     }
     
     .renderlist {
-        height: 127px;
+        height: 131px;
         overflow: auto;
     }
     
@@ -463,7 +474,7 @@
         font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 14px;
         margin: 5px 10px 10px 10px;
     }
     
@@ -516,9 +527,18 @@
     }
     
     .percentage_style {
-        font-size: 20px;
+        font-size: 30px;
         color: red;
         text-align: center;
+        margin: 8px;
+    }
+    
+    .percentage_colour_good {
+        color: #4BB543;
+    }
+    
+    .percentage_colour_bad {
+        color: red;
     }
     
     @-webkit-keyframes sk-bouncedelay {
@@ -584,7 +604,7 @@
     .questionmark_checkboxes {
         width: 16px;
         height: 16px;
-        margin: 2px 3px 0 10px;
+        margin: -20px 3px 0 10px;
         vertical-align: middle;
         cursor: pointer;
         float: right;
@@ -615,4 +635,44 @@
     
     .linktowebsite {
         color: blue;
+    }
+    
+    .gif_sizer {
+        margin-top: 10px;
+        width: 200px;
+        height: 200px;
+    }
+    
+    .questionmark_percentage {
+        width: 16px;
+        height: 16px;
+        margin: 49px 0 3px 124px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    
+    .introduction_vid_button {
+        margin: 0 0 0 12px;
+        background-color: #FEDB00;
+        font-weight: 600;
+        border-radius: 3px;
+        border: 0;
+        height: 20px;
+        width: 140px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    
+    .link_div {
+        text-align: center;
+        margin-top: -2px;
+    }
+    
+    .embeded_vid {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 359px;
+        height: 332px;
+        border: 0;
     }
