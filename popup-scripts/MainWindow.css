@@ -347,6 +347,15 @@
         display: none;
     }
     
+    .percentage_title {
+        text-align: center;
+        font-family: 'HiraginoSans-W5', sans-serif;
+        color: #211D2E;
+        font-weight: 700;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    
     .doughnuttitle {
         text-align: center;
         font-family: 'HiraginoSans-W5', sans-serif;
@@ -465,7 +474,7 @@
         font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 14px;
         margin: 5px 10px 10px 10px;
     }
     
@@ -518,9 +527,18 @@
     }
     
     .percentage_style {
-        font-size: 20px;
+        font-size: 30px;
         color: red;
         text-align: center;
+        margin: 8px;
+    }
+    
+    .percentage_colour_good {
+        color: #4BB543;
+    }
+    
+    .percentage_colour_bad {
+        color: red;
     }
     
     @-webkit-keyframes sk-bouncedelay {
@@ -586,7 +604,7 @@
     .questionmark_checkboxes {
         width: 16px;
         height: 16px;
-        margin: 2px 3px 0 10px;
+        margin: -20px 3px 0 10px;
         vertical-align: middle;
         cursor: pointer;
         float: right;
@@ -628,7 +646,7 @@
     .questionmark_percentage {
         width: 16px;
         height: 16px;
-        margin: 0px 0 3px 124px;
+        margin: 49px 0 3px 124px;
         vertical-align: middle;
         cursor: pointer;
     }

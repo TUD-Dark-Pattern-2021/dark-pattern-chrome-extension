@@ -89,6 +89,15 @@ $('#questionmark_checkboxes').on({
     }
 });
 
+$('#questionmark_percentage').on({
+    mouseenter: function() {
+        $('#percentage_info_text').show();
+    },
+    mouseleave: function() {
+        $('#percentage_info_text').hide();
+    }
+});
+
 $('#expand').on('click', function(e) {
     if ($('#fullwrapper').hasClass("scaled")) {
 

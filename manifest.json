@@ -1,7 +1,7 @@
 {
-    "name": "DPD",
+    "name": "Shopping Tricks Finder",
     "version": "0.0.1",
-    "description": "Dark Pattern Detector",
+    "description": "Detect and highlight manipulation tatics, know as Dark Patterns, shopping websites use in order to coerce you into unintended choices. ",
     "manifest_version": 3,
     "background": {
         "service_worker": "background-scripts/background.js"

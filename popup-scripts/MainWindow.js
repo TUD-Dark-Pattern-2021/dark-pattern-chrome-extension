@@ -49,7 +49,6 @@ window.onload = function() {
         $("#id_switch_ORC").attr("checked", results.ORC);
     });
 
-
     chrome.storage.local.get({ filters: {} }, function(result) {
         console.log('filters:', result)
         for (let k in result.filters) {
@@ -266,8 +265,14 @@ function checkboxDataDisplay(data) {
 }
 
 function displayPagePercentageVisible(percentage) {
-    document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style">${percentage}%</div>`
+    if (percentage < 90 || percentage == 100) {
+        document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style percentage_colour_good">${percentage}%</div>`
+    } else {
+        document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style percentage_colour_bad">${percentage}%</div>`
+    }
 }
+
+
 
 // Sync up our elements.
 // syncScroll($('#scrollbar'), $('html, body'));

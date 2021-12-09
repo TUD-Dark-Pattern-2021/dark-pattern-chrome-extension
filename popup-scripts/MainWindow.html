@@ -39,14 +39,19 @@
 
                 <div id="about_page" class="about_container">
                     <div class="about_text">
-                        <div class="about_questions">What are Dark Patterns?</div>
-                        <div class="question_text">
-                            Dark Patterns are tricks or design elements, used by webpages, that deliberately obscure, mislead, coerce and/or deceive you into making unintended choices and decisions.
-                        </div>
 
                         <div class="about_questions">What does this Extension do?</div>
-                        <div class="question_text">The Dark Pattern Detector aims to detect and highlight these patterns on webpages. Click on the "Detect Dark Pattern" button to get started. </div>
+                        <div class="question_text">The Shopping Tricks Finder aims to detect and highlight tricks, webapges use to coerce you into making unintended choices. These tricks are also known as Dark Patterns!
+
+                        </div>
                         <div>
+
+                            <div class="about_questions">What are Dark Patterns?</div>
+                            <div class="question_text">
+                                Dark Patterns are tricks or design elements, that deliberately obscure, mislead, coerce and/or deceive you into making unintended choices and decisions.
+                            </div>
+
+
                             <div class="about_questions">What Patterns can be detected?</div>
                             <div class="faq_types_grid">
                                 <div class="FAQ_item1 item_spacer"><img src="../images/FakeActivity.png" class="imgliststyle_single">Fake Activity</div>
@@ -59,7 +64,7 @@
 
                         </div>
                     </div>
-                    <div style="text-align: center;"><a href="http://www.dpexplained.com/" style="font-size: 12px;" target="_blank" id="linktowebsite">Visit our website for more information on Dark Patterns!</a></div>
+                    <div style="text-align: center;"><a href="http://www.dpexplained.com/" style="font-size: 12px;" target="_blank" class="linktowebsite">Visit our website for more information on Dark Patterns!</a></div>
                 </div>
 
                 <div id="results_page" class="results_container">
@@ -101,23 +106,19 @@
                             <div class="item3_results">
                                 <div class="screen-percentage-content">
                                     <div style="flex: 1">
-                                        <div class="doughnuttitle">Percentage of the webpage visible on screen:</div>
+                                        <div class="percentage_title">Percentage of the webpage visible on screen:</div>
                                         <div id="screenpercentage"></div>
+                                        <img src="../images/question-mark.png" alt="?????/" class="questionmark_percentage" id="questionmark_percentage" />
                                     </div>
 
 
-                                </div>
-                                <div class="tooltip-wrap">
-                                    <div class="tooltip-content">
-                                        <p class="tooltip_text">Webpages can sometimes hide the information you are looking for, just off of the screen</p>
-                                    </div>
-                                    <img src="../images/question-mark.png" alt="?????/" class="questionmark_percentage" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="patterntype_info_text" id="patternType_info_text">Click on a pattern type to see a list of all the ones detected that are of that type. Click on specific pattern of that type to naviagate to it on the webpage.</div>
                     <div class="checkboxes_info_text" id="checkbox_info_text">Webpages can have pre-checked checkboxes/radio buttons, sometimes opting you into unintended choices.</div>
+                    <div class="percentage_info_text" id="percentage_info_text">Webapges can sometimes hide information or choice that they do not want you to see just off the end of the screen.</div>
                 </div>
 
                 <div id="reports_page" class="reports_container">
