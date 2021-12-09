@@ -33,7 +33,7 @@
     .logo {
         width: 60px;
         height: 55px;
-        margin: 8px 0px 10px 15px;
+        margin: 8px 0px 10px 7px;
     }
     
     .grid-container {
@@ -649,4 +649,30 @@
         margin: 49px 0 3px 124px;
         vertical-align: middle;
         cursor: pointer;
+    }
+    
+    .introduction_vid_button {
+        margin: 0 0 0 12px;
+        background-color: #FEDB00;
+        font-weight: 600;
+        border-radius: 3px;
+        border: 0;
+        height: 20px;
+        width: 140px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    
+    .link_div {
+        text-align: center;
+        margin-top: -2px;
+    }
+    
+    .embeded_vid {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 359px;
+        height: 332px;
+        border: 0;
     }

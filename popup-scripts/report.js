@@ -25,18 +25,19 @@ function submitform() {
     let patternstring = document.getElementById("keyword").value;
     let patterntype = $('#patterntypeinput :selected').text;
     let description = document.getElementById("PatternDescription").value;
-    if ($("report_type").is(':checked')) {
+    if ($('#report_type').is(':checked') == true) {
         var classification = 1
     } else {
         var classification = 0
     }
-
+    console.log(classification);
     let data_object = { "url": websiteurl, "Pattern String": patternstring, "Pattern Type": patterntype, "Classification": classification, "description": description };
-    chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
-        function(response) {
-            console.log(response);
-        }
-    );
+    console.log(data_object);
+    // chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
+    //     function(response) {
+    //         console.log(response);
+    //     }
+    // );
 
     $('#SubmitButton').attr("value", "Submitting...");
     $("#reportform input").prop("disabled", true);

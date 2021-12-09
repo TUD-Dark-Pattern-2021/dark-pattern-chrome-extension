@@ -6,6 +6,11 @@
     "background": {
         "service_worker": "background-scripts/background.js"
     },
+    "icons": {
+        "16": "/images/logo.png",
+        "48": "/images/logo.png",
+        "128": "/images/logo.png"
+    },
 
     "content_scripts": [{
         "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js", "content-scripts/iconRemover.js"],
