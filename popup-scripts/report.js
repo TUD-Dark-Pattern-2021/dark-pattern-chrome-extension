@@ -21,24 +21,23 @@ document.getElementById("SubmitButton").addEventListener('click', function() {
 });
 
 function submitform() {
-    let websiteurl = document.getElementById("WebsiteURL").value;
-    let patternstring = document.getElementById("keyword").value;
-    let patterntype = $('#patterntypeinput :selected').text;
+    let websiteUrl = document.getElementById("WebsiteURL").value;
+    let patternString = document.getElementById("keyword").value;
+    let patternType = $('#patternType :selected').val();
     let description = document.getElementById("PatternDescription").value;
     if ($('#report_type').is(':checked') == true) {
         var classification = 1
     } else {
         var classification = 0
     }
-    console.log(classification);
-    let data_object = { "url": websiteurl, "Pattern String": patternstring, "Pattern Type": patterntype, "Classification": classification, "description": description };
-    console.log(data_object);
-    // chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
-    //     function(response) {
-    //         console.log(response);
-    //     }
-    // );
 
+
+    let data_object = { "url": websiteUrl, "patternString": patternString, "patternType": patternType, "classification": classification, "description": description };
+    chrome.runtime.sendMessage({ message: "SendReport", data: data_object },
+        function(response) {
+            console.log(response);
+        }
+    );
     $('#SubmitButton').attr("value", "Submitting...");
     $("#reportform input").prop("disabled", true);
     $("#reportform textarea").prop("disabled", true);
