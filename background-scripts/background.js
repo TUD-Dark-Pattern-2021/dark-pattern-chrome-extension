@@ -152,6 +152,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 //sending the submitted report the the node and handlign the repsonse accordingly
 async function sendReport(data) {
+    console.log(data)
+    // await fetch("http://localhost:8080/api/dp/newReport", {
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/newReport", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
