@@ -166,16 +166,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 async function sendReport(data) {
 
     console.log(data)
-    // await fetch("http://localhost:8080/api/dp/newReport", {
+        // await fetch("http://localhost:8080/api/dp/newReport", {
     await fetch("http://dark-pattern-node-js-dev.eu-west-1.elasticbeanstalk.com/api/dp/newReport", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             timeout: 0,
             body: JSON.stringify(data),
-        }).then(response => response.text())
+        }).then(response => response.json())
         .then(result => {
             console.log(result);
-            chrome.runtime.sendMessage({ message: "formWasAdded" }, function(response) {
+            chrome.runtime.sendMessage({ message: "formWasAdded", data: result }, function(response) {
                 console.log(response);
             });
         })
