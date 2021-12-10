@@ -1,5 +1,4 @@
 .settingtitle {
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 15px;
     color: #211D2E;
     font-weight: 700;
@@ -7,7 +6,6 @@
 }
 
 .ORC_title {
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 15px;
     color: #211D2E;
     font-weight: 700;
@@ -25,7 +23,6 @@
 
 .explanationText {
     font-size: 10px;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     color: #211D2E;
     font-weight: 400;
     margin: 3px 5px 10px 5px;
@@ -38,7 +35,6 @@
 }
 
 .onOfftext {
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 13px;
     margin: 0 10px 0 10px;
     font-weight: 600;
@@ -56,7 +52,6 @@
 .typetext {
     float: left;
     font-size: 9px;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-weight: 600;
 }
 

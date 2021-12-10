@@ -1,7 +1,7 @@
     body {
         width: 400px;
         height: 460px;
-        font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+        font-family: MS Sans Serif, Geneva, Sans-Serif;
         margin: 0;
         padding: 0px;
     }
@@ -183,7 +183,6 @@
     }
     
     .nav_list {
-        font-family: 'HiraginoSans-W5', sans-serif;
         display: block;
         flex: 0 1 auto;
         width: 50px;
@@ -206,7 +205,6 @@
     
     .landingpage {
         margin: 5px 5px 5px 5px;
-        font-family: 'HiraginoSans-W5', sans-serif;
         text-align: center;
         font-weight: 600;
         font-size: 16px;
@@ -251,7 +249,6 @@
     .about_container {
         display: none;
         font-size: 13px;
-        font-family: 'Hiragino Sans GB SemiBold', sans-serif;
         font-weight: 500;
         padding: 0;
     }
@@ -273,7 +270,6 @@
         font-size: 13px;
         width: auto;
         margin: 0 12px 3px 0px;
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
         border-bottom: 2px solid #211D2E;
@@ -349,7 +345,6 @@
     
     .percentage_title {
         text-align: center;
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
         font-size: 14px;
@@ -358,7 +353,6 @@
     
     .doughnuttitle {
         text-align: center;
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
         font-size: 12px;
@@ -372,7 +366,6 @@
     }
     
     .totaltext {
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
         margin: 0 10px 0 10px;
@@ -385,7 +378,6 @@
     }
     
     .small_title {
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
         margin: 5px 10px 0 10px;
@@ -402,7 +394,6 @@
     }
     
     .category_list {
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 600;
         font-size: 13px;
@@ -471,7 +462,6 @@
     
     .checkbox_text {
         text-align: center;
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
         font-size: 14px;
@@ -481,7 +471,6 @@
     .checkbox_img_wrapper {
         margin: 10px 10px 0px 40px;
         text-align: left;
-        font-family: 'HiraginoSans-W5', sans-serif;
         color: #211D2E;
         font-weight: 700;
     }
@@ -630,7 +619,6 @@
     .tooltip_text {
         margin: 5px 5px 5px 5px;
         font-size: 13px;
-        font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     }
     
     .linktowebsite {
