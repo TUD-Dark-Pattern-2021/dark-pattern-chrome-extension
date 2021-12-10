@@ -5,7 +5,6 @@
 .websiteurl {
     width: 45px;
     height: 7px;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 14px;
     color: #211D2E;
     font-weight: 600;
@@ -15,7 +14,6 @@
 .checkbox {
     width: 45px;
     height: 7px;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 14px;
     color: #211D2E;
     font-weight: 600;
@@ -55,7 +53,6 @@
 }
 
 .screenshot_text {
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 11px;
     color: #211D2E;
     font-weight: 600;
@@ -67,7 +64,6 @@
 
 .Category_heading {
     width: auto;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
     font-size: 11px;
     color: #211D2E;
     font-weight: 600;

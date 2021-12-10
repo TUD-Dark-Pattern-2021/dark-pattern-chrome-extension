@@ -91,15 +91,14 @@ span.DP_pointer_right_top {
 }
 
 .DP_PU_Title {
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
-    font-size: 22px;
+    font-family: 'Arial, Helvetica, Sans-Serif' font-size: 22px;
     font-weight: bolder;
     margin: 10px 0 15px 14px;
 }
 
 .DP_popuptext {
     font-size: 13px;
-    font-family: 'Hiragino Sans GB SemiBold', sans-serif;
+    font-family: 'Arial, Helvetica, Sans-Serif';
     margin: 0px 12px 17px 14px;
     font-weight: bold;
 }

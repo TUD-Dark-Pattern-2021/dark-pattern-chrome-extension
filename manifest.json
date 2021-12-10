@@ -13,7 +13,7 @@
     },
 
     "content_scripts": [{
-        "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js", "content-scripts/iconRemover.js"],
+        "js": ["content-scripts/HTMLgrabber.js", "js/jquery.min.js", "content-scripts/highlight_DP.js", "js/chart.min.js"],
         "matches": ["<all_urls>", "http://*/*", "https://*/*"],
         "css": ["css/highlight.css", "css/toast.css"],
         "run_at": "document_end"
