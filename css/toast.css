@@ -44,7 +44,7 @@
     line-height: 23px;
     font-weight: 600;
     font-size: 20px;
-    font-family: 'Arial, Helvetica, Sans-Serif'
+    font-family: MS Sans Serif, Geneva, Sans-Serif;
 }
 
 .warning_text {
@@ -52,7 +52,8 @@
     color: #201500;
     line-height: 23px;
     font-weight: 200;
-    font-family: 'Arial, Helvetica, Sans-Serif' margin: 5px 0 5px 0;
+    font-family: MS Sans Serif, Geneva, Sans-Serif;
+    margin: 5px 0 5px 0;
 }
 
 .list_icon {
@@ -86,7 +87,8 @@
 .outlined_text {
     border: 4px red dashed;
     font-weight: 200;
-    font-family: 'Arial, Helvetica, Sans-Serif' margin: 5px 5px 10px 5px;
+    font-family: MS Sans Serif, Geneva, Sans-Serif;
+    margin: 5px 5px 10px 5px;
     padding: 5px;
 }
 
@@ -143,7 +145,7 @@
 }
 
 .autodetecttext {
-    font-family: 'Arial, Helvetica, Sans-Serif';
+    font-family: MS Sans Serif, Geneva, Sans-Serif;
     font-size: 22px;
     color: #201500;
     line-height: 27px;
