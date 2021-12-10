@@ -47,6 +47,7 @@ function submitform() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message == "formWasAdded") {
+        console.log(request.data.errcode);
         document.getElementById("reportform").reset();
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             let domain = new URL(tabs[0].url);
@@ -57,5 +58,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         $("#reportform input").prop("disabled", false);
         $("#reportform textarea").prop("disabled", false);
         $("#reportform select").prop("disabled", false);
+        if (request.data.errcode === 0) {
+
+        } else {
+
+        }
+
     }
 });
