@@ -168,9 +168,11 @@ function scanforCheckboxes() {
     all_checkboxes.push(checkboxes.length, checked_checkboxes.length);
     console.log("total number of checkboxes: " + checkboxes.length);
     console.log("total number of checked checkboxes: " + checked_checkboxes.length);
-    chrome.runtime.sendMessage({ message: "checkboxes", data: all_checkboxes }, function(response) {
+    chrome.runtime.sendMessage({ message: "checkboxes_background", data: all_checkboxes }, function(response) {
         console.log(response);
     });
+
+    
     calculatePercentageScreenVisible();
 
 }

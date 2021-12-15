@@ -38,6 +38,16 @@ window.onload = function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         let domain = new URL(tabs[0].url).hostname;
         document.getElementById("domain_name").innerHTML = domain;
+        var key_check = `${tabs[0].id}_checkboxes`;
+        try {
+            chrome.storage.local.get([key_check], function(results) {
+
+                console.log(results[key_check]);
+                checkboxDataDisplay(results[key_check]);
+            });
+        } catch (e) {
+            console.log(e);
+        }
     });
 
     chrome.storage.local.get(['autoscan'], function(results) {
@@ -271,42 +281,3 @@ function displayPagePercentageVisible(percentage) {
         document.getElementById("screenpercentage").innerHTML = `<div class = "percentage_style percentage_colour_bad">${percentage}%</div>`
     }
 }
-
-
-
-// Sync up our elements.
-// syncScroll($('#scrollbar'), $('html, body'));
-
-// function syncScroll(el1, el2) {
-//     var $el1 = $(el1);
-//     var $el2 = $(el2);
-
-//     console.log($el1, $el2)
-//     var forcedScroll = false;
-
-//     $el1.scroll(function() {
-//         performScroll($el1, $el2);
-//     });
-//     $el2.scroll(function() {
-//         performScroll($el2, $el1);
-//     });
-
-//     function performScroll($scrolled, $toScroll) {
-//         if (forcedScroll) return (forcedScroll = false);
-//         var percent = ($scrolled.scrollTop() /
-//             ($scrolled[0].scrollHeight - $scrolled.outerHeight())) * 100;
-//         setScrollTopFromPercent($toScroll, percent);
-//     }
-
-//     function setScrollTopFromPercent($el, percent) {
-//         chrome.runtime.sendMessage({
-//             message: "syncScroll",
-//             data: {
-//                 el: $el,
-//                 percent
-//             }
-//         }, function(response) {
-//             console.log(response);
-//         });
-//     }
-// }
