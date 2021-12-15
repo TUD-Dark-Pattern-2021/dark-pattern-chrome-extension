@@ -201,3 +201,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     return true;
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'checkboxes_background') {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            chrome.storage.local.set({
+                [tabs[0].id + "_checkboxes"]: request.data
+            });
+            console.log("=================checkboxes are set");
+        });
+        chrome.runtime.sendMessage({ message: "checkboxes", data: request.data }, function(response) {
+            console.log(response);
+        });
+    }
+});
